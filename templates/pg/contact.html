@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Sudarshan PG</title>
+
+    <link rel="stylesheet"
+          href="{% static 'pg/css/style.css' %}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Sudarshan PG
+    </div>
+
+    <nav>
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'contact' %}">
+            Contact
+        </a>
+
+        <a href="{% url 'login' %}">
+            User Login
+        </a>
+
+        <a href="/admin/">
+            Admin Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="contact-page">
+
+    <div class="contact-card">
+
+        <h1>
+            Contact Sudarshan PG
+        </h1>
+
+        <p>
+            Have a question about our PG accommodation?
+            Contact our team.
+        </p>
+
+
+        <div class="contact-details">
+
+            <div>
+                <strong>
+                    Address
+                </strong>
+
+                <p>
+                    Bengaluru, Karnataka, India
+                </p>
+            </div>
+
+
+            <div>
+                <strong>
+                    Phone
+                </strong>
+
+                <p>
+                    +91 XXXXX XXXXX
+                </p>
+            </div>
+
+
+            <div>
+                <strong>
+                    Email
+                </strong>
+
+                <p>
+                    support@sudarshanpg.com
+                </p>
+            </div>
+
+        </div>
+
+
+        <a
+            href="{% url 'home' %}"
+            class="btn primary-btn"
+        >
+            Back to Home
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Sudarshan PG
+    </p>
+
+</footer>
+
+</body>
+
+</html>

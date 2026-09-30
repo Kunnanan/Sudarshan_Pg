@@ -1,0 +1,1603 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sudarshan PG | Comfortable Living</title>
+
+    <link rel="stylesheet"
+          href="{% static 'pg/css/style.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body class="home-page">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="main-navbar">
+
+    <div class="nav-container">
+
+        <!-- LOGO -->
+
+        <a href="{% url 'home' %}"
+           class="navbar-brand">
+
+            <div class="navbar-logo">
+
+                <i class="fa-solid fa-building"></i>
+
+            </div>
+
+            <span>Sudarshan PG</span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}"
+               class="active">
+
+                Home
+
+            </a>
+
+            <a href="#rooms">
+
+                Rooms
+
+            </a>
+
+            <a href="#facilities">
+
+                Facilities
+
+            </a>
+
+            <a href="#amenities">
+
+                Amenities
+
+            </a>
+
+            <a href="{% url 'contact' %}">
+
+                Contact
+
+            </a>
+
+        </div>
+
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="nav-actions">
+
+            {% if request.user.is_authenticated %}
+
+                <a href="{% url 'user_home' %}"
+                   class="nav-login">
+
+                    Dashboard
+
+                </a>
+
+                <a href="{% url 'logout' %}"
+                   class="nav-button">
+
+                    Logout
+
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}"
+                   class="nav-login">
+
+                    Sign In
+
+                </a>
+
+                <a href="{% url 'signup' %}"
+                   class="nav-button">
+
+                    Get Started
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero-section">
+
+    <div class="hero-container">
+
+
+        <!-- HERO CONTENT -->
+
+        <div class="hero-content">
+
+
+            <div class="hero-badge">
+
+                <i class="fa-solid fa-star"></i>
+
+                Comfortable • Affordable • Secure
+
+            </div>
+
+
+            <h1>
+
+                Find your
+                <span>perfect PG</span>
+                in Bengaluru.
+
+            </h1>
+
+
+            <p>
+
+                Comfortable and affordable PG accommodation
+                for students and working professionals with
+                modern facilities, secure living and flexible
+                room sharing options.
+
+            </p>
+
+
+            <!-- SEARCH BOX -->
+
+            <div class="property-search">
+
+
+                <div class="search-field">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <div>
+
+                        <small>Location</small>
+
+                        <strong>
+                            Bengaluru
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="search-field">
+
+                    <i class="fa-solid fa-bed"></i>
+
+                    <div>
+
+                        <small>Room Sharing</small>
+
+                        <strong>
+                            2 / 3 / 4 Sharing
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <a href="#rooms"
+                   class="search-button">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Explore Rooms
+
+                </a>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="hero-stats">
+
+                <div>
+
+                    <strong>50+</strong>
+
+                    <span>PG Rooms</span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>500+</strong>
+
+                    <span>Residents</span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>24/7</strong>
+
+                    <span>Security</span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>₹5.8K</strong>
+
+                    <span>Starting Rent</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-image-area">
+
+
+            <div class="hero-building-card">
+
+                <div class="building-icon">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+
+                <h3>
+
+                    Sudarshan PG
+
+                </h3>
+
+
+                <p>
+
+                    A comfortable place to stay,
+                    study and work.
+
+                </p>
+
+
+                <div class="hero-mini-features">
+
+                    <span>
+
+                        <i class="fa-solid fa-wifi"></i>
+
+                        Wi-Fi
+
+                    </span>
+
+
+                    <span>
+
+                        <i class="fa-solid fa-car"></i>
+
+                        Parking
+
+                    </span>
+
+
+                    <span>
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Security
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVAILABLE -->
+
+            <div class="floating-card availability-card">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <div>
+
+                    <strong>
+                        Rooms Available
+                    </strong>
+
+                    <span>
+                        Ready to move in
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- RENT -->
+
+            <div class="floating-card rent-card">
+
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                <div>
+
+                    <strong>
+                        From ₹5,800
+                    </strong>
+
+                    <span>
+                        per month
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AVAILABLE ROOMS
+===================================================== -->
+
+<section class="rooms-section" id="rooms">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                AVAILABLE ROOMS
+            </span>
+
+            <h2>
+                Choose your room sharing
+            </h2>
+
+            <p>
+                Find a room that fits your budget,
+                lifestyle and preferred sharing option.
+            </p>
+
+        </div>
+
+
+        {% if rooms %}
+
+        <div class="room-grid">
+
+            {% for room in rooms %}
+
+            <div class="room-card">
+
+                <!-- AVAILABLE BADGE -->
+
+                <div class="room-available-badge">
+
+                    <i class="fa-solid fa-circle"></i>
+
+                    Available
+
+                </div>
+
+
+                <!-- ROOM ICON -->
+
+                <div class="room-icon
+                    {% if room.sharing_type == '2 Sharing' %}
+                        double-icon
+                    {% elif room.sharing_type == '3 Sharing' %}
+                        triple-icon
+                    {% else %}
+                        four-icon
+                    {% endif %}
+                ">
+
+                    {% if room.sharing_type == "2 Sharing" %}
+
+                        <i class="fa-solid fa-user-group"></i>
+
+                    {% elif room.sharing_type == "3 Sharing" %}
+
+                        <i class="fa-solid fa-users"></i>
+
+                    {% else %}
+
+                        <i class="fa-solid fa-people-group"></i>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- ROOM TITLE -->
+
+                <div class="room-title-row">
+
+                    <h3>
+                        {{ room.sharing_type }}
+                    </h3>
+
+                    <span class="room-tag affordable">
+
+                        Room {{ room.room_number }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- PROPERTY -->
+
+                <div class="room-property">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    {{ room.property.name }}
+
+                </div>
+
+
+                <p>
+
+                    {{ room.description|default:"Comfortable furnished room with modern facilities and a secure living environment." }}
+
+                </p>
+
+
+                <!-- ROOM INFORMATION -->
+
+                <div class="room-details">
+
+                    <span>
+
+                        <i class="fa-solid fa-bed"></i>
+
+                        {{ room.available_beds }}
+                        Bed{{ room.available_beds|pluralize }} Available
+
+                    </span>
+
+
+                    <span>
+
+                        <i class="fa-solid fa-bath"></i>
+
+                        {% if room.attached_bathroom %}
+                            Attached Bathroom
+                        {% else %}
+                            Common Bathroom
+                        {% endif %}
+
+                    </span>
+
+
+                    {% if room.is_furnished %}
+
+                    <span>
+
+                        <i class="fa-solid fa-couch"></i>
+
+                        Furnished
+
+                    </span>
+
+                    {% endif %}
+
+
+                    {% if room.balcony %}
+
+                    <span>
+
+                        <i class="fa-solid fa-door-open"></i>
+
+                        Balcony
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- FACILITIES -->
+
+                {% with room.facilities.all as room_facilities %}
+
+                {% if room_facilities %}
+
+                <div class="room-facilities">
+
+                    {% for facility in room_facilities|slice:":5" %}
+
+                    <span>
+
+                        {% if facility.icon %}
+
+                            <i class="{{ facility.icon }}"></i>
+
+                        {% else %}
+
+                            <i class="fa-solid fa-check"></i>
+
+                        {% endif %}
+
+                        {{ facility.name }}
+
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+                {% endif %}
+
+                {% endwith %}
+
+
+                <!-- PRICE -->
+
+                <div class="room-bottom">
+
+                    <div>
+
+                        <small>
+                            Monthly Rent
+                        </small>
+
+                        <strong>
+
+                            ₹{{ room.monthly_rent|floatformat:0 }}
+
+                            <span>
+                                / month
+                            </span>
+
+                        </strong>
+
+                    </div>
+
+
+                    <a href="{% url 'contact' %}">
+
+                        Enquire
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <!-- NO ROOMS -->
+
+        <div class="no-rooms">
+
+            <div class="no-rooms-icon">
+
+                <i class="fa-solid fa-bed"></i>
+
+            </div>
+
+            <h3>
+                No rooms currently available
+            </h3>
+
+            <p>
+                Please check again later or contact
+                us for upcoming availability.
+            </p>
+
+            <a href="{% url 'contact' %}">
+
+                Contact Us
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PG FACILITIES
+===================================================== -->
+
+<section class="facilities-section"
+         id="facilities">
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+
+                PG FACILITIES
+
+            </span>
+
+
+            <h2>
+
+                Everything you need for comfortable living
+
+            </h2>
+
+
+            <p>
+
+                We provide essential facilities to make
+                your stay comfortable, convenient and secure.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="facilities-grid">
+
+
+            <!-- WIFI -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-wifi"></i>
+
+                </div>
+
+                <h3>
+
+                    High-Speed Wi-Fi
+
+                </h3>
+
+                <p>
+
+                    Reliable internet connectivity
+                    for work, study and entertainment.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- WASHING MACHINE -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-shirt"></i>
+
+                </div>
+
+                <h3>
+
+                    Washing Machine
+
+                </h3>
+
+                <p>
+
+                    Washing machine facilities
+                    available for residents.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- POWER -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                </div>
+
+                <h3>
+
+                    Power Backup
+
+                </h3>
+
+                <p>
+
+                    Backup power to ensure
+                    uninterrupted daily living.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- BATHROOM -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-bath"></i>
+
+                </div>
+
+                <h3>
+
+                    Attached Bathroom
+
+                </h3>
+
+                <p>
+
+                    Clean and hygienic attached
+                    bathroom for comfortable living.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- PARKING -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-square-parking"></i>
+
+                </div>
+
+                <h3>
+
+                    Parking
+
+                </h3>
+
+                <p>
+
+                    Dedicated parking space for
+                    bikes and selected vehicles.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- CLEANING -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-broom"></i>
+
+                </div>
+
+                <h3>
+
+                    Daily Cleaning
+
+                </h3>
+
+                <p>
+
+                    Regular cleaning to maintain
+                    a fresh and hygienic environment.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- FOOD -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-utensils"></i>
+
+                </div>
+
+                <h3>
+
+                    Food & Mess
+
+                </h3>
+
+                <p>
+
+                    Fresh and hygienic food options
+                    for residents.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- SECURITY -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <h3>
+
+                    24/7 Security
+
+                </h3>
+
+                <p>
+
+                    Secure premises with CCTV
+                    and controlled access.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- CCTV -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-video"></i>
+
+                </div>
+
+                <h3>
+
+                    CCTV Surveillance
+
+                </h3>
+
+                <p>
+
+                    Common areas monitored through
+                    CCTV for added security.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- HOT WATER -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-temperature-high"></i>
+
+                </div>
+
+                <h3>
+
+                    Hot Water
+
+                </h3>
+
+                <p>
+
+                    Hot water facility available
+                    for residents.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- DRINKING WATER -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-glass-water"></i>
+
+                </div>
+
+                <h3>
+
+                    Drinking Water
+
+                </h3>
+
+                <p>
+
+                    Clean drinking water available
+                    for everyday use.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- HOUSEKEEPING -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-house-chimney"></i>
+
+                </div>
+
+                <h3>
+
+                    Housekeeping
+
+                </h3>
+
+                <p>
+
+                    Regular housekeeping support
+                    to maintain cleanliness.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- BED -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-bed"></i>
+
+                </div>
+
+                <h3>
+
+                    Bed & Mattress
+
+                </h3>
+
+                <p>
+
+                    Comfortable bed and mattress
+                    provided with the room.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- WARDROBE -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-box"></i>
+
+                </div>
+
+                <h3>
+
+                    Wardrobe
+
+                </h3>
+
+                <p>
+
+                    Personal storage space available
+                    for every resident.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- REFRIGERATOR -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-temperature-low"></i>
+
+                </div>
+
+                <h3>
+
+                    Refrigerator
+
+                </h3>
+
+                <p>
+
+                    Refrigerator facility available
+                    in the common area.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- KITCHEN -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-kitchen-set"></i>
+
+                </div>
+
+                <h3>
+
+                    Common Kitchen
+
+                </h3>
+
+                <p>
+
+                    Convenient common kitchen
+                    facility for residents.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- STUDY AREA -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <h3>
+
+                    Study Area
+
+                </h3>
+
+                <p>
+
+                    Dedicated space suitable for
+                    studying and working.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- MAINTENANCE -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                </div>
+
+                <h3>
+
+                    Maintenance Support
+
+                </h3>
+
+                <p>
+
+                    Quick assistance for maintenance
+                    and facility-related issues.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- LIFT -->
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+
+                    <i class="fa-solid fa-elevator"></i>
+
+                </div>
+
+                <h3>
+
+                    Lift
+
+                </h3>
+
+                <p>
+
+                    Lift facility available for
+                    convenient access.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INCLUDED SECTION
+===================================================== -->
+
+<section class="included-section">
+
+    <div class="section-container">
+
+
+        <div class="included-box">
+
+
+            <div class="included-content">
+
+                <span class="section-label">
+
+                    YOUR MONTHLY RENT
+
+                </span>
+
+
+                <h2>
+
+                    More value. Less hassle.
+
+                </h2>
+
+
+                <p>
+
+                    Our PG packages are designed to give
+                    you comfortable accommodation with
+                    essential facilities in one place.
+
+                </p>
+
+
+                <div class="included-list">
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Attached Bathroom
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        High-Speed Wi-Fi
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Daily Cleaning
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Washing Machine
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Power Backup
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Parking
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        24/7 Security
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Maintenance Support
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="price-summary">
+
+
+                <span>
+
+                    Starting from
+
+                </span>
+
+
+                <strong>
+
+                    ₹5,800
+
+                </strong>
+
+
+                <small>
+
+                    per month
+
+                </small>
+
+
+                <a href="#rooms">
+
+                    View Rooms
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+    <div class="cta-container">
+
+
+        <div>
+
+            <span>
+
+                READY TO MOVE IN?
+
+            </span>
+
+
+            <h2>
+
+                Your new room is waiting.
+
+            </h2>
+
+
+            <p>
+
+                Choose your preferred sharing option
+                and get in touch with us today.
+
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'contact' %}"
+           class="cta-button">
+
+            Contact Us
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <a href="{% url 'home' %}"
+               class="navbar-brand">
+
+                <div class="navbar-logo">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+                <span>
+                    Sudarshan PG
+                </span>
+
+            </a>
+
+
+            <p>
+
+                Comfortable, affordable and secure
+                PG accommodation for students and
+                working professionals.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-links">
+
+            <h4>
+
+                Quick Links
+
+            </h4>
+
+
+            <a href="{% url 'home' %}">
+
+                Home
+
+            </a>
+
+
+            <a href="#rooms">
+
+                Rooms
+
+            </a>
+
+
+            <a href="#facilities">
+
+                Facilities
+
+            </a>
+
+
+            <a href="{% url 'contact' %}">
+
+                Contact
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ACCOUNT -->
+
+        <div class="footer-links">
+
+            <h4>
+
+                Account
+
+            </h4>
+
+
+            <a href="{% url 'login' %}">
+
+                Sign In
+
+            </a>
+
+
+            <a href="{% url 'signup' %}">
+
+                Create Account
+
+            </a>
+
+
+            <a href="/admin/">
+
+                Admin Login
+
+            </a>
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-links">
+
+            <h4>
+
+                Contact Us
+
+            </h4>
+
+
+            <span>
+
+                <i class="fa-solid fa-envelope"></i>
+
+                support@sudarshanpg.com
+
+            </span>
+
+
+            <span>
+
+                <i class="fa-solid fa-phone"></i>
+
+                +91 90000 00000
+
+            </span>
+
+
+            <span>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Bengaluru, India
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        © 2026 Sudarshan PG.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

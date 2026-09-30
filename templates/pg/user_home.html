@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard | Sudarshan PG</title>
+
+    <link rel="stylesheet"
+          href="{% static 'pg/css/style.css' %}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Sudarshan PG
+    </div>
+
+    <nav>
+
+        <a href="{% url 'user_home' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'contact' %}">
+            Contact
+        </a>
+
+        <a href="{% url 'logout' %}">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="dashboard">
+
+    <div class="dashboard-header">
+
+        <h1>
+            Welcome, {{ request.user.username }}
+        </h1>
+
+        <p>
+            Welcome to your Sudarshan PG account.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+
+            <h3>
+                My Profile
+            </h3>
+
+            <p>
+                Manage your personal information.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>
+                My Booking
+            </h3>
+
+            <p>
+                View your current PG booking.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>
+                Payments
+            </h3>
+
+            <p>
+                View your payment information.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>
