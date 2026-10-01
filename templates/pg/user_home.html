@@ -12,584 +12,153 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Sudarshan PG | My Dashboard</title>
+    <title>
+        Sudarshan PG | My Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'pg/css/style.css' %}"
+    >
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family:
-                Inter,
-                Arial,
-                sans-serif;
-            background: #f5f7fb;
-            color: #172033;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .navbar {
-            height: 72px;
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #2563eb;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .home-link {
-            color: #475569;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .profile {
-            position: relative;
-        }
-
-        .profile-button {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: #2563eb;
-            color: white;
-            cursor: pointer;
-            font-size: 17px;
-            font-weight: 700;
-        }
-
-        .profile-menu {
-            position: absolute;
-            top: 55px;
-            right: 0;
-            width: 270px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            box-shadow:
-                0 15px 40px rgba(15, 23, 42, 0.14);
-            padding: 16px;
-            display: none;
-        }
-
-        .profile-menu.show {
-            display: block;
-        }
-
-        .profile-header {
-            padding-bottom: 14px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .profile-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #111827;
-        }
-
-        .profile-phone {
-            margin-top: 5px;
-            font-size: 13px;
-            color: #64748b;
-        }
-
-        .profile-email {
-            margin-top: 3px;
-            font-size: 12px;
-            color: #94a3b8;
-            word-break: break-word;
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 8px;
-            margin-top: 5px;
-            border-radius: 8px;
-            color: #334155;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .menu-item:hover {
-            background: #f1f5f9;
-        }
-
-        .menu-item i {
-            width: 20px;
-            color: #2563eb;
-        }
-
-        .logout-item {
-            color: #dc2626;
-        }
-
-        .logout-item i {
-            color: #dc2626;
-        }
-
-        .dashboard {
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 45px 25px 70px;
-        }
-
-        .welcome {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .welcome h1 {
-            font-size: 30px;
-            margin-bottom: 7px;
-        }
-
-        .welcome p {
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        .status-badge {
-            background: #ecfdf5;
-            color: #059669;
-            padding: 9px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .room-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 18px;
-            padding: 28px;
-            margin-bottom: 30px;
-            box-shadow:
-                0 5px 20px rgba(15, 23, 42, 0.04);
-        }
-
-        .room-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .room-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 14px;
-            background: #eff6ff;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 23px;
-        }
-
-        .room-title {
-            margin-top: 18px;
-        }
-
-        .room-title h2 {
-            font-size: 23px;
-            margin-bottom: 7px;
-        }
-
-        .room-property {
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        .room-info {
-            display: grid;
-            grid-template-columns:
-                repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .info-box {
-            background: #f8fafc;
-            border-radius: 10px;
-            padding: 15px;
-        }
-
-        .info-label {
-            color: #94a3b8;
-            font-size: 11px;
-            margin-bottom: 5px;
-        }
-
-        .info-value {
-            font-weight: 700;
-            font-size: 14px;
-            color: #1e293b;
-        }
-
-        .rent-value {
-            color: #2563eb;
-            font-size: 18px;
-        }
-
-        .actions {
-            display: grid;
-            grid-template-columns:
-                repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .action-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 22px;
-            transition: 0.2s;
-        }
-
-        .action-card:hover {
-            border-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow:
-                0 8px 20px rgba(37, 99, 235, 0.08);
-        }
-
-        .action-icon {
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #eff6ff;
-            color: #2563eb;
-            border-radius: 10px;
-            margin-bottom: 14px;
-        }
-
-        .action-card h3 {
-            font-size: 16px;
-            margin-bottom: 6px;
-        }
-
-        .action-card p {
-            color: #64748b;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .action-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #2563eb;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .section {
-            margin-top: 35px;
-        }
-
-        .section-title {
-            font-size: 19px;
-            margin-bottom: 15px;
-        }
-
-        .activity-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 18px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .activity-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .activity-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #eff6ff;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .activity-title {
-            font-weight: 700;
-            font-size: 13px;
-        }
-
-        .activity-subtitle {
-            margin-top: 3px;
-            color: #94a3b8;
-            font-size: 11px;
-        }
-
-        .activity-amount {
-            font-weight: 700;
-            color: #059669;
-        }
-
-        .no-room {
-            background: white;
-            border: 1px dashed #cbd5e1;
-            border-radius: 18px;
-            text-align: center;
-            padding: 55px 25px;
-        }
-
-        .no-room i {
-            font-size: 38px;
-            color: #94a3b8;
-            margin-bottom: 15px;
-        }
-
-        .no-room h2 {
-            margin-bottom: 8px;
-        }
-
-        .no-room p {
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        .messages {
-            margin-bottom: 20px;
-        }
-
-        .message {
-            background: #ecfdf5;
-            color: #047857;
-            border: 1px solid #a7f3d0;
-            padding: 12px 15px;
-            border-radius: 9px;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        @media(max-width: 800px) {
-
-            .navbar {
-                padding: 0 20px;
-            }
-
-            .dashboard {
-                padding: 30px 15px;
-            }
-
-            .room-info,
-            .actions {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .welcome {
-                align-items: flex-start;
-                gap: 15px;
-                flex-direction: column;
-            }
-        }
-
-        @media(max-width: 500px) {
-
-            .room-info,
-            .actions {
-                grid-template-columns: 1fr;
-            }
-
-            .home-link {
-                display: none;
-            }
-        }
-
-    </style>
-
 </head>
 
-<body>
+<body class="dashboard-page">
 
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <nav class="navbar">
 
-    <a
-        href="{% url 'home' %}"
-        class="logo"
-    >
-        Sudarshan PG
-    </a>
+    <div class="navbar-container">
 
 
-    <div class="nav-right">
+        <!-- LOGO -->
 
         <a
             href="{% url 'home' %}"
-            class="home-link"
+            class="logo"
         >
-            Home
+
+            <div class="logo-icon">
+                <i class="fas fa-building"></i>
+            </div>
+
+            <span>
+                Sudarshan PG
+            </span>
+
         </a>
 
 
-        <div class="profile">
+        <!-- NAVIGATION -->
 
-            <button
-                type="button"
-                class="profile-button"
-                onclick="toggleProfile()"
+        <div class="nav-links">
+
+            <a
+                href="{% url 'home' %}"
+                class="nav-link"
             >
+                Home
+            </a>
 
-                {% if tenant %}
-                    {{ tenant.full_name|first|upper }}
-                {% else %}
-                    {{ request.user.username|first|upper }}
-                {% endif %}
-
-            </button>
-
-
-            <div
-                class="profile-menu"
-                id="profileMenu"
+            <a
+                href="{% url 'contact' %}"
+                class="nav-link"
             >
+                Contact Us
+            </a>
 
-                <div class="profile-header">
+        </div>
 
-                    <div class="profile-name">
 
-                        {% if tenant %}
-                            {{ tenant.full_name }}
-                        {% else %}
-                            {{ request.user.username }}
-                        {% endif %}
+        <!-- RIGHT SIDE -->
+
+        <div class="nav-right">
+
+            <div class="profile-container">
+
+                <button
+                    type="button"
+                    class="profile-button"
+                    onclick="toggleProfileMenu(event)"
+                >
+                    {{ user.username|first|upper }}
+                </button>
+
+
+                <div
+                    class="profile-menu"
+                    id="profileMenu"
+                >
+
+                    <div class="profile-header">
+
+                        <div class="profile-avatar-large">
+                            {{ user.username|first|upper }}
+                        </div>
+
+                        <div class="profile-info">
+
+                            <strong>
+                                {{ user.username }}
+                            </strong>
+
+                            <span>
+                                {{ user.email }}
+                            </span>
+
+                        </div>
 
                     </div>
 
-                    {% if tenant %}
 
-                    <div class="profile-phone">
+                    <div class="profile-divider"></div>
 
-                        <i class="fa-solid fa-phone"></i>
 
-                        {{ tenant.phone_number }}
+                    <a href="{% url 'user_home' %}">
+                        <i class="fas fa-home"></i>
+                        My Dashboard
+                    </a>
 
-                    </div>
 
-                    <div class="profile-email">
+                    <a href="{% url 'pay_rent' %}">
+                        <i class="fas fa-credit-card"></i>
+                        Pay Rent
+                    </a>
 
-                        {{ tenant.email }}
 
-                    </div>
+                    <a href="{% url 'complaint' %}">
+                        <i class="fas fa-comment-alt"></i>
+                        Complaint Box
+                    </a>
 
-                    {% endif %}
+
+                    <a href="{% url 'vacate' %}">
+                        <i class="fas fa-door-open"></i>
+                        Vacate Request
+                    </a>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <a
+                        href="{% url 'logout' %}"
+                        class="logout-link"
+                    >
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
 
                 </div>
-
-
-                <a
-                    href="{% url 'user_home' %}"
-                    class="menu-item"
-                >
-
-                    <i class="fa-solid fa-house-user"></i>
-
-                    My Dashboard
-
-                </a>
-
-
-                {% if booking %}
-
-                <a
-                    href="{% url 'vacate' %}"
-                    class="menu-item"
-                >
-
-                    <i class="fa-solid fa-door-open"></i>
-
-                    Vacate
-
-                </a>
-
-                {% endif %}
-
-
-                <a
-                    href="{% url 'complaint' %}"
-                    class="menu-item"
-                >
-
-                    <i class="fa-solid fa-message"></i>
-
-                    Complaint Box
-
-                </a>
-
-
-                {% if booking %}
-
-                <a
-                    href="{% url 'pay_rent' %}"
-                    class="menu-item"
-                >
-
-                    <i class="fa-solid fa-credit-card"></i>
-
-                    Pay Rent
-
-                </a>
-
-                {% endif %}
-
-
-                <a
-                    href="{% url 'logout' %}"
-                    class="menu-item logout-item"
-                >
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    Logout
-
-                </a>
 
             </div>
 
@@ -600,31 +169,38 @@
 </nav>
 
 
-<main class="dashboard">
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
+<main class="dashboard">
 
     {% if messages %}
 
-    <div class="messages">
+        <div class="messages">
 
-        {% for message in messages %}
+            {% for message in messages %}
 
-        <div class="message">
+                <div class="message">
+                    {{ message }}
+                </div>
 
-            {{ message }}
+            {% endfor %}
 
         </div>
-
-        {% endfor %}
-
-    </div>
 
     {% endif %}
 
 
-    <div class="welcome">
+    <!-- WELCOME -->
+
+    <section class="welcome">
 
         <div>
+
+            <span class="section-label">
+                TENANT DASHBOARD
+            </span>
 
             <h1>
                 Welcome,
@@ -633,41 +209,30 @@
                 {% else %}
                     {{ request.user.username }}
                 {% endif %}
-                👋
             </h1>
 
             <p>
-                Manage your Sudarshan PG stay from your dashboard.
+                Manage your room, rent and PG requests
+                from one place.
             </p>
 
         </div>
 
-        {% if booking %}
+    </section>
 
-        <span class="status-badge">
-            <i class="fa-solid fa-circle"></i>
-            Active Resident
-        </span>
 
-        {% endif %}
-
-    </div>
-
+    <!-- ROOM -->
 
     {% if booking %}
 
+        <section class="room-card">
 
-    <div class="room-card">
-
-        <div class="room-top">
-
-            <div>
+            <div class="room-top">
 
                 <div class="room-icon">
-
-                    <i class="fa-solid fa-bed"></i>
-
+                    <i class="fas fa-bed"></i>
                 </div>
+
 
                 <div class="room-title">
 
@@ -677,7 +242,7 @@
 
                     <div class="room-property">
 
-                        <i class="fa-solid fa-building"></i>
+                        <i class="fas fa-building"></i>
 
                         {{ booking.room.property.name }}
 
@@ -687,304 +252,303 @@
 
             </div>
 
-        </div>
+
+            <div class="room-info">
 
 
-        <div class="room-info">
+                <div>
 
+                    <small>
+                        Sharing
+                    </small>
 
-            <div class="info-box">
+                    <strong>
+                        {{ booking.room.sharing_type }}
+                    </strong>
 
-                <div class="info-label">
-                    SHARING
                 </div>
 
-                <div class="info-value">
-                    {{ booking.room.sharing_type }}
+
+                <div>
+
+                    <small>
+                        Monthly Rent
+                    </small>
+
+                    <strong>
+                        ₹{{ booking.monthly_rent|floatformat:0 }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Move In Date
+                    </small>
+
+                    <strong>
+                        {{ booking.move_in_date|date:"d M Y" }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Status
+                    </small>
+
+                    <strong>
+                        {{ booking.status }}
+                    </strong>
+
                 </div>
 
             </div>
 
 
-            <div class="info-box">
+            <!-- ACTIONS -->
 
-                <div class="info-label">
-                    MONTHLY RENT
-                </div>
+            <div class="actions">
 
-                <div class="info-value rent-value">
-                    ₹{{ booking.monthly_rent|floatformat:0 }}
-                </div>
+                <a
+                    href="{% url 'vacate' %}"
+                    class="dashboard-action"
+                >
 
-            </div>
+                    <i class="fas fa-door-open"></i>
 
+                    <span>
+                        <strong>
+                            Vacate
+                        </strong>
 
-            <div class="info-box">
+                        <small>
+                            Request room vacating
+                        </small>
+                    </span>
 
-                <div class="info-label">
-                    MOVE-IN DATE
-                </div>
-
-                <div class="info-value">
-                    {{ booking.move_in_date|date:"d M Y" }}
-                </div>
-
-            </div>
+                </a>
 
 
-            <div class="info-box">
+                <a
+                    href="{% url 'complaint' %}"
+                    class="dashboard-action"
+                >
 
-                <div class="info-label">
-                    ROOM STATUS
-                </div>
+                    <i class="fas fa-comment-alt"></i>
 
-                <div class="info-value">
-                    {{ booking.status }}
-                </div>
+                    <span>
+                        <strong>
+                            Complaint
+                        </strong>
 
-            </div>
+                        <small>
+                            Raise an issue
+                        </small>
+                    </span>
 
-
-        </div>
-
-    </div>
-
-
-    <div class="actions">
-
-
-        <a
-            href="{% url 'vacate' %}"
-            class="action-card"
-        >
-
-            <div class="action-icon">
-
-                <i class="fa-solid fa-door-open"></i>
-
-            </div>
-
-            <h3>
-                Vacate
-            </h3>
-
-            <p>
-                Submit a request when you plan to leave the PG.
-            </p>
-
-            <span class="action-link">
-                Submit Request →
-            </span>
-
-        </a>
+                </a>
 
 
-        <a
-            href="{% url 'complaint' %}"
-            class="action-card"
-        >
+                <a
+                    href="{% url 'pay_rent' %}"
+                    class="dashboard-action"
+                >
 
-            <div class="action-icon">
+                    <i class="fas fa-credit-card"></i>
 
-                <i class="fa-solid fa-message"></i>
+                    <span>
+                        <strong>
+                            Pay Rent
+                        </strong>
+
+                        <small>
+                            Pay monthly rent
+                        </small>
+                    </span>
+
+                </a>
 
             </div>
 
-            <h3>
-                Complaint Box
-            </h3>
 
-            <p>
-                Report maintenance or any issue related to your stay.
-            </p>
+            <div class="pay-button-wrapper">
 
-            <span class="action-link">
-                Raise Complaint →
-            </span>
+                <a
+                    href="{% url 'pay_rent' %}"
+                    class="pay-button"
+                >
 
-        </a>
+                    Pay ₹{{ booking.monthly_rent|floatformat:0 }}
+                    →
 
-
-        <a
-            href="{% url 'pay_rent' %}"
-            class="action-card"
-        >
-
-            <div class="action-icon">
-
-                <i class="fa-solid fa-credit-card"></i>
+                </a>
 
             </div>
 
-            <h3>
-                Pay Rent
-            </h3>
-
-            <p>
-                Pay your monthly rent securely online.
-            </p>
-
-            <span class="action-link">
-                Pay ₹{{ booking.monthly_rent|floatformat:0 }} →
-            </span>
-
-        </a>
-
-
-    </div>
+        </section>
 
 
     {% else %}
 
 
-    <div class="no-room">
+        <!-- NO ROOM -->
 
-        <i class="fa-solid fa-bed"></i>
+        <div class="no-room">
 
-        <h2>
-            No Room Assigned Yet
-        </h2>
+            <i class="fas fa-bed"></i>
 
-        <p>
-            Your account is created successfully.
-            Once the admin assigns a room and booking,
-            your room details will automatically appear here.
-        </p>
+            <h2>
+                No Room Assigned
+            </h2>
 
-    </div>
-
-
-    {% endif %}
-
-
-    {% if payments %}
-
-    <div class="section">
-
-        <h2 class="section-title">
-            Recent Payments
-        </h2>
-
-
-        {% for payment in payments %}
-
-        <div class="activity-card">
-
-            <div class="activity-left">
-
-                <div class="activity-icon">
-
-                    <i class="fa-solid fa-receipt"></i>
-
-                </div>
-
-                <div>
-
-                    <div class="activity-title">
-
-                        {{ payment.payment_status }}
-
-                    </div>
-
-                    <div class="activity-subtitle">
-
-                        {{ payment.payment_date|date:"d M Y" }}
-
-                        {% if payment.receipt_number %}
-                            · {{ payment.receipt_number }}
-                        {% endif %}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div>
-
-                <div class="activity-amount">
-
-                    ₹{{ payment.amount|floatformat:0 }}
-
-                </div>
-
-                {% if payment.payment_status == "Paid" %}
-
-                <a
-                    href="{% url 'download_receipt' payment.id %}"
-                    style="
-                        display:block;
-                        margin-top:5px;
-                        font-size:11px;
-                        color:#2563eb;
-                    "
-                >
-                    Receipt
-                </a>
-
-                {% endif %}
-
-            </div>
+            <p>
+                Once the admin assigns a room and booking,
+                your room details will automatically appear here.
+            </p>
 
         </div>
 
-        {% endfor %}
-
-    </div>
-
     {% endif %}
 
+
+    <!-- =================================================
+         PAYMENT ACTIVITY
+    ================================================= -->
+
+    {% if payments %}
+
+        <section class="activity-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    PAYMENT HISTORY
+                </span>
+
+                <h2>
+                    Recent Payments
+                </h2>
+
+            </div>
+
+
+            <div class="activity-list">
+
+                {% for payment in payments %}
+
+                    <div class="activity-card">
+
+
+                        <div class="activity-left">
+
+                            <div class="activity-icon">
+
+                                <i class="fas fa-credit-card"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="activity-title">
+
+                                    {{ payment.payment_status }}
+
+                                </div>
+
+
+                                <div class="activity-subtitle">
+
+                                    {{ payment.payment_date|date:"d M Y" }}
+
+                                    {% if payment.receipt_number %}
+
+                                        · {{ payment.receipt_number }}
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-amount">
+
+                            ₹{{ payment.amount|floatformat:0 }}
+
+                        </div>
+
+
+                        {% if payment.payment_status == "Paid" %}
+
+                            <a
+                                href="{% url 'download_receipt' payment.id %}"
+                                class="receipt-link"
+                            >
+                                Receipt
+                            </a>
+
+                        {% endif %}
+
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    {% endif %}
 
 </main>
 
 
 <script>
 
-    function toggleProfile() {
+function toggleProfileMenu(event) {
 
-        const menu =
-            document.getElementById(
-                "profileMenu"
-            );
+    event.stopPropagation();
 
-        menu.classList.toggle(
-            "show"
-        );
+    const menu =
+        document.getElementById("profileMenu");
+
+    if (menu) {
+        menu.classList.toggle("show");
     }
 
+}
 
-    document.addEventListener(
-        "click",
-        function(event) {
 
-            const profile =
-                document.querySelector(
-                    ".profile"
-                );
+document.addEventListener("click", function(event) {
 
-            const menu =
-                document.getElementById(
-                    "profileMenu"
-                );
+    const profileContainer =
+        document.querySelector(".profile-container");
 
-            if (
-                profile &&
-                !profile.contains(event.target)
-            ) {
+    const profileMenu =
+        document.getElementById("profileMenu");
 
-                menu.classList.remove(
-                    "show"
-                );
+    if (
+        profileContainer &&
+        profileMenu &&
+        !profileContainer.contains(event.target)
+    ) {
 
-            }
+        profileMenu.classList.remove("show");
 
-        }
-    );
+    }
+
+});
 
 </script>
 
 
 </body>
-
 </html>

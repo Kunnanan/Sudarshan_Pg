@@ -74,11 +74,17 @@ def home(request):
 # ---------------------------------------------------------
 
 def contact(request):
+    from .models import PGProperty
+
+    pg_property = PGProperty.objects.first()
+
     return render(
         request,
-        "pg/contact.html"
+        "pg/contact.html",
+        {
+            "pg_property": pg_property,
+        }
     )
-
 
 # ---------------------------------------------------------
 # SIGNUP
