@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Vacate Request | Sudarshan PG</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .page {
+            max-width: 720px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow:
+                0 10px 30px rgba(15,23,42,.05);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .room-summary {
+            background: #eff6ff;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+
+        .room-summary strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dbe2ea;
+            border-radius: 9px;
+            margin-bottom: 18px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <a
+        href="{% url 'user_home' %}"
+        class="back"
+    >
+        ← Back to Dashboard
+    </a>
+
+
+    <div class="card">
+
+        <h1>
+            Vacate Request
+        </h1>
+
+        <p class="subtitle">
+            Submit your request to vacate your room.
+        </p>
+
+
+        <div class="room-summary">
+
+            <strong>
+                Room {{ booking.room.room_number }}
+            </strong>
+
+            <span>
+                {{ booking.room.sharing_type }}
+                ·
+                ₹{{ booking.monthly_rent|floatformat:0 }}/month
+            </span>
+
+        </div>
+
+
+        <form
+            method="POST"
+        >
+
+            {% csrf_token %}
+
+
+            <label>
+                Vacate Date
+            </label>
+
+            <input
+                type="date"
+                name="vacate_date"
+                required
+            >
+
+
+            <label>
+                Reason
+            </label>
+
+            <textarea
+                name="reason"
+                placeholder="Tell us the reason for vacating..."
+            ></textarea>
+
+
+            <button
+                type="submit"
+            >
+                Submit Vacate Request
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

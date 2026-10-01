@@ -7,3 +7,5 @@ django-cors-headers
 django-filter
 djangorestframework-simplejwt
 drf-spectacular
+razorpay 
+reportlab

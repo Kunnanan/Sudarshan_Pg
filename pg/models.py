@@ -1,26 +1,51 @@
-from django.db import models
-
-# Create your models here.
-from django.db import models
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import models
+import uuid
 
 
 class PGProperty(models.Model):
+
     name = models.CharField(max_length=150)
+
     address = models.TextField()
-    city = models.CharField(max_length=100, default="Bengaluru")
-    description = models.TextField(blank=True)
 
-    contact_number = models.CharField(max_length=15)
-    email = models.EmailField(blank=True)
+    city = models.CharField(
+        max_length=100,
+        default="Bengaluru"
+    )
 
-    total_rooms = models.PositiveIntegerField(default=0)
-    total_beds = models.PositiveIntegerField(default=0)
+    description = models.TextField(
+        blank=True
+    )
 
-    is_active = models.BooleanField(default=True)
+    contact_number = models.CharField(
+        max_length=15
+    )
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    email = models.EmailField(
+        blank=True
+    )
+
+    total_rooms = models.PositiveIntegerField(
+        default=0
+    )
+
+    total_beds = models.PositiveIntegerField(
+        default=0
+    )
+
+    is_active = models.BooleanField(
+        default=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
 
     class Meta:
         verbose_name = "PG Property"
@@ -32,14 +57,24 @@ class PGProperty(models.Model):
 
 
 class Facility(models.Model):
-    name = models.CharField(max_length=100)
+
+    name = models.CharField(
+        max_length=100
+    )
+
     icon = models.CharField(
         max_length=100,
         blank=True,
         help_text="Example: fa-solid fa-wifi"
     )
-    description = models.TextField(blank=True)
-    is_active = models.BooleanField(default=True)
+
+    description = models.TextField(
+        blank=True
+    )
+
+    is_active = models.BooleanField(
+        default=True
+    )
 
     class Meta:
         verbose_name = "Facility"
@@ -70,7 +105,9 @@ class Room(models.Model):
         related_name="rooms"
     )
 
-    room_number = models.CharField(max_length=30)
+    room_number = models.CharField(
+        max_length=30
+    )
 
     sharing_type = models.CharField(
         max_length=20,
@@ -90,14 +127,29 @@ class Room(models.Model):
         validators=[MinValueValidator(0)]
     )
 
-    total_beds = models.PositiveIntegerField(default=1)
-    available_beds = models.PositiveIntegerField(default=1)
+    total_beds = models.PositiveIntegerField(
+        default=1
+    )
 
-    floor = models.PositiveIntegerField(default=1)
+    available_beds = models.PositiveIntegerField(
+        default=1
+    )
 
-    attached_bathroom = models.BooleanField(default=True)
-    balcony = models.BooleanField(default=False)
-    is_furnished = models.BooleanField(default=True)
+    floor = models.PositiveIntegerField(
+        default=1
+    )
+
+    attached_bathroom = models.BooleanField(
+        default=True
+    )
+
+    balcony = models.BooleanField(
+        default=False
+    )
+
+    is_furnished = models.BooleanField(
+        default=True
+    )
 
     status = models.CharField(
         max_length=20,
@@ -111,9 +163,13 @@ class Room(models.Model):
         related_name="rooms"
     )
 
-    description = models.TextField(blank=True)
+    description = models.TextField(
+        blank=True
+    )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     class Meta:
         verbose_name = "Room"
@@ -126,6 +182,14 @@ class Room(models.Model):
 
 class Tenant(models.Model):
 
+    user = models.OneToOneField(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="tenant_profile"
+    )
+
     GENDER_CHOICES = [
         ("Male", "Male"),
         ("Female", "Female"),
@@ -137,15 +201,22 @@ class Tenant(models.Model):
         unique=True
     )
 
-    full_name = models.CharField(max_length=150)
+    full_name = models.CharField(
+        max_length=150
+    )
 
-    email = models.EmailField(unique=True)
+    email = models.EmailField(
+        unique=True
+    )
 
-    phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(
+        max_length=15
+    )
 
     gender = models.CharField(
         max_length=10,
-        choices=GENDER_CHOICES
+        choices=GENDER_CHOICES,
+        default="Other"
     )
 
     date_of_birth = models.DateField(
@@ -153,7 +224,9 @@ class Tenant(models.Model):
         blank=True
     )
 
-    address = models.TextField(blank=True)
+    address = models.TextField(
+        blank=True
+    )
 
     emergency_contact_name = models.CharField(
         max_length=150,
@@ -175,7 +248,9 @@ class Tenant(models.Model):
         blank=True
     )
 
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(
+        default=True
+    )
 
     joined_date = models.DateField(
         auto_now_add=True
@@ -244,7 +319,9 @@ class Booking(models.Model):
         default="Pending"
     )
 
-    notes = models.TextField(blank=True)
+    notes = models.TextField(
+        blank=True
+    )
 
     created_at = models.DateTimeField(
         auto_now_add=True
@@ -266,6 +343,7 @@ class Payment(models.Model):
         ("UPI", "UPI"),
         ("Bank Transfer", "Bank Transfer"),
         ("Card", "Card"),
+        ("Razorpay", "Razorpay"),
         ("Other", "Other"),
     ]
 
@@ -314,7 +392,31 @@ class Payment(models.Model):
         blank=True
     )
 
-    description = models.TextField(blank=True)
+    receipt_number = models.CharField(
+        max_length=50,
+        unique=True,
+        null=True,
+        blank=True
+    )
+
+    description = models.TextField(
+        blank=True
+    )
+
+    gateway_order_id = models.CharField(
+        max_length=150,
+        blank=True
+    )
+
+    gateway_payment_id = models.CharField(
+        max_length=150,
+        blank=True
+    )
+
+    gateway_signature = models.CharField(
+        max_length=300,
+        blank=True
+    )
 
     created_at = models.DateTimeField(
         auto_now_add=True
@@ -324,6 +426,15 @@ class Payment(models.Model):
         verbose_name = "Payment"
         verbose_name_plural = "Payments"
         ordering = ["-payment_date"]
+
+    def save(self, *args, **kwargs):
+
+        if not self.receipt_number:
+            self.receipt_number = (
+                f"SPG-{uuid.uuid4().hex[:10].upper()}"
+            )
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.tenant.full_name} - ₹{self.amount}"
@@ -372,3 +483,111 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.tenant.full_name} - {self.rating}/5"
+
+
+class VacateRequest(models.Model):
+
+    STATUS_CHOICES = [
+        ("Pending", "Pending"),
+        ("Approved", "Approved"),
+        ("Rejected", "Rejected"),
+        ("Completed", "Completed"),
+    ]
+
+    tenant = models.ForeignKey(
+        Tenant,
+        on_delete=models.CASCADE,
+        related_name="vacate_requests"
+    )
+
+    room = models.ForeignKey(
+        Room,
+        on_delete=models.CASCADE,
+        related_name="vacate_requests"
+    )
+
+    sharing_type = models.CharField(
+        max_length=20
+    )
+
+    vacate_date = models.DateField()
+
+    reason = models.TextField(
+        blank=True
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="Pending"
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = "Vacate Request"
+        verbose_name_plural = "Vacate Requests"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return (
+            f"{self.tenant.full_name} - "
+            f"Room {self.room.room_number}"
+        )
+
+
+class Complaint(models.Model):
+
+    STATUS_CHOICES = [
+        ("Pending", "Pending"),
+        ("In Progress", "In Progress"),
+        ("Resolved", "Resolved"),
+        ("Rejected", "Rejected"),
+    ]
+
+    tenant = models.ForeignKey(
+        Tenant,
+        on_delete=models.CASCADE,
+        related_name="complaints"
+    )
+
+    subject = models.CharField(
+        max_length=150
+    )
+
+    complaint_type = models.CharField(
+        max_length=100
+    )
+
+    description = models.TextField()
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="Pending"
+    )
+
+    admin_response = models.TextField(
+        blank=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    class Meta:
+        verbose_name = "Complaint"
+        verbose_name_plural = "Complaints"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return (
+            f"{self.tenant.full_name} - "
+            f"{self.subject}"
+        )

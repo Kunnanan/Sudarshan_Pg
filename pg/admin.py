@@ -1,7 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
-from django.contrib import admin
 from .models import (
     PGProperty,
     Room,
@@ -10,6 +8,8 @@ from .models import (
     Payment,
     Facility,
     Review,
+    VacateRequest,
+    Complaint,
 )
 
 
@@ -155,6 +155,7 @@ class PaymentAdmin(admin.ModelAdmin):
         "payment_date",
         "payment_method",
         "payment_status",
+        "receipt_number",
         "transaction_id",
     )
 
@@ -168,6 +169,8 @@ class PaymentAdmin(admin.ModelAdmin):
         "tenant__full_name",
         "tenant__tenant_id",
         "transaction_id",
+        "receipt_number",
+        "gateway_payment_id",
     )
 
     list_editable = (
@@ -176,6 +179,10 @@ class PaymentAdmin(admin.ModelAdmin):
 
     readonly_fields = (
         "created_at",
+        "receipt_number",
+        "gateway_order_id",
+        "gateway_payment_id",
+        "gateway_signature",
     )
 
 
@@ -229,4 +236,70 @@ class ReviewAdmin(admin.ModelAdmin):
 
     readonly_fields = (
         "created_at",
+    )
+
+
+@admin.register(VacateRequest)
+class VacateRequestAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "tenant",
+        "room",
+        "sharing_type",
+        "vacate_date",
+        "status",
+        "created_at",
+    )
+
+    list_filter = (
+        "status",
+        "vacate_date",
+    )
+
+    search_fields = (
+        "tenant__full_name",
+        "tenant__tenant_id",
+        "room__room_number",
+    )
+
+    list_editable = (
+        "status",
+    )
+
+    readonly_fields = (
+        "created_at",
+    )
+
+
+@admin.register(Complaint)
+class ComplaintAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "tenant",
+        "subject",
+        "complaint_type",
+        "status",
+        "created_at",
+    )
+
+    list_filter = (
+        "status",
+        "complaint_type",
+        "created_at",
+    )
+
+    search_fields = (
+        "tenant__full_name",
+        "tenant__tenant_id",
+        "subject",
+        "description",
+    )
+
+    list_editable = (
+        "status",
+    )
+
+    readonly_fields = (
+        "created_at",
+        "updated_at",
     )
