@@ -1,0 +1,722 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sudarshan PG - Comfortable Living</title>
+
+    <link rel="stylesheet"
+          href="{% static 'pgmanagement/css/style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+
+<nav class="main-navbar">
+
+    <div class="navbar-container">
+
+        <div class="navbar-logo">
+            <a href="{% url 'home' %}">
+                Sudarshan PG
+            </a>
+        </div>
+
+
+        <div class="navbar-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#facilities">
+                Facilities
+            </a>
+
+            <a href="#rooms">
+                Rooms & Pricing
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+            <a href="{% url 'user_login' %}"
+               class="navbar-login">
+                User Login
+            </a>
+
+            <a href="/admin/"
+               class="navbar-admin">
+                Admin Login
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+
+<section class="hero-section">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <span class="hero-label">
+                PREMIUM PG ACCOMMODATION
+            </span>
+
+            <h1>
+                Comfortable Living.
+                <span>Better Experience.</span>
+            </h1>
+
+            <p>
+                Find a safe, comfortable and affordable PG
+                accommodation with modern facilities and
+                flexible sharing options.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#rooms"
+                   class="primary-button">
+                    Explore Rooms
+                </a>
+
+                <a href="{% url 'contact' %}"
+                   class="secondary-button">
+                    Contact Us
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="hero-card-icon">
+                🏠
+            </div>
+
+            <h3>
+                Sudarshan PG
+            </h3>
+
+            <p>
+                Safe & Comfortable Stay
+            </p>
+
+            <div class="hero-card-line"></div>
+
+            <div class="hero-card-items">
+
+                <span>✓ WiFi</span>
+                <span>✓ Security</span>
+                <span>✓ Washing Machine</span>
+                <span>✓ Attached Bathroom</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+
+<section class="section about-section"
+         id="about">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <span>
+                ABOUT US
+            </span>
+
+            <h2>
+                Your Home Away From Home
+            </h2>
+
+            <p>
+                Sudarshan PG provides comfortable and
+                affordable accommodation for students
+                and working professionals.
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    🏠
+                </div>
+
+                <h3>
+                    Comfortable Rooms
+                </h3>
+
+                <p>
+                    Clean and comfortable rooms with
+                    different sharing options.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Safe Environment
+                </h3>
+
+                <p>
+                    A secure and peaceful environment
+                    for residents.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Affordable Pricing
+                </h3>
+
+                <p>
+                    Flexible room options at affordable
+                    monthly rent.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     FACILITIES
+============================================================ -->
+
+<section class="section facilities-section"
+         id="facilities">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <span>
+                FACILITIES
+            </span>
+
+            <h2>
+                Everything You Need
+            </h2>
+
+            <p>
+                Designed to make your stay convenient
+                and comfortable.
+            </p>
+
+        </div>
+
+
+        <div class="facilities-grid">
+
+            {% if facilities %}
+
+                {% for facility in facilities %}
+
+                <div class="facility-card">
+
+                    <div class="facility-icon">
+                        {{ facility.icon|default:"✓" }}
+                    </div>
+
+                    <h3>
+                        {{ facility.name }}
+                    </h3>
+
+                    <p>
+                        {{ facility.description }}
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="facility-card">
+
+                    <div class="facility-icon">
+                        📶
+                    </div>
+
+                    <h3>
+                        WiFi
+                    </h3>
+
+                    <p>
+                        High-speed internet access.
+                    </p>
+
+                </div>
+
+
+                <div class="facility-card">
+
+                    <div class="facility-icon">
+                        🧺
+                    </div>
+
+                    <h3>
+                        Washing Machine
+                    </h3>
+
+                    <p>
+                        Convenient laundry facility.
+                    </p>
+
+                </div>
+
+
+                <div class="facility-card">
+
+                    <div class="facility-icon">
+                        🔐
+                    </div>
+
+                    <h3>
+                        Security
+                    </h3>
+
+                    <p>
+                        Safe and secure environment.
+                    </p>
+
+                </div>
+
+
+                <div class="facility-card">
+
+                    <div class="facility-icon">
+                        🚿
+                    </div>
+
+                    <h3>
+                        Attached Bathroom
+                    </h3>
+
+                    <p>
+                        Attached bathroom facility.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     ROOMS & PRICING
+============================================================ -->
+
+<section class="section rooms-section"
+         id="rooms">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <span>
+                ROOMS & PRICING
+            </span>
+
+            <h2>
+                Choose Your Sharing
+            </h2>
+
+            <p>
+                Select the room option that suits you best.
+            </p>
+
+        </div>
+
+
+        {% if rooms %}
+
+        <div class="rooms-grid">
+
+            {% for room in rooms %}
+
+            <div class="room-card">
+
+
+                <!-- Room header -->
+
+                <div class="room-header">
+
+                    <div>
+
+                        <span class="room-number">
+                            Room {{ room.room_number }}
+                        </span>
+
+                        {% if room.vacancy > 0 %}
+
+                            <span class="available-badge">
+                                Available
+                            </span>
+
+                        {% else %}
+
+                            <span class="full-badge">
+                                Full
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Sharing -->
+
+                <h3 class="room-sharing">
+                    {{ room.sharing_type }}
+                </h3>
+
+
+
+                <!-- Price -->
+
+                <div class="room-price">
+
+                    <span>
+                        ₹{{ room.rent }}
+                    </span>
+
+                    <small>
+                        / month
+                    </small>
+
+                </div>
+
+
+
+                <!-- Room details -->
+
+                <div class="room-details">
+
+                    <div>
+                        <span>Capacity</span>
+                        <strong>{{ room.capacity }}</strong>
+                    </div>
+
+                    <div>
+                        <span>Occupied</span>
+                        <strong>{{ room.occupied_beds }}</strong>
+                    </div>
+
+                    <div>
+                        <span>Vacancy</span>
+
+                        {% if room.vacancy > 0 %}
+
+                            <strong class="vacancy-green">
+                                {{ room.vacancy }}
+                            </strong>
+
+                        {% else %}
+
+                            <strong class="vacancy-red">
+                                0
+                            </strong>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Bathroom -->
+
+                {% if room.attached_bathroom %}
+
+                <div class="bathroom">
+
+                    ✓ Attached Bathroom
+
+                </div>
+
+                {% endif %}
+
+
+
+                <!-- Button -->
+
+                {% if room.vacancy > 0 %}
+
+                    <a href="{% url 'contact' %}"
+                       class="room-button available-button">
+
+                        Enquire for Sharing
+
+                    </a>
+
+                {% else %}
+
+                    <div class="full-message">
+                        Currently Full
+                    </div>
+
+                    <a href="{% url 'contact' %}"
+                       class="room-button full-button">
+
+                        Contact Sudarshan PG
+
+                    </a>
+
+                {% endif %}
+
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <!-- No rooms -->
+
+        <div class="no-rooms">
+
+            <div class="no-rooms-icon">
+                🏠
+            </div>
+
+            <h3>
+                Currently Rooms Are Not Available
+            </h3>
+
+            <p>
+                Please contact Sudarshan PG for availability.
+            </p>
+
+            <a href="{% url 'contact' %}"
+               class="primary-button">
+
+                Contact Sudarshan PG
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     CTA
+============================================================ -->
+
+<section class="cta-section">
+
+    <div class="cta-container">
+
+        <div>
+
+            <span>
+                LOOKING FOR A ROOM?
+            </span>
+
+            <h2>
+                Find Your Comfortable Stay Today
+            </h2>
+
+            <p>
+                Contact us to know about room availability
+                and booking.
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'contact' %}"
+           class="cta-button">
+
+            Contact Us
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-column">
+
+            <h3>
+                Sudarshan PG
+            </h3>
+
+            <p>
+                Comfortable living.
+                Better experience.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="#facilities">
+                Facilities
+            </a>
+
+            <a href="#rooms">
+                Rooms
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Account
+            </h4>
+
+            <a href="{% url 'user_login' %}">
+                User Login
+            </a>
+
+            <a href="{% url 'signup' %}">
+                Sign Up
+            </a>
+
+            <a href="/admin/">
+                Admin Login
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                📞 6363007208
+            </p>
+
+            <p>
+                ✉️ adarshpatne4@gmail.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Sudarshan PG. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

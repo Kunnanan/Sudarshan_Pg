@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Complaints - Sudarshan PG</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f5f7fb;
+
+        }
+
+
+        .container {
+
+            width: 90%;
+
+            max-width: 900px;
+
+            margin: 40px auto;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.07);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+
+        .subtitle {
+
+            color: #6b7280;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 7px;
+
+            margin-bottom: 20px;
+
+            font-size: 15px;
+
+        }
+
+
+        textarea {
+
+            min-height: 130px;
+
+            resize: vertical;
+
+        }
+
+
+        button {
+
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 13px 25px;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        .complaint {
+
+            border-bottom: 1px solid #e5e7eb;
+
+            padding: 20px 0;
+
+        }
+
+
+        .complaint:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            margin-top: 8px;
+
+            padding: 6px 12px;
+
+            border-radius: 15px;
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+        }
+
+
+        .reply {
+
+            margin-top: 12px;
+
+            background: #f3f4f6;
+
+            padding: 14px;
+
+            border-radius: 7px;
+
+        }
+
+
+        .back {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            text-decoration: none;
+
+            color: #2563eb;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- SUBMIT COMPLAINT -->
+
+    <div class="card">
+
+
+        <h1>
+            Submit a Complaint
+        </h1>
+
+
+        <p class="subtitle">
+
+            Tell us about any problem
+            you are facing in the PG.
+
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <label>
+                Complaint Title
+            </label>
+
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Example: Water problem in bathroom"
+                required
+            >
+
+
+            <label>
+                Category
+            </label>
+
+
+            <select
+                name="category"
+                required
+            >
+
+                <option value="Room">
+                    Room
+                </option>
+
+                <option value="Food">
+                    Food
+                </option>
+
+                <option value="Cleaning">
+                    Cleaning
+                </option>
+
+                <option value="Electricity">
+                    Electricity
+                </option>
+
+                <option value="Water">
+                    Water
+                </option>
+
+                <option value="WiFi">
+                    WiFi
+                </option>
+
+                <option value="Maintenance">
+                    Maintenance
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <label>
+                Priority
+            </label>
+
+
+            <select
+                name="priority"
+                required
+            >
+
+                <option value="Low">
+                    Low
+                </option>
+
+                <option value="Medium" selected>
+                    Medium
+                </option>
+
+                <option value="High">
+                    High
+                </option>
+
+                <option value="Urgent">
+                    Urgent
+                </option>
+
+            </select>
+
+
+            <label>
+                Complaint Details
+            </label>
+
+
+            <textarea
+                name="description"
+                placeholder="Describe your problem..."
+                required
+            ></textarea>
+
+
+            <button type="submit">
+                Submit Complaint
+            </button>
+
+
+        </form>
+
+
+        <a
+            href="{% url 'user_dashboard' %}"
+            class="back"
+        >
+            ← Back to My Profile
+        </a>
+
+
+    </div>
+
+
+    <!-- COMPLAINT HISTORY -->
+
+    <div class="card">
+
+
+        <h2>
+            My Complaints
+        </h2>
+
+
+        {% if complaints %}
+
+
+            {% for complaint in complaints %}
+
+
+                <div class="complaint">
+
+
+                    <strong>
+                        {{ complaint.title }}
+                    </strong>
+
+
+                    <p style="margin:10px 0;">
+
+                        {{ complaint.description }}
+
+                    </p>
+
+
+                    <small>
+
+                        Category:
+                        {{ complaint.category }}
+
+                        |
+
+                        Priority:
+                        {{ complaint.priority }}
+
+                        |
+
+                        {{ complaint.created_at|date:"d M Y, h:i A" }}
+
+                    </small>
+
+
+                    <br>
+
+
+                    <span class="status">
+
+                        {{ complaint.status }}
+
+                    </span>
+
+
+                    {% if complaint.admin_reply %}
+
+
+                        <div class="reply">
+
+
+                            <strong>
+                                Admin Reply:
+                            </strong>
+
+
+                            <br><br>
+
+
+                            {{ complaint.admin_reply }}
+
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <p style="margin-top:15px;color:#6b7280;">
+
+                You haven't submitted
+                any complaints yet.
+
+            </p>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

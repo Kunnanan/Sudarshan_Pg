@@ -1,0 +1,275 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pay Rent - Sudarshan PG</title>
+
+    <link rel="stylesheet"
+          href="{% static 'pgmanagement/css/style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="dashboard-navbar">
+
+    <div class="dashboard-logo">
+        Sudarshan PG
+    </div>
+
+    <div class="dashboard-nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'user_dashboard' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'user_logout' %}"
+           class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- PAY RENT -->
+
+<div class="pay-rent-page">
+
+
+    <div class="pay-rent-container">
+
+
+        <div class="pay-rent-header">
+
+            <span class="section-label">
+                RENT PAYMENT
+            </span>
+
+            <h1>
+                Pay Your Rent
+            </h1>
+
+            <p>
+                Submit your monthly rent payment details.
+            </p>
+
+        </div>
+
+
+
+        <!-- Tenant information -->
+
+        <div class="rent-info-card">
+
+            <div>
+
+                <span>
+                    Tenant
+                </span>
+
+                <strong>
+                    {{ tenant.name }}
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Room
+                </span>
+
+                <strong>
+
+                    {% if tenant.room %}
+                        {{ tenant.room.room_number }}
+                    {% else %}
+                        Not Assigned
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Monthly Rent
+                </span>
+
+                <strong>
+                    ₹{{ monthly_rent }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Payment form -->
+
+        <form method="POST"
+              class="payment-form">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="amount">
+                    Payment Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    value="{{ monthly_rent }}"
+                    min="1"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="payment_method">
+                    Payment Method
+                </label>
+
+                <select
+                    id="payment_method"
+                    name="payment_method"
+                    required
+                >
+
+                    <option value="">
+                        Select Payment Method
+                    </option>
+
+                    <option value="UPI">
+                        UPI
+                    </option>
+
+                    <option value="Bank Transfer">
+                        Bank Transfer
+                    </option>
+
+                    <option value="Card">
+                        Card
+                    </option>
+
+                    <option value="Cash">
+                        Cash
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="transaction_id">
+                    Transaction ID
+                    <span>
+                        (Optional)
+                    </span>
+                </label>
+
+                <input
+                    type="text"
+                    id="transaction_id"
+                    name="transaction_id"
+                    placeholder="Enter UPI / transaction ID"
+                >
+
+            </div>
+
+
+
+            <div class="payment-note">
+
+                <strong>
+                    Important:
+                </strong>
+
+                <p>
+                    After submitting the payment, your payment will
+                    remain <b>Pending</b> until the PG admin verifies it.
+                </p>
+
+            </div>
+
+
+
+            <div class="payment-form-buttons">
+
+                <a href="{% url 'user_dashboard' %}"
+                   class="cancel-payment-button">
+
+                    Cancel
+
+                </a>
+
+
+                <button type="submit"
+                        class="confirm-payment-button">
+
+                    💳 Submit Payment
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+<footer class="dashboard-footer">
+
+    <p>
+        © 2026 Sudarshan PG. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+</body>
+</html>

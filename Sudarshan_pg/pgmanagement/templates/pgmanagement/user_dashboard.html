@@ -1,0 +1,555 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard - Sudarshan PG</title>
+
+    <link rel="stylesheet"
+          href="{% static 'pgmanagement/css/style.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+
+<nav class="dashboard-navbar">
+
+    <div class="dashboard-logo">
+        <a href="{% url 'home' %}">
+            Sudarshan PG
+        </a>
+    </div>
+
+
+    <div class="dashboard-nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'contact' %}">
+            Contact
+        </a>
+
+        <a href="{% url 'user_logout' %}"
+           class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ============================================================
+     DASHBOARD
+============================================================ -->
+
+<main class="dashboard-container">
+
+
+    <!-- ========================================================
+         WELCOME
+    ========================================================= -->
+
+    <section class="welcome-section">
+
+        <h1>
+            Welcome,
+            {% if tenant %}
+                {{ tenant.name }}
+            {% else %}
+                {{ request.user.first_name|default:request.user.username }}
+            {% endif %}
+        </h1>
+
+        <p>
+            Manage your PG profile, rent payments and complaints.
+        </p>
+
+    </section>
+
+
+
+    <!-- ========================================================
+         PROFILE
+    ========================================================= -->
+
+    <section class="dashboard-card">
+
+        <div class="section-title">
+
+            <span class="section-label">
+                PROFILE
+            </span>
+
+            <h2>
+                My Profile
+            </h2>
+
+        </div>
+
+
+        {% if tenant %}
+
+        <div class="profile-grid">
+
+
+            <!-- Name -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Name
+                </span>
+
+                <span class="profile-value">
+                    {{ tenant.name }}
+                </span>
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Email
+                </span>
+
+                <span class="profile-value">
+
+                    {% if tenant.email %}
+                        {{ tenant.email }}
+                    {% elif tenant.user %}
+                        {{ tenant.user.email }}
+                    {% else %}
+                        Not Available
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <!-- Phone -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Phone
+                </span>
+
+                <span class="profile-value">
+
+                    {% if tenant.phone %}
+                        {{ tenant.phone }}
+                    {% else %}
+                        Not Available
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <!-- Room -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Room
+                </span>
+
+                <span class="profile-value">
+
+                    {% if tenant.room %}
+                        {{ tenant.room.room_number }}
+                    {% else %}
+                        Not Assigned
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <!-- Sharing -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Sharing
+                </span>
+
+                <span class="profile-value">
+
+                    {% if tenant.room %}
+                        {{ tenant.room.sharing_type }}
+                    {% else %}
+                        Not Assigned
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <!-- Monthly Rent -->
+
+            <div class="profile-item">
+
+                <span class="profile-label">
+                    Monthly Rent
+                </span>
+
+                <span class="profile-value">
+
+                    {% if tenant.room %}
+                        ₹{{ tenant.room.rent }}
+                    {% else %}
+                        Not Available
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="empty-message">
+
+            <h3>
+                Profile Not Available
+            </h3>
+
+            <p>
+                Your tenant profile has not been created yet.
+                Please contact Sudarshan PG management.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+
+    <!-- ========================================================
+         PAYMENT HISTORY
+    ========================================================= -->
+<section class="dashboard-card">
+
+    <div class="payment-header">
+
+        <div>
+
+            <span class="section-label">
+                RENT
+            </span>
+
+            <h2>
+                Payment History
+            </h2>
+
+        </div>
+
+
+        <a href="{% url 'pay_rent' %}"
+           class="pay-rent-button">
+
+            💳 Pay Rent
+
+        </a>
+
+    </div>
+
+
+    {% if payments %}
+
+    <div class="payment-table-container">
+
+        <table class="payment-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Receipt
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Amount
+                    </th>
+
+                    <th>
+                        Method
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for payment in payments %}
+
+                <tr>
+
+                    <!-- RECEIPT -->
+
+                    <td>
+
+                        {{ payment.receipt_number }}
+
+                        {% if payment.status == "Paid" %}
+
+                        <br>
+
+                        <a href="{% url 'payment_receipt' payment.id %}"
+                           class="receipt-link">
+
+                            View Receipt
+
+                        </a>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- DATE -->
+
+                    <td>
+                        {{ payment.payment_date|date:"d M Y" }}
+                    </td>
+
+
+                    <!-- AMOUNT -->
+
+                    <td>
+
+                        <strong>
+                            ₹{{ payment.amount }}
+                        </strong>
+
+                    </td>
+
+
+                    <!-- METHOD -->
+
+                    <td>
+                        {{ payment.payment_method }}
+                    </td>
+
+
+                    <!-- STATUS -->
+
+                    <td>
+
+                        {% if payment.status == "Paid" %}
+
+                            <span class="status-badge status-paid">
+                                Paid
+                            </span>
+
+                        {% elif payment.status == "Pending" %}
+
+                            <span class="status-badge status-pending">
+                                Pending
+                            </span>
+
+                        {% elif payment.status == "Partial" %}
+
+                            <span class="status-badge status-pending">
+                                Partial
+                            </span>
+
+                        {% elif payment.status == "Failed" %}
+
+                            <span class="status-badge status-failed">
+                                Failed
+                            </span>
+
+                        {% else %}
+
+                            <span class="status-badge">
+                                {{ payment.status }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="5"
+                        class="empty-table">
+
+                        No payment history available.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    {% else %}
+
+    <div class="empty-message">
+
+        <h3>
+            No Payments Yet
+        </h3>
+
+        <p>
+            You don't have any rent payment records currently.
+        </p>
+
+        <a href="{% url 'pay_rent' %}"
+           class="pay-rent-button">
+
+            💳 Pay Your Rent
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+    <!-- ========================================================
+         COMPLAINTS
+    ========================================================= -->
+
+    <section class="dashboard-card">
+
+
+        <div class="section-title">
+
+            <span class="section-label">
+                SUPPORT
+            </span>
+
+            <h2>
+                My Complaints
+            </h2>
+
+        </div>
+
+
+
+        {% if complaints %}
+
+        <div class="complaints-list">
+
+            {% for complaint in complaints %}
+
+            <div class="complaint-card">
+
+                <div class="complaint-number">
+                    Complaint #{{ forloop.counter }}
+                </div>
+
+                <div class="complaint-content">
+                    {{ complaint }}
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="empty-message">
+
+                No complaints available.
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <div class="empty-message">
+
+            <div class="empty-icon">
+                ✓
+            </div>
+
+            <h3>
+                No Complaints
+            </h3>
+
+            <p>
+                You don't have any complaints currently.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+
+<footer class="dashboard-footer">
+
+    © 2026 Sudarshan PG. All Rights Reserved.
+
+</footer>
+
+
+</body>
+
+</html>

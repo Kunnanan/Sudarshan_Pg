@@ -1,0 +1,413 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment Receipt - Sudarshan PG</title>
+
+    <link rel="stylesheet" href="{% static 'pgmanagement/css/style.css' %}">
+
+    <style>
+        .receipt-page {
+            min-height: calc(100vh - 72px);
+            padding: 50px 20px;
+        }
+
+        .receipt-container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .receipt-success {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .success-circle {
+            width: 70px;
+            height: 70px;
+            background: #dcfce7;
+            color: #16a34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+            margin: auto;
+        }
+
+        .receipt-success h1 {
+            color: #123b7a;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .receipt-success p {
+            color: #64748b;
+        }
+
+        .receipt-box {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .receipt-title {
+            background: #123b7a;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 20px;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .receipt-row:last-child {
+            border-bottom: none;
+        }
+
+        .receipt-label {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .receipt-value {
+            color: #111827;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .receipt-amount {
+            color: #123b7a;
+            font-size: 18px;
+        }
+
+        .receipt-status {
+            color: #15803d;
+            background: #dcfce7;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .receipt-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .print-button,
+        .back-button {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .print-button {
+            background: #2563eb;
+            color: white;
+        }
+
+        .back-button {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        @media print {
+
+            .dashboard-navbar,
+            .dashboard-footer,
+            .receipt-buttons {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .receipt-page {
+                padding: 0;
+            }
+
+            .receipt-container {
+                box-shadow: none;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="dashboard-navbar">
+
+        <div class="dashboard-logo">
+            Sudarshan PG
+        </div>
+
+        <div class="dashboard-nav-links">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'user_dashboard' %}">
+                Dashboard
+            </a>
+
+            <a href="{% url 'user_logout' %}" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- RECEIPT -->
+
+    <div class="receipt-page">
+
+        <div class="receipt-container">
+
+
+            <!-- SUCCESS -->
+
+            <div class="receipt-success">
+
+                <div class="success-circle">
+                    ✓
+                </div>
+
+                <h1>
+                    Payment Successful
+                </h1>
+
+                <p>
+                    Your rent payment has been verified successfully.
+                </p>
+
+            </div>
+
+
+
+            <!-- RECEIPT -->
+
+            <div class="receipt-box">
+
+                <div class="receipt-title">
+                    SUDARSHAN PG - PAYMENT RECEIPT
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Receipt Number
+                    </span>
+
+                    <span class="receipt-value">
+                        {{ payment.receipt_number }}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Tenant Name
+                    </span>
+
+                    <span class="receipt-value">
+                        {{ payment.tenant.name }}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Email
+                    </span>
+
+                    <span class="receipt-value">
+                        {% if payment.tenant.email %}
+                        {{ payment.tenant.email }}
+                        {% elif payment.tenant.user %}
+                        {{ payment.tenant.user.email }}
+                        {% else %}
+                        Not Available
+                        {% endif %}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Room Number
+                    </span>
+
+                    <span class="receipt-value">
+
+                        {% if payment.room %}
+                        {{ payment.room.room_number }}
+                        {% else %}
+                        Not Assigned
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Payment For
+                    </span>
+
+                    <span class="receipt-value">
+                        {{ payment.payment_for }}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Amount Paid
+                    </span>
+
+                    <span class="receipt-value receipt-amount">
+                        ₹{{ payment.amount }}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Payment Method
+                    </span>
+
+                    <span class="receipt-value">
+                        {{ payment.payment_method }}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Transaction ID
+                    </span>
+
+                    <span class="receipt-value">
+                        {{ payment.transaction_id|default:"Not provided" }}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Payment Date
+                    </span>
+
+                    <span class="receipt-value">
+                        {{ payment.payment_date|date:"d M Y" }}
+                    </span>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span class="receipt-label">
+                        Status
+                    </span>
+
+                    <span class="receipt-value receipt-status">
+                        {{ payment.status }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="receipt-buttons">
+
+                <a href="{% url 'user_dashboard' %}" class="back-button">
+
+                    ← Dashboard
+
+                </a>
+
+
+                <button onclick="window.print()" class="print-button">
+
+                    🖨 Print / Save Receipt
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 Sudarshan PG. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
