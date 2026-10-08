@@ -1,0 +1,1132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sudarshan PG | Comfortable Living</title>
+
+    <link rel="stylesheet"
+          href="{% static 'pg/css/style.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="home-page">
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+        <!-- LOGO -->
+        <a href="{% url 'home' %}" class="logo">
+
+            <div class="logo-icon">
+                <i class="fas fa-building"></i>
+            </div>
+
+            <span>Sudarshan PG</span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+        <div class="nav-links">
+
+            <a href="{% url 'home' %}" class="nav-link">
+                Home
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'contact' %}" class="nav-link">
+                    Contact Us
+                </a>
+
+            {% else %}
+
+                <a href="#rooms" class="nav-link">
+                    Rooms
+                </a>
+
+                <a href="#facilities" class="nav-link">
+                    Facilities
+                </a>
+
+                <a href="{% url 'contact' %}" class="nav-link">
+                    Contact
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="nav-right">
+
+            {% if user.is_authenticated %}
+
+                <!-- PROFILE -->
+                <div class="profile-container">
+
+                    <button
+                        type="button"
+                        class="profile-button"
+                        onclick="toggleProfileMenu(event)"
+                    >
+                        {{ user.username|first|upper }}
+                    </button>
+
+
+                    <!-- PROFILE MENU -->
+                    <div
+                        class="profile-menu"
+                        id="profileMenu"
+                    >
+
+                        <div class="profile-header">
+
+                            <div class="profile-avatar-large">
+                                {{ user.username|first|upper }}
+                            </div>
+
+                            <div class="profile-info">
+
+                                <strong>
+                                    {{ user.username }}
+                                </strong>
+
+                                <span>
+                                    {{ user.email }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-divider"></div>
+
+
+                        <a href="{% url 'user_home' %}">
+                            <i class="fas fa-home"></i>
+                            My Dashboard
+                        </a>
+
+
+                        <a href="{% url 'pay_rent' %}">
+                            <i class="fas fa-credit-card"></i>
+                            Pay Rent
+                        </a>
+
+
+                        <a href="{% url 'complaint' %}">
+                            <i class="fas fa-comment-alt"></i>
+                            Complaint Box
+                        </a>
+
+
+                        <a href="{% url 'vacate' %}">
+                            <i class="fas fa-door-open"></i>
+                            Vacate Request
+                        </a>
+
+
+                        <div class="profile-divider"></div>
+
+
+                        <a
+                            href="{% url 'logout' %}"
+                            class="logout-link"
+                        >
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <a
+                    href="{% url 'login' %}"
+                    class="login-button"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="{% url 'signup' %}"
+                    class="signup-button"
+                >
+                    Sign Up
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero-section">
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <i class="fas fa-house"></i>
+                Comfortable PG Living
+            </div>
+
+            <h1>
+                Find Your
+                <span>Perfect Stay.</span>
+            </h1>
+
+            <p>
+                Comfortable, affordable and secure PG accommodation
+                for students and working professionals.
+            </p>
+
+
+            <div class="property-search">
+
+                <div class="search-field">
+
+                    <i class="fas fa-location-dot"></i>
+
+                    <div>
+                        <small>Location</small>
+                        <strong>Bengaluru, India</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="search-field">
+
+                    <i class="fas fa-bed"></i>
+
+                    <div>
+                        <small>Sharing</small>
+                        <strong>2 / 3 / 4 Sharing</strong>
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="#rooms"
+                    class="search-button"
+                >
+                    View Rooms
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div>
+                    <strong>2+</strong>
+                    <span>Sharing Options</span>
+                </div>
+
+                <div>
+                    <strong>24/7</strong>
+                    <span>Security</span>
+                </div>
+
+                <div>
+                    <strong>₹5.8K</strong>
+                    <span>Starting Rent</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-image-area">
+
+            <div class="hero-building-card">
+
+                <div class="building-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+
+                <h3>
+                    Sudarshan PG
+                </h3>
+
+                <p>
+                    A comfortable and secure place
+                    to call home.
+                </p>
+
+                <div class="hero-mini-features">
+
+                    <span>
+                        <i class="fas fa-wifi"></i>
+                        Wi-Fi
+                    </span>
+
+                    <span>
+                        <i class="fas fa-shield-halved"></i>
+                        Security
+                    </span>
+
+                    <span>
+                        <i class="fas fa-bolt"></i>
+                        Power Backup
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card availability-card">
+
+                <i class="fas fa-circle-check"></i>
+
+                <div>
+                    <strong>Rooms Available</strong>
+                    <span>Move in anytime</span>
+                </div>
+
+            </div>
+
+
+            <div class="floating-card rent-card">
+
+                <i class="fas fa-indian-rupee-sign"></i>
+
+                <div>
+                    <strong>From ₹5,800</strong>
+                    <span>Per month</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ROOMS
+===================================================== -->
+
+<section
+    class="rooms-section"
+    id="rooms"
+>
+
+    <div class="section-container">
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                SHARING OPTIONS
+            </span>
+
+            <h2>
+                Choose Your Room
+            </h2>
+
+            <p>
+                Select the sharing option that suits
+                your budget and lifestyle.
+            </p>
+
+        </div>
+
+
+        {% if rooms %}
+
+            <div class="room-grid">
+
+                {% for room in rooms %}
+
+                    <div
+                        class="
+                            room-card
+                            {% if room.sharing_type == '2 Sharing' %}
+                                featured-room
+                            {% endif %}
+                        "
+                    >
+
+                        {% if room.sharing_type == "2 Sharing" %}
+
+                            <div class="popular-badge">
+                                POPULAR
+                            </div>
+
+                        {% endif %}
+
+
+                        <div
+                            class="
+                                room-icon
+                                {% if room.sharing_type == '2 Sharing' %}
+                                    double-icon
+                                {% elif room.sharing_type == '3 Sharing' %}
+                                    triple-icon
+                                {% else %}
+                                    four-icon
+                                {% endif %}
+                            "
+                        >
+
+                            {% if room.sharing_type == "2 Sharing" %}
+
+                                <i class="fas fa-user-group"></i>
+
+                            {% elif room.sharing_type == "3 Sharing" %}
+
+                                <i class="fas fa-users"></i>
+
+                            {% else %}
+
+                                <i class="fas fa-people-group"></i>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="room-title-row">
+
+                            <h3>
+                                {{ room.sharing_type }}
+                            </h3>
+
+                            {% if room.sharing_type == "2 Sharing" %}
+
+                                <span class="room-tag popular">
+                                    Most Popular
+                                </span>
+
+                            {% elif room.sharing_type == "3 Sharing" %}
+
+                                <span class="room-tag budget">
+                                    Budget Friendly
+                                </span>
+
+                            {% else %}
+
+                                <span class="room-tag affordable">
+                                    Affordable
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <p>
+                            {{ room.description|default:"Comfortable furnished room with modern facilities and a secure living environment." }}
+                        </p>
+
+
+                        <div class="room-property">
+
+                            <i class="fas fa-building"></i>
+
+                            {{ room.property.name }}
+
+                        </div>
+
+
+                        <div class="room-details">
+
+                            <span>
+                                <i class="fas fa-bed"></i>
+                                {{ room.total_beds }} Beds
+                            </span>
+
+                            <span>
+                                <i class="fas fa-door-open"></i>
+                                Room {{ room.room_number }}
+                            </span>
+
+                            {% if room.attached_bathroom %}
+
+                                <span>
+                                    <i class="fas fa-bath"></i>
+                                    Attached Bath
+                                </span>
+
+                            {% endif %}
+
+                            {% if room.is_furnished %}
+
+                                <span>
+                                    <i class="fas fa-couch"></i>
+                                    Furnished
+                                </span>
+
+                            {% endif %}
+
+                            {% if room.balcony %}
+
+                                <span>
+                                    <i class="fas fa-building"></i>
+                                    Balcony
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        {% with room.facilities.all as room_facilities %}
+
+                            {% if room_facilities %}
+
+                                <div class="room-facilities">
+
+                                    {% for facility in room_facilities|slice:":5" %}
+
+                                        <span>
+
+                                            {% if facility.icon %}
+                                                <i class="{{ facility.icon }}"></i>
+                                            {% else %}
+                                                <i class="fas fa-check"></i>
+                                            {% endif %}
+
+                                            {{ facility.name }}
+
+                                        </span>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            {% endif %}
+
+                        {% endwith %}
+
+
+                        <div class="room-bottom">
+
+                            <div>
+
+                                <small>
+                                    Monthly Rent
+                                </small>
+
+                                <strong>
+                                    ₹{{ room.monthly_rent|floatformat:0 }}
+
+                                    <span>
+                                        / month
+                                    </span>
+                                </strong>
+
+                            </div>
+
+
+                            <a href="{% url 'contact' %}">
+
+                                Enquire Now
+
+                                <i class="fas fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="no-rooms">
+
+                <div class="no-rooms-icon">
+
+                    <i class="fas fa-bed"></i>
+
+                </div>
+
+                <h3>
+                    No rooms currently available
+                </h3>
+
+                <p>
+                    Please contact us for upcoming availability.
+                </p>
+
+                <a href="{% url 'contact' %}">
+                    Contact Us
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FACILITIES
+===================================================== -->
+
+<section
+    class="facilities-section"
+    id="facilities"
+>
+
+    <div class="section-container">
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                FACILITIES
+            </span>
+
+            <h2>
+                Everything You Need
+            </h2>
+
+            <p>
+                We provide essential facilities to make
+                your stay comfortable and convenient.
+            </p>
+
+        </div>
+
+
+        <div class="facilities-grid">
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+
+                <h3>
+                    High-Speed Wi-Fi
+                </h3>
+
+                <p>
+                    Reliable internet connectivity for
+                    work, study and entertainment.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+
+                <h3>
+                    Food Facility
+                </h3>
+
+                <p>
+                    Comfortable dining facilities
+                    for residents.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-shirt"></i>
+                </div>
+
+                <h3>
+                    Laundry
+                </h3>
+
+                <p>
+                    Washing machine facilities
+                    available for residents.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+
+                <h3>
+                    Power Backup
+                </h3>
+
+                <p>
+                    Backup power to maintain
+                    essential services.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+
+                <h3>
+                    Parking
+                </h3>
+
+                <p>
+                    Convenient parking space
+                    for residents.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+
+                <h3>
+                    24/7 Security
+                </h3>
+
+                <p>
+                    Secure living environment
+                    for all residents.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-droplet"></i>
+                </div>
+
+                <h3>
+                    Hot Water
+                </h3>
+
+                <p>
+                    Hot water facility available
+                    for residents.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+
+                <h3>
+                    Refrigerator
+                </h3>
+
+                <p>
+                    Refrigerator facility available
+                    for residents.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+
+                <h3>
+                    Maintenance
+                </h3>
+
+                <p>
+                    Support for maintenance and
+                    facility-related issues.
+                </p>
+
+            </div>
+
+
+            <div class="facility-card">
+
+                <div class="facility-icon">
+                    <i class="fas fa-elevator"></i>
+                </div>
+
+                <h3>
+                    Lift
+                </h3>
+
+                <p>
+                    Lift facility available for
+                    residents.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INCLUDED
+===================================================== -->
+
+<section class="included-section">
+
+    <div class="section-container">
+
+        <div class="included-box">
+
+            <div class="included-content">
+
+                <span class="section-label">
+                    INCLUDED
+                </span>
+
+                <h2>
+                    Comfortable Living,
+                    Simplified.
+                </h2>
+
+                <p>
+                    Sudarshan PG provides essential facilities
+                    and services to make everyday living easier
+                    and more comfortable.
+                </p>
+
+
+                <div class="included-list">
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Furnished Rooms
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        High-Speed Wi-Fi
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Power Backup
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Parking
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        24/7 Security
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Maintenance Support
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-summary">
+
+                <span>
+                    Starting from
+                </span>
+
+                <strong>
+                    ₹5,800
+                </strong>
+
+                <small>
+                    per month
+                </small>
+
+                <a href="#rooms">
+
+                    View Rooms
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+    <div class="cta-container">
+
+        <div>
+
+            <span>
+                READY TO MOVE IN?
+            </span>
+
+            <h2>
+                Your new room is waiting.
+            </h2>
+
+            <p>
+                Choose your preferred sharing option
+                and get in touch with us today.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'contact' %}"
+            class="cta-button"
+        >
+            Contact Us
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-brand">
+
+            <a
+                href="{% url 'home' %}"
+                class="navbar-brand"
+            >
+
+                <div class="navbar-logo">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <span>
+                    Sudarshan PG
+                </span>
+
+            </a>
+
+
+            <p>
+                Comfortable, affordable and secure
+                PG accommodation for students and
+                working professionals.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="#rooms">
+                Rooms
+            </a>
+
+            <a href="#facilities">
+                Facilities
+            </a>
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Account
+            </h4>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'user_home' %}">
+                    My Dashboard
+                </a>
+
+                <a href="{% url 'pay_rent' %}">
+                    Pay Rent
+                </a>
+
+                <a href="{% url 'logout' %}">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">
+                    Sign In
+                </a>
+
+                <a href="{% url 'signup' %}">
+                    Create Account
+                </a>
+
+            {% endif %}
+
+            <a href="/admin/">
+                Admin Login
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Contact Us
+            </h4>
+
+            <span>
+                <i class="fa-solid fa-envelope"></i>
+                support@sudarshanpg.com
+            </span>
+
+            <span>
+                <i class="fa-solid fa-phone"></i>
+                +91 90000 00000
+            </span>
+
+            <span>
+                <i class="fa-solid fa-location-dot"></i>
+                Bengaluru, India
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Sudarshan PG.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function toggleProfileMenu(event) {
+
+    event.stopPropagation();
+
+    const menu =
+        document.getElementById("profileMenu");
+
+    if (menu) {
+        menu.classList.toggle("show");
+    }
+
+}
+
+
+document.addEventListener("click", function(event) {
+
+    const profileContainer =
+        document.querySelector(".profile-container");
+
+    const profileMenu =
+        document.getElementById("profileMenu");
+
+    if (
+        profileContainer &&
+        profileMenu &&
+        !profileContainer.contains(event.target)
+    ) {
+
+        profileMenu.classList.remove("show");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

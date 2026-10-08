@@ -1,0 +1,11 @@
+Django==5.2.17
+django-jazzmin
+python-dotenv
+Pillow
+djangorestframework
+django-cors-headers
+django-filter
+djangorestframework-simplejwt
+drf-spectacular
+razorpay 
+reportlab

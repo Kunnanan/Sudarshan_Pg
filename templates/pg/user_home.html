@@ -1,0 +1,554 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Sudarshan PG | My Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'pg/css/style.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body class="dashboard-page">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="{% url 'home' %}"
+            class="logo"
+        >
+
+            <div class="logo-icon">
+                <i class="fas fa-building"></i>
+            </div>
+
+            <span>
+                Sudarshan PG
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="nav-links">
+
+            <a
+                href="{% url 'home' %}"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+            <a
+                href="{% url 'contact' %}"
+                class="nav-link"
+            >
+                Contact Us
+            </a>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="nav-right">
+
+            <div class="profile-container">
+
+                <button
+                    type="button"
+                    class="profile-button"
+                    onclick="toggleProfileMenu(event)"
+                >
+                    {{ user.username|first|upper }}
+                </button>
+
+
+                <div
+                    class="profile-menu"
+                    id="profileMenu"
+                >
+
+                    <div class="profile-header">
+
+                        <div class="profile-avatar-large">
+                            {{ user.username|first|upper }}
+                        </div>
+
+                        <div class="profile-info">
+
+                            <strong>
+                                {{ user.username }}
+                            </strong>
+
+                            <span>
+                                {{ user.email }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <a href="{% url 'user_home' %}">
+                        <i class="fas fa-home"></i>
+                        My Dashboard
+                    </a>
+
+
+                    <a href="{% url 'pay_rent' %}">
+                        <i class="fas fa-credit-card"></i>
+                        Pay Rent
+                    </a>
+
+
+                    <a href="{% url 'complaint' %}">
+                        <i class="fas fa-comment-alt"></i>
+                        Complaint Box
+                    </a>
+
+
+                    <a href="{% url 'vacate' %}">
+                        <i class="fas fa-door-open"></i>
+                        Vacate Request
+                    </a>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <a
+                        href="{% url 'logout' %}"
+                        class="logout-link"
+                    >
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<main class="dashboard">
+
+    {% if messages %}
+
+        <div class="messages">
+
+            {% for message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <div>
+
+            <span class="section-label">
+                TENANT DASHBOARD
+            </span>
+
+            <h1>
+                Welcome,
+                {% if tenant %}
+                    {{ tenant.full_name }}
+                {% else %}
+                    {{ request.user.username }}
+                {% endif %}
+            </h1>
+
+            <p>
+                Manage your room, rent and PG requests
+                from one place.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROOM -->
+
+    {% if booking %}
+
+        <section class="room-card">
+
+            <div class="room-top">
+
+                <div class="room-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+
+
+                <div class="room-title">
+
+                    <h2>
+                        Room {{ booking.room.room_number }}
+                    </h2>
+
+                    <div class="room-property">
+
+                        <i class="fas fa-building"></i>
+
+                        {{ booking.room.property.name }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="room-info">
+
+
+                <div>
+
+                    <small>
+                        Sharing
+                    </small>
+
+                    <strong>
+                        {{ booking.room.sharing_type }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Monthly Rent
+                    </small>
+
+                    <strong>
+                        ₹{{ booking.monthly_rent|floatformat:0 }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Move In Date
+                    </small>
+
+                    <strong>
+                        {{ booking.move_in_date|date:"d M Y" }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Status
+                    </small>
+
+                    <strong>
+                        {{ booking.status }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="actions">
+
+                <a
+                    href="{% url 'vacate' %}"
+                    class="dashboard-action"
+                >
+
+                    <i class="fas fa-door-open"></i>
+
+                    <span>
+                        <strong>
+                            Vacate
+                        </strong>
+
+                        <small>
+                            Request room vacating
+                        </small>
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="{% url 'complaint' %}"
+                    class="dashboard-action"
+                >
+
+                    <i class="fas fa-comment-alt"></i>
+
+                    <span>
+                        <strong>
+                            Complaint
+                        </strong>
+
+                        <small>
+                            Raise an issue
+                        </small>
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="{% url 'pay_rent' %}"
+                    class="dashboard-action"
+                >
+
+                    <i class="fas fa-credit-card"></i>
+
+                    <span>
+                        <strong>
+                            Pay Rent
+                        </strong>
+
+                        <small>
+                            Pay monthly rent
+                        </small>
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <div class="pay-button-wrapper">
+
+                <a
+                    href="{% url 'pay_rent' %}"
+                    class="pay-button"
+                >
+
+                    Pay ₹{{ booking.monthly_rent|floatformat:0 }}
+                    →
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    {% else %}
+
+
+        <!-- NO ROOM -->
+
+        <div class="no-room">
+
+            <i class="fas fa-bed"></i>
+
+            <h2>
+                No Room Assigned
+            </h2>
+
+            <p>
+                Once the admin assigns a room and booking,
+                your room details will automatically appear here.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- =================================================
+         PAYMENT ACTIVITY
+    ================================================= -->
+
+    {% if payments %}
+
+        <section class="activity-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    PAYMENT HISTORY
+                </span>
+
+                <h2>
+                    Recent Payments
+                </h2>
+
+            </div>
+
+
+            <div class="activity-list">
+
+                {% for payment in payments %}
+
+                    <div class="activity-card">
+
+
+                        <div class="activity-left">
+
+                            <div class="activity-icon">
+
+                                <i class="fas fa-credit-card"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="activity-title">
+
+                                    {{ payment.payment_status }}
+
+                                </div>
+
+
+                                <div class="activity-subtitle">
+
+                                    {{ payment.payment_date|date:"d M Y" }}
+
+                                    {% if payment.receipt_number %}
+
+                                        · {{ payment.receipt_number }}
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-amount">
+
+                            ₹{{ payment.amount|floatformat:0 }}
+
+                        </div>
+
+
+                        {% if payment.payment_status == "Paid" %}
+
+                            <a
+                                href="{% url 'download_receipt' payment.id %}"
+                                class="receipt-link"
+                            >
+                                Receipt
+                            </a>
+
+                        {% endif %}
+
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    {% endif %}
+
+</main>
+
+
+<script>
+
+function toggleProfileMenu(event) {
+
+    event.stopPropagation();
+
+    const menu =
+        document.getElementById("profileMenu");
+
+    if (menu) {
+        menu.classList.toggle("show");
+    }
+
+}
+
+
+document.addEventListener("click", function(event) {
+
+    const profileContainer =
+        document.querySelector(".profile-container");
+
+    const profileMenu =
+        document.getElementById("profileMenu");
+
+    if (
+        profileContainer &&
+        profileMenu &&
+        !profileContainer.contains(event.target)
+    ) {
+
+        profileMenu.classList.remove("show");
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>

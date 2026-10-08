@@ -1,0 +1,299 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Sudarshan PG</title>
+
+    <link rel="stylesheet" href="{% static 'pg/css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="auth-left">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <span>Sudarshan PG</span>
+
+            </div>
+
+
+            <div class="auth-left-content">
+
+                <h1>
+                    Your next<br>
+                    <span>home starts here.</span>
+                </h1>
+
+                <p>
+                    Create your Sudarshan PG account and
+                    discover comfortable, verified and
+                    convenient accommodation.
+                </p>
+
+
+                <div class="auth-features">
+
+                    <div>
+                        <i class="fa-solid fa-house"></i>
+                        <span>Verified PGs</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Safe & Secure</span>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-headset"></i>
+                        <span>24/7 Support</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="auth-right">
+
+            <div class="auth-card">
+
+
+                <!-- MOBILE BRAND -->
+
+                <div class="mobile-brand">
+
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+
+                    <span>Sudarshan PG</span>
+
+                </div>
+
+
+                <!-- HEADER -->
+
+                <div class="auth-header">
+
+                    <h2>Create your account</h2>
+
+                    <p>
+                        Join Sudarshan PG today
+                    </p>
+
+                </div>
+
+
+                <!-- MESSAGES -->
+
+                {% if messages %}
+
+                {% for message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+                {% endfor %}
+
+                {% endif %}
+
+
+                <!-- GOOGLE -->
+
+                <button type="button" class="google-btn">
+
+                    <span class="google-icon">
+                        G
+                    </span>
+
+                    Continue with Google
+
+                </button>
+
+
+                <!-- DIVIDER -->
+
+                <div class="divider">
+
+                    <span>OR</span>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input type="text" name="username" placeholder="Choose a username" required>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <input type="tel" name="phone" placeholder="Enter your phone number" maxlength="15" required>
+
+                    </div>
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Email address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input type="email" name="email" placeholder="Enter your email" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input type="password" name="password" id="password" placeholder="Create a password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Confirm password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SIGN UP -->
+
+                    <button type="submit" class="signin-btn">
+
+                        Create Account
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- PHONE -->
+
+                <button type="button" class="phone-btn">
+
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+
+                    Sign up with Phone OTP
+
+                </button>
+
+
+                <!-- LOGIN -->
+
+                <div class="signup-text">
+
+                    Already have an account?
+
+                    <a href="{% url 'login' %}">
+                        Sign In
+                    </a>
+
+                </div>
+
+
+                <!-- ADMIN -->
+
+                <div class="admin-login">
+
+                    <a href="/admin/">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        Admin Login
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

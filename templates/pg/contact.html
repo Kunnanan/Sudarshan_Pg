@@ -1,0 +1,905 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Contact | Sudarshan PG
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'pg/css/style.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body class="contact-page">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-container">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="{% url 'home' %}"
+            class="logo"
+        >
+
+            <div class="logo-icon">
+
+                <i class="fas fa-building"></i>
+
+            </div>
+
+            <span>
+                Sudarshan PG
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="nav-links">
+
+            <a
+                href="{% url 'home' %}"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+
+            {% if user.is_authenticated %}
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="nav-link active"
+                >
+                    Contact Us
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{% url 'home' %}#rooms"
+                    class="nav-link"
+                >
+                    Rooms
+                </a>
+
+                <a
+                    href="{% url 'home' %}#facilities"
+                    class="nav-link"
+                >
+                    Facilities
+                </a>
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="nav-link active"
+                >
+                    Contact
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="nav-right">
+
+            {% if user.is_authenticated %}
+
+                <div class="profile-container">
+
+                    <button
+                        type="button"
+                        class="profile-button"
+                        onclick="toggleProfileMenu()"
+                    >
+                        {{ user.username|first|upper }}
+                    </button>
+
+
+                    <div
+                        class="profile-menu"
+                        id="profileMenu"
+                    >
+
+                        <div class="profile-header">
+
+                            <div class="profile-avatar-large">
+
+                                {{ user.username|first|upper }}
+
+                            </div>
+
+
+                            <div class="profile-info">
+
+                                <strong>
+                                    {{ user.username }}
+                                </strong>
+
+                                <span>
+                                    {{ user.email }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-divider"></div>
+
+
+                        <a href="{% url 'user_home' %}">
+
+                            <i class="fas fa-home"></i>
+
+                            My Dashboard
+
+                        </a>
+
+
+                        <a href="{% url 'pay_rent' %}">
+
+                            <i class="fas fa-credit-card"></i>
+
+                            Pay Rent
+
+                        </a>
+
+
+                        <a href="{% url 'complaint' %}">
+
+                            <i class="fas fa-comment-alt"></i>
+
+                            Complaint Box
+
+                        </a>
+
+
+                        <a href="{% url 'vacate' %}">
+
+                            <i class="fas fa-door-open"></i>
+
+                            Vacate Request
+
+                        </a>
+
+
+                        <div class="profile-divider"></div>
+
+
+                        <a
+                            href="{% url 'logout' %}"
+                            class="logout-link"
+                        >
+
+                            <i class="fas fa-sign-out-alt"></i>
+
+                            Logout
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <a
+                    href="{% url 'login' %}"
+                    class="nav-login"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="{% url 'signup' %}"
+                    class="nav-signup"
+                >
+                    Sign Up
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     CONTACT HERO
+===================================================== -->
+
+<section class="contact-hero">
+
+    <div class="contact-hero-content">
+
+        <span class="contact-label">
+
+            <i class="fa-solid fa-headset"></i>
+
+            GET IN TOUCH
+
+        </span>
+
+
+        <h1>
+
+            Contact
+            <span>
+                Sudarshan PG
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Have questions about rooms, availability,
+            pricing or PG facilities?
+            Our team is here to help you.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT CONTENT
+===================================================== -->
+
+<section class="contact-section">
+
+    <div class="contact-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="contact-intro">
+
+            <span class="section-label">
+
+                CONTACT US
+
+            </span>
+
+
+            <h2>
+
+                We would love to
+                hear from you.
+
+            </h2>
+
+
+            <p>
+
+                Whether you are looking for a comfortable
+                room, want to know about availability, or
+                need more information about our PG,
+                feel free to contact us.
+
+            </p>
+
+
+            <div class="contact-highlight">
+
+                <div class="contact-highlight-icon">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+
+                        {% if pg_property %}
+                            {{ pg_property.name }}
+                        {% else %}
+                            Sudarshan PG
+                        {% endif %}
+
+                    </strong>
+
+
+                    <span>
+
+                        Comfortable living.
+                        Convenient location.
+                        Peaceful environment.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="contact-cards">
+
+
+            <!-- ADDRESS -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-icon">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </div>
+
+
+                <div class="contact-card-content">
+
+                    <span>
+                        ADDRESS
+                    </span>
+
+
+                    <h3>
+                        Our Location
+                    </h3>
+
+
+                    {% if pg_property and pg_property.address %}
+
+                        <p>
+                            {{ pg_property.address }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            PG address will be displayed here.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PHONE -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-icon">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                </div>
+
+
+                <div class="contact-card-content">
+
+                    <span>
+                        PHONE
+                    </span>
+
+
+                    <h3>
+                        Call Us
+                    </h3>
+
+
+                    {% if pg_property and pg_property.phone_number %}
+
+                        <p>
+
+                            <a
+                                href="tel:{{ pg_property.phone_number }}"
+                            >
+                                {{ pg_property.phone_number }}
+                            </a>
+
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Phone number will be displayed here.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-icon">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                </div>
+
+
+                <div class="contact-card-content">
+
+                    <span>
+                        EMAIL
+                    </span>
+
+
+                    <h3>
+                        Email Us
+                    </h3>
+
+
+                    {% if pg_property and pg_property.email %}
+
+                        <p>
+
+                            <a
+                                href="mailto:{{ pg_property.email }}"
+                            >
+                                {{ pg_property.email }}
+                            </a>
+
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Email address will be displayed here.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PG INFORMATION
+===================================================== -->
+
+<section class="contact-info-section">
+
+    <div class="contact-info-container">
+
+
+        <div class="contact-info-heading">
+
+            <span class="section-label">
+
+                SUDARSHAN PG
+
+            </span>
+
+
+            <h2>
+
+                Everything you need,
+                all in one place.
+
+            </h2>
+
+
+            <p>
+
+                Visit us or get in touch with our team
+                to know more about our available rooms,
+                sharing options and facilities.
+
+            </p>
+
+        </div>
+
+
+        <div class="contact-info-grid">
+
+
+            <div class="contact-info-box">
+
+                <div>
+
+                    <i class="fa-solid fa-bed"></i>
+
+                </div>
+
+                <h3>
+                    Comfortable Rooms
+                </h3>
+
+                <p>
+                    Multiple sharing options available
+                    based on your requirements.
+                </p>
+
+            </div>
+
+
+            <div class="contact-info-box">
+
+                <div>
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <h3>
+                    Safe Environment
+                </h3>
+
+                <p>
+                    A secure and comfortable environment
+                    for residents.
+                </p>
+
+            </div>
+
+
+            <div class="contact-info-box">
+
+                <div>
+
+                    <i class="fa-solid fa-wifi"></i>
+
+                </div>
+
+                <h3>
+                    Modern Facilities
+                </h3>
+
+                <p>
+                    Essential facilities designed for
+                    comfortable daily living.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="contact-cta">
+
+    <div class="contact-cta-container">
+
+        <div>
+
+            <span>
+                READY TO MOVE IN?
+            </span>
+
+            <h2>
+
+                Your new room is waiting.
+
+            </h2>
+
+            <p>
+
+                Contact us today to check availability
+                and choose your preferred sharing option.
+
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'home' %}#rooms"
+            class="contact-cta-button"
+        >
+
+            View Rooms
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="main-footer">
+
+    <div class="footer-container">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <a
+                href="{% url 'home' %}"
+                class="navbar-brand"
+            >
+
+                <div class="navbar-logo">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+                <span>
+                    {% if pg_property %}
+                        {{ pg_property.name }}
+                    {% else %}
+                        Sudarshan PG
+                    {% endif %}
+                </span>
+
+            </a>
+
+
+            <p>
+
+                Comfortable, affordable and secure
+                PG accommodation for students and
+                working professionals.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-links">
+
+            <h4>
+                Quick Links
+            </h4>
+
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+
+            <a href="{% url 'home' %}#rooms">
+                Rooms
+            </a>
+
+
+            <a href="{% url 'home' %}#facilities">
+                Facilities
+            </a>
+
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+        </div>
+
+
+
+        <!-- ACCOUNT -->
+
+        <div class="footer-links">
+
+            <h4>
+                Account
+            </h4>
+
+
+            <a href="{% url 'login' %}">
+                Sign In
+            </a>
+
+
+            <a href="{% url 'signup' %}">
+                Create Account
+            </a>
+
+
+            <a href="/admin/">
+                Admin Login
+            </a>
+
+        </div>
+
+
+
+        <!-- DYNAMIC CONTACT -->
+
+        <div class="footer-links">
+
+            <h4>
+                Contact Us
+            </h4>
+
+
+            {% if pg_property and pg_property.email %}
+
+                <span>
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    {{ pg_property.email }}
+
+                </span>
+
+            {% endif %}
+
+
+            {% if pg_property and pg_property.phone_number %}
+
+                <span>
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    {{ pg_property.phone_number }}
+
+                </span>
+
+            {% endif %}
+
+
+            {% if pg_property and pg_property.address %}
+
+                <span>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    {{ pg_property.address }}
+
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © {% now "Y" %}
+
+        {% if pg_property %}
+
+            {{ pg_property.name }}
+
+        {% else %}
+
+            Sudarshan PG
+
+        {% endif %}
+
+        . All rights reserved.
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     PROFILE MENU JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function toggleProfileMenu() {
+
+    const menu =
+        document.getElementById("profileMenu");
+
+    if (menu) {
+
+        menu.classList.toggle("show");
+
+    }
+
+}
+
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const profileContainer =
+            document.querySelector(
+                ".profile-container"
+            );
+
+        const profileMenu =
+            document.getElementById(
+                "profileMenu"
+            );
+
+
+        if (
+            profileContainer &&
+            profileMenu &&
+            !profileContainer.contains(
+                event.target
+            )
+        ) {
+
+            profileMenu.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

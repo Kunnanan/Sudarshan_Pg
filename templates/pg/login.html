@@ -1,0 +1,328 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | Sudarshan PG</title>
+
+    <link rel="stylesheet" href="{% static 'pg/css/style.css' %}">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body class="auth-page">
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-building"></i>
+            </div>
+
+            <span>Sudarshan PG</span>
+        </div>
+
+        <div class="auth-left-content">
+
+            <h1>
+                Find a place<br>
+                <span>you can call home.</span>
+            </h1>
+
+            <p>
+                Discover comfortable PG accommodations,
+                manage your bookings and enjoy a simple
+                living experience.
+            </p>
+
+            <div class="auth-features">
+
+                <div>
+                    <i class="fa-solid fa-house"></i>
+                    <span>Verified PGs</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Safe & Secure</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-headset"></i>
+                    <span>24/7 Support</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <div class="auth-card">
+
+            <div class="mobile-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <span>Sudarshan PG</span>
+            </div>
+
+
+            <!-- HEADER -->
+
+            <div class="auth-header">
+
+                <h2>Welcome back</h2>
+
+                <p>
+                    Sign in to continue to your account
+                </p>
+
+            </div>
+
+
+            <!-- MESSAGES -->
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <!-- GOOGLE -->
+
+            <button class="google-btn" type="button">
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                Continue with Google
+
+            </button>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+
+                <span>OR</span>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- PHONE / USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Phone number or username
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter phone number or username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="password-label">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <a href="#">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                        >
+                            <i
+                                class="fa-solid fa-eye"
+                                id="eyeIcon"
+                            ></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REMEMBER -->
+
+                <div class="remember-row">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        <span>Remember me</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- SIGN IN -->
+
+                <button
+                    type="submit"
+                    class="signin-btn"
+                >
+
+                    Sign In
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <!-- PHONE OTP -->
+
+            <button
+                type="button"
+                class="phone-btn"
+            >
+
+                <i class="fa-solid fa-mobile-screen-button"></i>
+
+                Sign in with Phone OTP
+
+            </button>
+
+
+            <!-- SIGN UP -->
+
+            <div class="signup-text">
+
+                Don't have an account?
+
+                <a href="{% url 'signup' %}">
+                    Create an account
+                </a>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div class="admin-login">
+
+                <a href="/admin/">
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                    Admin Login
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const eyeIcon =
+        document.getElementById("eyeIcon");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        eyeIcon.classList.remove("fa-eye");
+
+        eyeIcon.classList.add("fa-eye-slash");
+
+    } else {
+
+        password.type = "password";
+
+        eyeIcon.classList.remove("fa-eye-slash");
+
+        eyeIcon.classList.add("fa-eye");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

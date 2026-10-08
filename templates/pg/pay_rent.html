@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Pay Rent | Sudarshan PG</title>
+
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+    ></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .page {
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .back {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .card {
+            margin-top: 20px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow:
+                0 10px 30px rgba(15,23,42,.05);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: #eff6ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .details {
+            margin-top: 30px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .label {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .value {
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .amount {
+            font-size: 28px;
+            color: #2563eb;
+        }
+
+        .pay-button {
+            width: 100%;
+            margin-top: 28px;
+            padding: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pay-button:hover {
+            background: #1d4ed8;
+        }
+
+        .paid {
+            padding: 18px;
+            border-radius: 12px;
+            background: #ecfdf5;
+            color: #047857;
+            margin-top: 25px;
+        }
+
+        .receipt {
+            display: inline-block;
+            margin-top: 15px;
+            color: #2563eb;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <a
+        href="{% url 'user_home' %}"
+        class="back"
+    >
+        ← Back to Dashboard
+    </a>
+
+
+    <div class="card">
+
+        <div class="icon">
+            ₹
+        </div>
+
+
+        <h1>
+            Pay Monthly Rent
+        </h1>
+
+        <p class="subtitle">
+            Your rent amount is automatically taken
+            from your active room booking.
+        </p>
+
+
+        <div class="details">
+
+
+            <div class="row">
+
+                <span class="label">
+                    Tenant
+                </span>
+
+                <span class="value">
+                    {{ tenant.full_name }}
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Room
+                </span>
+
+                <span class="value">
+                    {{ booking.room.room_number }}
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Sharing
+                </span>
+
+                <span class="value">
+                    {{ booking.room.sharing_type }}
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Monthly Rent
+                </span>
+
+                <span class="value amount">
+                    ₹{{ booking.monthly_rent|floatformat:0 }}
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        {% if already_paid %}
+
+        <div class="paid">
+
+            <strong>
+                ✓ Rent Already Paid
+            </strong>
+
+            <br>
+
+            ₹{{ already_paid.amount|floatformat:0 }}
+
+            <br>
+
+            Receipt:
+            {{ already_paid.receipt_number }}
+
+            <br>
+
+            <a
+                class="receipt"
+                href="{% url 'download_receipt' already_paid.id %}"
+            >
+                Download Receipt
+            </a>
+
+        </div>
+
+
+        {% elif razorpay_enabled and razorpay_order %}
+
+
+        <button
+            type="button"
+            class="pay-button"
+            id="pay-button"
+        >
+
+            Pay ₹{{ booking.monthly_rent|floatformat:0 }}
+
+        </button>
+
+
+        <script>
+
+            const options = {
+
+                key: "{{ razorpay_key }}",
+
+                amount:
+                    "{{ razorpay_order.amount }}",
+
+                currency:
+                    "{{ razorpay_order.currency }}",
+
+                name:
+                    "Sudarshan PG",
+
+                description:
+                    "Monthly Rent - {{ booking.room.sharing_type }}",
+
+                order_id:
+                    "{{ razorpay_order.id }}",
+
+                prefill: {
+
+                    name:
+                        "{{ tenant.full_name|escapejs }}",
+
+                    email:
+                        "{{ tenant.email|escapejs }}",
+
+                    contact:
+                        "{{ tenant.phone_number|escapejs }}"
+
+                },
+
+                theme: {
+
+                    color:
+                        "#2563eb"
+
+                },
+
+                handler: function(response) {
+
+                    const form =
+                        document.createElement(
+                            "form"
+                        );
+
+                    form.method =
+                        "POST";
+
+                    form.action =
+                        "{% url 'payment_success' %}";
+
+
+                    const csrf =
+                        document.createElement(
+                            "input"
+                        );
+
+                    csrf.type =
+                        "hidden";
+
+                    csrf.name =
+                        "csrfmiddlewaretoken";
+
+                    csrf.value =
+                        "{{ csrf_token }}";
+
+                    form.appendChild(
+                        csrf
+                    );
+
+
+                    const fields = {
+
+                        razorpay_payment_id:
+                            response.razorpay_payment_id,
+
+                        razorpay_order_id:
+                            response.razorpay_order_id,
+
+                        razorpay_signature:
+                            response.razorpay_signature
+
+                    };
+
+
+                    Object.keys(fields).forEach(
+                        function(name) {
+
+                            const input =
+                                document.createElement(
+                                    "input"
+                                );
+
+                            input.type =
+                                "hidden";
+
+                            input.name =
+                                name;
+
+                            input.value =
+                                fields[name];
+
+                            form.appendChild(
+                                input
+                            );
+
+                        }
+                    );
+
+
+                    document.body.appendChild(
+                        form
+                    );
+
+                    form.submit();
+
+                }
+
+            };
+
+
+            const razorpay =
+                new Razorpay(
+                    options
+                );
+
+
+            document
+                .getElementById("pay-button")
+                .onclick = function(event) {
+
+                    event.preventDefault();
+
+                    razorpay.open();
+
+                };
+
+        </script>
+
+
+        {% else %}
+
+        <div class="paid">
+
+            Online payment is currently
+            not configured.
+
+            Please contact the PG administrator.
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
