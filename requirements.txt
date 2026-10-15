@@ -1,0 +1,13 @@
+django
+numpy
+pandas
+
+django
+pillow
+django-environ
+psycopg[binary]
+django-crispy-forms
+crispy-bootstrap5
+djangorestframework
+django-cors-headers
+django-jizzmin
