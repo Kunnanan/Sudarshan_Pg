@@ -1,0 +1,536 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sudarshan PG | Comfortable Living</title>
+
+    <link rel="stylesheet" href="{% static 'pg/style.css' %}">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <div class="brand">
+            <span class="brand-icon">🏠</span>
+            <span>Sudarshan PG</span>
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#rooms">Rooms</a>
+
+            <a href="#facilities">Facilities</a>
+
+            <a href="#about">About</a>
+
+            <a href="#contact">Contact</a>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'logout' %}" class="nav-login">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="nav-login">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <p class="hero-small">
+            WELCOME TO SUDARSHAN PG
+        </p>
+
+        <h1>
+            Your Comfortable
+            <span>Home Away From Home</span>
+        </h1>
+
+        <p class="hero-text">
+            Experience comfortable rooms, essential facilities,
+            a safe environment and hassle-free PG living.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            {% if user.is_authenticated %}
+
+                <a href="#rooms" class="primary-btn">
+                    Explore Rooms
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="primary-btn">
+                    Login & Continue
+                </a>
+
+                <a href="#rooms" class="secondary-btn">
+                    Explore Rooms
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <h2>24/7</h2>
+
+        <p>Support</p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>100%</h2>
+
+        <p>Comfort</p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>Safe</h2>
+
+        <p>Environment</p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>Easy</h2>
+
+        <p>Management</p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ROOMS ================= -->
+
+<section class="section" id="rooms">
+
+    <div class="section-heading">
+
+        <p>OUR ACCOMMODATION</p>
+
+        <h2>Choose Your Room</h2>
+
+        <span>
+            Comfortable and well-maintained rooms
+            designed for your everyday living.
+        </span>
+
+    </div>
+
+
+    <div class="room-container">
+
+
+        <div class="room-card">
+
+            <div class="room-image room-one">
+                🛏️
+            </div>
+
+            <div class="room-content">
+
+                <h3>Single Room</h3>
+
+                <p>
+                    Private room with comfortable
+                    living space and essential facilities.
+                </p>
+
+                <div class="room-bottom">
+
+                    <strong>₹8,000 / month</strong>
+
+                    <a href="{% url 'login' %}">
+                        View Details →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="room-card">
+
+            <div class="room-image room-two">
+                🛏️🛏️
+            </div>
+
+            <div class="room-content">
+
+                <h3>Double Sharing</h3>
+
+                <p>
+                    Comfortable shared accommodation
+                    suitable for two residents.
+                </p>
+
+                <div class="room-bottom">
+
+                    <strong>₹6,000 / month</strong>
+
+                    <a href="{% url 'login' %}">
+                        View Details →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="room-card">
+
+            <div class="room-image room-three">
+                🛏️🛏️🛏️
+            </div>
+
+            <div class="room-content">
+
+                <h3>Triple Sharing</h3>
+
+                <p>
+                    Affordable shared accommodation
+                    with essential amenities.
+                </p>
+
+                <div class="room-bottom">
+
+                    <strong>₹5,000 / month</strong>
+
+                    <a href="{% url 'login' %}">
+                        View Details →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FACILITIES ================= -->
+
+<section class="facility-section" id="facilities">
+
+    <div class="section-heading">
+
+        <p>WHY CHOOSE US</p>
+
+        <h2>Everything You Need</h2>
+
+        <span>
+            We provide essential facilities to make
+            your daily life comfortable.
+        </span>
+
+    </div>
+
+
+    <div class="facility-container">
+
+
+        <div class="facility">
+
+            <div class="facility-icon">
+                📶
+            </div>
+
+            <h3>High-Speed Wi-Fi</h3>
+
+            <p>
+                Stay connected with reliable
+                internet access.
+            </p>
+
+        </div>
+
+
+        <div class="facility">
+
+            <div class="facility-icon">
+                🔒
+            </div>
+
+            <h3>Security</h3>
+
+            <p>
+                Safe and secure environment
+                for residents.
+            </p>
+
+        </div>
+
+
+        <div class="facility">
+
+            <div class="facility-icon">
+                🧹
+            </div>
+
+            <h3>Clean Rooms</h3>
+
+            <p>
+                Clean and well-maintained
+                living spaces.
+            </p>
+
+        </div>
+
+
+        <div class="facility">
+
+            <div class="facility-icon">
+                💧
+            </div>
+
+            <h3>Water Facility</h3>
+
+            <p>
+                Regular water supply for
+                daily requirements.
+            </p>
+
+        </div>
+
+
+        <div class="facility">
+
+            <div class="facility-icon">
+                ⚡
+            </div>
+
+            <h3>Power Backup</h3>
+
+            <p>
+                Backup power for uninterrupted
+                daily activities.
+            </p>
+
+        </div>
+
+
+        <div class="facility">
+
+            <div class="facility-icon">
+                🍽️
+            </div>
+
+            <h3>Food Facility</h3>
+
+            <p>
+                Convenient food options
+                for residents.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about-section" id="about">
+
+    <div class="about-content">
+
+        <p class="section-label">
+            ABOUT SUDARSHAN PG
+        </p>
+
+        <h2>
+            A Better Place
+            <span>To Stay</span>
+        </h2>
+
+        <p>
+            Sudarshan PG is designed to provide students
+            and working professionals with comfortable,
+            convenient and affordable accommodation.
+        </p>
+
+        <p>
+            Our goal is to provide a peaceful living
+            environment with essential facilities and
+            simple PG management.
+        </p>
+
+        <a href="#contact" class="primary-btn">
+            Contact Us
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact-section" id="contact">
+
+    <div class="section-heading">
+
+        <p>GET IN TOUCH</p>
+
+        <h2>Have Questions?</h2>
+
+        <span>
+            Contact us to know more about rooms,
+            availability and facilities.
+        </span>
+
+    </div>
+
+
+    <div class="contact-container">
+
+
+        <div class="contact-box">
+
+            <div class="contact-icon">
+                📞
+            </div>
+
+            <h3>Call Us</h3>
+
+            <p>+91 XXXXX XXXXX</p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <div class="contact-icon">
+                📧
+            </div>
+
+            <h3>Email Us</h3>
+
+            <p>info@sudarshanpg.com</p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <div class="contact-icon">
+                📍
+            </div>
+
+            <h3>Location</h3>
+
+            <p>Your City, Andhra Pradesh</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-brand">
+        🏠 Sudarshan PG
+    </div>
+
+    <p>
+        Comfortable Living • Safe Environment • Easy Management
+    </p>
+
+    <div class="footer-links">
+
+        <a href="#home">Home</a>
+
+        <a href="#rooms">Rooms</a>
+
+        <a href="#facilities">Facilities</a>
+
+        <a href="#about">About</a>
+
+        <a href="#contact">Contact</a>
+
+    </div>
+
+    <p class="copyright">
+        © 2026 Sudarshan PG. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
