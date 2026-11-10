@@ -1,0 +1,1442 @@
+{% extends "base.html" %}
+
+{% block title %}
+About Sudarshan PG | Comfortable PG Accommodation in BTM Layout, Bengaluru
+{% endblock %}
+
+{% block meta_description %}
+Learn about Sudarshan PG in BTM Layout, Bengaluru. Discover our approach to comfortable accommodation, practical living spaces and a welcoming environment for students and working professionals.
+{% endblock %}
+
+{% block meta_keywords %}
+About Sudarshan PG, Sudarshan PG Bengaluru, PG in BTM Layout, comfortable PG accommodation, student accommodation Bengaluru, working professionals PG
+{% endblock %}
+
+{% block og_title %}
+About Sudarshan PG | Our Story and Living Experience
+{% endblock %}
+
+{% block og_description %}
+Discover Sudarshan PG, a comfortable living space in BTM Layout, Bengaluru, designed for students and working professionals.
+{% endblock %}
+
+{% block twitter_title %}
+About Sudarshan PG | BTM Layout Bengaluru
+{% endblock %}
+
+{% block twitter_description %}
+Explore the story, values and comfortable living experience at Sudarshan PG.
+{% endblock %}
+
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Sudarshan PG",
+    "description": "Learn about Sudarshan PG in BTM Layout, Bengaluru, and its comfortable accommodation for students and working professionals.",
+    "url": "{{ request.build_absolute_uri|escapejs }}",
+    "mainEntity": {
+        "@type": "LodgingBusiness",
+        "name": "Sudarshan PG",
+        "description": "Sudarshan PG offers accommodation for students and working professionals in BTM Layout, Bengaluru.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+        }
+    }
+}
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   ABOUT PAGE
+   ========================================================= */
+
+.about-page {
+    background: #f5f3ee;
+    color: #172027;
+    overflow: hidden;
+}
+
+.about-container {
+    width: min(1400px, 90%);
+    margin: auto;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.about-hero {
+    min-height: 82vh;
+    background: #10181e;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(205, 164, 84, 0.25);
+    border-radius: 50%;
+    right: 8%;
+    top: 12%;
+}
+
+.about-hero::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(205, 164, 84, 0.16);
+    border-radius: 50%;
+    right: 15%;
+    top: 27%;
+}
+
+.about-hero-container {
+    width: min(1400px, 90%);
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    padding: 100px 0;
+}
+
+.about-label {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #d2a956;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+.about-label::before {
+    content: "";
+    width: 65px;
+    height: 1px;
+    background: #d2a956;
+}
+
+.about-hero h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(65px, 8vw, 125px);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -5px;
+    max-width: 850px;
+    margin: 0;
+}
+
+.about-hero h1 span {
+    color: #d2a956;
+    font-style: italic;
+}
+
+.about-hero-description {
+    margin-top: 45px;
+    max-width: 620px;
+    color: #b8c0c6;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.about-hero-number {
+    position: absolute;
+    right: 5%;
+    bottom: 80px;
+    color: #d2a956;
+    font-size: 13px;
+    letter-spacing: 4px;
+}
+
+
+/* =========================================================
+   OUR STORY
+   ========================================================= */
+
+.about-intro {
+    padding: 140px 0;
+    background: #f5f3ee;
+}
+
+.about-intro-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 110px;
+    align-items: center;
+}
+
+.about-visual {
+    height: 620px;
+    background: #172229;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-visual::before {
+    content: "";
+    position: absolute;
+    inset: 35px;
+    border: 1px solid rgba(210, 169, 86, 0.5);
+}
+
+.about-visual-inner {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.about-visual-small {
+    color: #d2a956;
+    font-size: 12px;
+    letter-spacing: 6px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.about-visual-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 82px;
+    line-height: 0.9;
+    color: #ffffff;
+}
+
+.about-visual-line {
+    width: 80px;
+    height: 1px;
+    background: #d2a956;
+    margin: 30px auto;
+}
+
+.about-visual-text {
+    color: #aeb8bf;
+    letter-spacing: 5px;
+    font-size: 11px;
+}
+
+.about-intro-content .section-label {
+    color: #b08334;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.about-intro-content h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(48px, 5vw, 75px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -3px;
+    margin: 25px 0 35px;
+}
+
+.about-intro-content h2 span {
+    color: #b08334;
+    font-style: italic;
+}
+
+.about-intro-content p {
+    color: #64727c;
+    font-size: 17px;
+    line-height: 1.9;
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   VALUES
+   ========================================================= */
+
+.about-values {
+    background: #ffffff;
+    padding: 130px 0;
+}
+
+.values-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 70px;
+    gap: 50px;
+}
+
+.values-heading h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(48px, 5vw, 75px);
+    line-height: 1;
+    letter-spacing: -3px;
+    max-width: 700px;
+    margin: 0;
+}
+
+.values-heading h2 span {
+    color: #b08334;
+    font-style: italic;
+}
+
+.values-heading p {
+    max-width: 360px;
+    color: #71808a;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #ddd8ce;
+    border-bottom: 1px solid #ddd8ce;
+}
+
+.value-card {
+    padding: 55px 45px 60px;
+    min-height: 330px;
+    border-right: 1px solid #ddd8ce;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.value-card:last-child {
+    border-right: none;
+}
+
+.value-card:hover {
+    background: #f7f4ed;
+}
+
+.value-number {
+    color: #b08334;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.value-icon {
+    width: 58px;
+    height: 58px;
+    border: 1px solid #d2a956;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 65px 0 35px;
+    color: #b08334;
+    font-size: 22px;
+}
+
+.value-card h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 18px;
+}
+
+.value-card p {
+    color: #71808a;
+    line-height: 1.8;
+    max-width: 320px;
+}
+
+
+/* =========================================================
+   WHO WE WELCOME
+   ========================================================= */
+
+.welcome-section {
+    background: #10181e;
+    color: white;
+    padding: 135px 0;
+}
+
+.welcome-heading {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 75px;
+}
+
+.welcome-heading .section-label {
+    color: #d2a956;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.welcome-heading h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(50px, 6vw, 82px);
+    font-weight: 400;
+    line-height: 1;
+    margin: 25px 0;
+}
+
+.welcome-heading h2 span {
+    color: #d2a956;
+    font-style: italic;
+}
+
+.welcome-heading p {
+    color: #aeb8bf;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.welcome-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.welcome-card {
+    min-height: 380px;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    transition: 0.4s ease;
+}
+
+.welcome-card::before {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border: 1px solid rgba(210,169,86,0.25);
+    border-radius: 50%;
+    right: -70px;
+    top: -70px;
+}
+
+.welcome-card:hover {
+    border-color: #d2a956;
+    transform: translateY(-5px);
+}
+
+.welcome-number {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    color: #d2a956;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.welcome-card h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+    margin: 0 0 15px;
+}
+
+.welcome-card p {
+    color: #aeb8bf;
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0;
+}
+
+
+/* =========================================================
+   THE SUDARSHAN EXPERIENCE
+   ========================================================= */
+
+.experience-section {
+    background: #ffffff;
+    padding: 130px 0;
+}
+
+.experience-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 60px;
+    margin-bottom: 70px;
+}
+
+.experience-label {
+    color: #b08334;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.experience-heading h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(48px, 5vw, 75px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -3px;
+    margin: 0;
+    max-width: 600px;
+}
+
+.experience-heading h2 span {
+    color: #b08334;
+    font-style: italic;
+}
+
+.experience-list {
+    border-top: 1px solid #dcd7ce;
+}
+
+.experience-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 70px;
+    align-items: center;
+    gap: 35px;
+    padding: 42px 15px;
+    border-bottom: 1px solid #dcd7ce;
+    transition: 0.35s ease;
+}
+
+.experience-item:hover {
+    background: #f7f4ed;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.experience-number {
+    color: #b08334;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.experience-content {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.experience-content h3 {
+    width: 180px;
+    flex-shrink: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 34px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.experience-content p {
+    max-width: 500px;
+    color: #71808a;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.experience-arrow {
+    width: 45px;
+    height: 45px;
+    border: 1px solid #c9a15a;
+    color: #b08334;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   A PLACE YOU'LL REMEMBER
+   ========================================================= */
+
+.remember-section {
+    background: #d2a956;
+    padding: 110px 0;
+}
+
+.remember-inner {
+    max-width: 1050px;
+}
+
+.remember-label {
+    color: #182127;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+}
+
+.remember-inner h2 {
+    color: #11191f;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(48px, 6vw, 82px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -3px;
+    margin: 0;
+}
+
+.remember-inner h2 span {
+    display: block;
+    color: #ffffff;
+    font-style: italic;
+}
+
+.remember-inner p {
+    max-width: 620px;
+    color: #403a30;
+    font-size: 17px;
+    line-height: 1.8;
+    margin: 35px 0;
+}
+
+.remember-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 35px;
+    background: #11191f;
+    color: #ffffff;
+    padding: 20px 28px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
+}
+
+.remember-button:hover {
+    background: #ffffff;
+    color: #11191f;
+}
+
+.remember-button span {
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+   ========================================================= */
+
+.philosophy {
+    padding: 145px 0;
+    background: #f5f3ee;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 100px;
+}
+
+.philosophy-label {
+    color: #b08334;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.philosophy-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 5vw, 70px);
+    font-weight: 400;
+    line-height: 1;
+    margin-top: 25px;
+}
+
+.philosophy-title span {
+    color: #b08334;
+    font-style: italic;
+}
+
+.philosophy-content {
+    border-left: 1px solid #d5cfc3;
+    padding-left: 70px;
+}
+
+.philosophy-content p {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 31px;
+    line-height: 1.5;
+    color: #28343b;
+    margin: 0 0 35px;
+}
+
+.philosophy-content small {
+    color: #77838a;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.about-cta {
+    background: #10181e;
+    color: white;
+    padding: 115px 0;
+}
+
+.about-cta-inner {
+    width: min(1400px, 90%);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.about-cta h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(50px, 6vw, 85px);
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+}
+
+.about-cta h2 span {
+    color: #d2a956;
+    font-style: italic;
+}
+
+.about-cta p {
+    color: #aeb8bf;
+    max-width: 450px;
+    line-height: 1.8;
+    margin-top: 25px;
+}
+
+.about-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 45px;
+    background: #d2a956;
+    color: #11181e;
+    padding: 23px 30px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: 0.3s ease;
+}
+
+.about-cta-button:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .about-hero {
+        min-height: 75vh;
+    }
+
+    .about-hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .about-hero::before,
+    .about-hero::after {
+        opacity: 0.4;
+    }
+
+    .about-intro-grid,
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .about-visual {
+        height: 480px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-card {
+        border-right: none;
+        border-bottom: 1px solid #ddd8ce;
+    }
+
+    .value-card:last-child {
+        border-bottom: none;
+    }
+
+    .welcome-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-heading {
+        display: block;
+    }
+
+    .experience-heading h2 {
+        margin-top: 25px;
+    }
+
+    .experience-item {
+        grid-template-columns: 50px 1fr 45px;
+        gap: 15px;
+    }
+
+    .experience-content {
+        display: block;
+    }
+
+    .experience-content h3 {
+        width: auto;
+        margin-bottom: 12px;
+    }
+
+    .experience-item:hover {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .philosophy-content {
+        border-left: none;
+        border-top: 1px solid #d5cfc3;
+        padding-left: 0;
+        padding-top: 50px;
+    }
+
+    .about-cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .about-hero-container {
+        padding: 80px 0;
+    }
+
+    .about-hero h1 {
+        font-size: 58px;
+        letter-spacing: -2px;
+    }
+
+    .about-hero-description {
+        font-size: 16px;
+    }
+
+    .about-intro,
+    .about-values,
+    .welcome-section,
+    .experience-section,
+    .remember-section,
+    .philosophy {
+        padding: 90px 0;
+    }
+
+    .about-visual {
+        height: 400px;
+    }
+
+    .about-visual-title {
+        font-size: 65px;
+    }
+
+    .values-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .value-card {
+        padding: 40px 30px;
+    }
+
+    .welcome-card {
+        min-height: 320px;
+        padding: 35px;
+    }
+
+    .welcome-card h3 {
+        font-size: 34px;
+    }
+
+    .experience-item {
+        grid-template-columns: 40px 1fr;
+    }
+
+    .experience-arrow {
+        display: none;
+    }
+
+    .experience-content h3 {
+        font-size: 29px;
+    }
+
+    .remember-inner h2 {
+        letter-spacing: -2px;
+    }
+
+    .philosophy-content p {
+        font-size: 25px;
+    }
+
+    .about-cta-button {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+</style>
+
+
+<div class="about-page">
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="about-hero">
+
+        <div class="about-hero-container">
+
+            <div class="about-label">
+                About Sudarshan PG
+            </div>
+
+            <h1>
+                More than a place
+                <span>to stay.</span>
+            </h1>
+
+            <p class="about-hero-description">
+                A thoughtfully created living space for people
+                looking for comfort, simplicity and a sense of
+                belonging in everyday life.
+            </p>
+
+            <div class="about-hero-number">
+                EST. SUDARSHAN PG
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUR STORY
+         ===================================================== -->
+
+    <section class="about-intro">
+
+        <div class="about-container">
+
+            <div class="about-intro-grid">
+
+
+                <div class="about-visual">
+
+                    <div class="about-visual-inner">
+
+                        <div class="about-visual-small">
+                            SUDARSHAN
+                        </div>
+
+                        <div class="about-visual-title">
+                            PG
+                        </div>
+
+                        <div class="about-visual-line"></div>
+
+                        <div class="about-visual-text">
+                            COMFORT • SAFETY • CONVENIENCE
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-intro-content">
+
+                    <div class="section-label">
+                        Our Story
+                    </div>
+
+                    <h2>
+                        Designed with
+                        <span>people</span>
+                        in mind.
+                    </h2>
+
+                    <p>
+                        Sudarshan PG is created to offer more than
+                        just a room. It is designed as a comfortable
+                        everyday living environment where students
+                        and working professionals can feel settled,
+                        focused and at ease.
+                    </p>
+
+                    <p>
+                        From practical living spaces to essential
+                        facilities, every part of the experience is
+                        intended to make daily life simpler and more
+                        comfortable.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         VALUES
+         ===================================================== -->
+
+    <section class="about-values">
+
+        <div class="about-container">
+
+            <div class="values-heading">
+
+                <h2>
+                    What we
+                    <span>believe.</span>
+                </h2>
+
+                <p>
+                    A good place to live should feel comfortable,
+                    practical and welcoming from the moment you
+                    arrive.
+                </p>
+
+            </div>
+
+
+            <div class="values-grid">
+
+
+                <div class="value-card">
+
+                    <div class="value-number">
+                        01
+                    </div>
+
+                    <div class="value-icon">
+                        ◇
+                    </div>
+
+                    <h3>
+                        Thoughtful Spaces
+                    </h3>
+
+                    <p>
+                        Living spaces planned around the practical
+                        needs of everyday life.
+                    </p>
+
+                </div>
+
+
+                <div class="value-card">
+
+                    <div class="value-number">
+                        02
+                    </div>
+
+                    <div class="value-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Simple Living
+                    </h3>
+
+                    <p>
+                        A straightforward living experience without
+                        unnecessary complexity.
+                    </p>
+
+                </div>
+
+
+                <div class="value-card">
+
+                    <div class="value-number">
+                        03
+                    </div>
+
+                    <div class="value-icon">
+                        ○
+                    </div>
+
+                    <h3>
+                        Feel at Home
+                    </h3>
+
+                    <p>
+                        A peaceful atmosphere where residents can
+                        relax, study and focus on their day.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WHO WE WELCOME
+         ===================================================== -->
+
+    <section class="welcome-section">
+
+        <div class="about-container">
+
+            <div class="welcome-heading">
+
+                <div class="section-label">
+                    Who We Welcome
+                </div>
+
+                <h2>
+                    A space for
+                    <span>your lifestyle.</span>
+                </h2>
+
+                <p>
+                    Whether you are beginning your academic journey
+                    or building your professional career, Sudarshan PG
+                    is designed to make everyday living comfortable.
+                </p>
+
+            </div>
+
+
+            <div class="welcome-grid">
+
+
+                <div class="welcome-card">
+
+                    <div class="welcome-number">
+                        01 / STUDENTS
+                    </div>
+
+                    <h3>
+                        Study.
+                        <br>
+                        Live. Grow.
+                    </h3>
+
+                    <p>
+                        A calm and comfortable environment where
+                        students can focus on studies while enjoying
+                        a convenient place to live.
+                    </p>
+
+                </div>
+
+
+                <div class="welcome-card">
+
+                    <div class="welcome-number">
+                        02 / PROFESSIONALS
+                    </div>
+
+                    <h3>
+                        Work.
+                        <br>
+                        Relax. Belong.
+                    </h3>
+
+                    <p>
+                        A practical living space for working
+                        professionals who value comfort and a
+                        peaceful everyday routine.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         THE SUDARSHAN EXPERIENCE
+         ===================================================== -->
+
+    <section class="experience-section">
+
+        <div class="about-container">
+
+            <div class="experience-heading">
+
+                <div class="experience-label">
+                    THE SUDARSHAN EXPERIENCE
+                </div>
+
+                <h2>
+                    Settle in.
+                    <span>Feel at home.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="experience-list">
+
+
+                <div class="experience-item">
+
+                    <div class="experience-number">
+                        01
+                    </div>
+
+                    <div class="experience-content">
+
+                        <h3>
+                            Arrive
+                        </h3>
+
+                        <p>
+                            Step into a space where you can settle
+                            comfortably and make yourself at home.
+                        </p>
+
+                    </div>
+
+                    <div class="experience-arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <div class="experience-item">
+
+                    <div class="experience-number">
+                        02
+                    </div>
+
+                    <div class="experience-content">
+
+                        <h3>
+                            Live
+                        </h3>
+
+                        <p>
+                            Enjoy a practical living environment
+                            with the facilities you need for
+                            everyday life.
+                        </p>
+
+                    </div>
+
+                    <div class="experience-arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <div class="experience-item">
+
+                    <div class="experience-number">
+                        03
+                    </div>
+
+                    <div class="experience-content">
+
+                        <h3>
+                            Thrive
+                        </h3>
+
+                        <p>
+                            Focus on your studies, work and personal
+                            goals while enjoying a peaceful place
+                            to live.
+                        </p>
+
+                    </div>
+
+                    <div class="experience-arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         A PLACE YOU'LL REMEMBER
+         ===================================================== -->
+
+    <section class="remember-section">
+
+        <div class="about-container">
+
+            <div class="remember-inner">
+
+                <div class="remember-label">
+                    THE WAY IT SHOULD FEEL
+                </div>
+
+                <h2>
+                    Comfort is not a luxury.
+                    <span>It is how a place should feel.</span>
+                </h2>
+
+                <p>
+                    At Sudarshan PG, we believe that your living
+                    space should give you the comfort and peace
+                    to enjoy your everyday life.
+                </p>
+
+                <a
+                    href="{% url 'rooms' %}"
+                    class="remember-button"
+                >
+                    VIEW ROOMS
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PHILOSOPHY
+         ===================================================== -->
+
+    <section class="philosophy">
+
+        <div class="about-container">
+
+            <div class="philosophy-grid">
+
+
+                <div>
+
+                    <div class="philosophy-label">
+                        OUR APPROACH
+                    </div>
+
+                    <div class="philosophy-title">
+                        Less complication.
+                        <span>More living.</span>
+                    </div>
+
+                </div>
+
+
+                <div class="philosophy-content">
+
+                    <p>
+                        “The best living space is one that lets
+                        you focus on the things that matter.”
+                    </p>
+
+                    <small>
+                        At Sudarshan PG, our focus is simple:
+                        provide a comfortable environment,
+                        practical facilities and a peaceful
+                        atmosphere for everyday living.
+                    </small>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL CTA
+         ===================================================== -->
+
+    <section class="about-cta">
+
+        <div class="about-cta-inner">
+
+
+            <div>
+
+                <h2>
+                    Ready to find
+                    <span>your space?</span>
+                </h2>
+
+                <p>
+                    Explore our available rooms and discover
+                    a comfortable place to call home.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{% url 'rooms' %}"
+                class="about-cta-button"
+            >
+                EXPLORE ROOMS
+                <span>→</span>
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

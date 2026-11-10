@@ -1,0 +1,1307 @@
+
+{% extends "base.html" %}
+
+<!-- =====================================================
+     SEO META INFORMATION
+===================================================== -->
+
+{% block title %}
+Sudarshan PG in BTM Layout, Bengaluru | Premium PG Accommodation
+{% endblock %}
+
+{% block meta_description %}
+Looking for a comfortable PG in BTM Layout, Bengaluru? Discover Sudarshan PG with comfortable rooms, food included in rent, essential facilities and accommodation for students and working professionals.
+{% endblock %}
+
+{% block meta_keywords %}
+Sudarshan PG, PG in BTM Layout, PG in Bengaluru, paying guest in BTM Layout, student PG Bengaluru, working professionals PG, PG with food in BTM Layout, affordable PG Bengaluru
+{% endblock %}
+
+{% block og_title %}
+Sudarshan PG | Comfortable PG Accommodation in BTM Layout
+{% endblock %}
+
+{% block og_description %}
+Explore comfortable rooms, food and essential facilities at Sudarshan PG in BTM Layout, Bengaluru.
+{% endblock %}
+
+{% block twitter_title %}
+Sudarshan PG | PG in BTM Layout, Bengaluru
+{% endblock %}
+
+{% block twitter_description %}
+Find comfortable PG accommodation with food and essential facilities for students and working professionals at Sudarshan PG.
+{% endblock %}
+
+
+<!-- =====================================================
+     STRUCTURED DATA
+===================================================== -->
+
+{% block extra_head %}
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Sudarshan PG in BTM Layout, Bengaluru",
+    "description": "Discover comfortable PG accommodation, rooms, food and essential facilities at Sudarshan PG in BTM Layout, Bengaluru.",
+    "url": "{{ request.build_absolute_uri|escapejs }}",
+    "inLanguage": "en",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "Sudarshan PG",
+        "url": "{{ request.scheme }}://{{ request.get_host }}/"
+    },
+    "about": {
+        "@type": "LodgingBusiness",
+        "name": "Sudarshan PG",
+        "description": "PG accommodation for students and working professionals in BTM Layout, Bengaluru.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+        },
+        "amenityFeature": [
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Wi-Fi",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Parking",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Food included in rent",
+                "value": true
+            }
+        ]
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Sudarshan PG"
+    }
+}
+</script>
+
+
+<!-- FAQ STRUCTURED DATA -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Where is Sudarshan PG located?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sudarshan PG is located in BTM Layout, Bengaluru. Contact us for further location details and directions."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What room-sharing options are available?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Room options may include single, triple and four-sharing accommodation. Contact us to confirm the currently available rooms."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is food included in the monthly rent?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Food is included in the monthly rent at Sudarshan PG. Contact us for further details about daily meal arrangements."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What facilities are available?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Facilities highlighted at Sudarshan PG include Wi-Fi, safety and security, clean spaces and parking."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How can I enquire about accommodation?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can submit an enquiry through our website or visit the Contact Us page to get in touch with Sudarshan PG."
+            }
+        }
+    ]
+}
+</script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="premium-hero">
+
+    <div class="hero-bg">
+        {% if pg and pg.main_image %}
+            <img
+                src="{{ pg.main_image.url }}"
+                alt="{{ pg.name }} PG accommodation in BTM Layout, Bengaluru"
+                fetchpriority="high"
+            >
+        {% endif %}
+    </div>
+
+    <div class="hero-dark"></div>
+
+    <div class="hero-inner">
+
+        <div class="hero-text">
+
+            <div class="hero-eyebrow">
+                PREMIUM PG LIVING
+            </div>
+
+            <h1>
+                {% if pg %}
+                    {{ pg.name }}
+                {% else %}
+                    Sudarshan PG
+                {% endif %}
+            </h1>
+
+            <h2>
+                Your Comfort.
+                <span>Your Space.</span>
+            </h2>
+
+            <p>
+                {% if pg and pg.tagline %}
+                    {{ pg.tagline }}
+                {% else %}
+                    A comfortable, safe and modern place
+                    to call home.
+                {% endif %}
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#rooms" class="premium-btn premium-btn-gold">
+                    Explore Rooms
+                    <span>→</span>
+                </a>
+
+                <a href="{% url 'enquiry' %}"
+                   class="premium-btn premium-btn-outline">
+                    Enquire Now
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-side-card">
+
+            <div class="hero-card-top">
+                <span>LIVE COMFORTABLY</span>
+                <span>01</span>
+            </div>
+
+            <div class="hero-card-line"></div>
+
+            <p>
+                Comfortable rooms,
+                essential facilities
+                and a peaceful living
+                environment.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="hero-features">
+
+        <div>
+            <strong>01</strong>
+            <span>Comfortable Rooms</span>
+        </div>
+
+        <div>
+            <strong>02</strong>
+            <span>Safe Environment</span>
+        </div>
+
+        <div>
+            <strong>03</strong>
+            <span>Essential Facilities</span>
+        </div>
+
+        <div>
+            <strong>04</strong>
+            <span>Convenient Location</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro-section">
+
+    <div class="section-mini-title">
+        WELCOME TO SUDARSHAN
+    </div>
+
+    <h2>
+        A better place to live,
+        <em>every day.</em>
+    </h2>
+
+    <p>
+        We create a comfortable and welcoming environment
+        where students and working professionals can feel
+        at home.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     FACILITIES
+===================================================== -->
+
+<section class="premium-facilities">
+
+    <div class="section-header-row">
+
+        <div>
+
+            <span class="section-mini-title">
+                EVERYTHING YOU NEED
+            </span>
+
+            <h2>
+                Designed around
+                <em>your comfort.</em>
+            </h2>
+
+        </div>
+
+        <p>
+            Essential facilities that make
+            everyday living easier.
+        </p>
+
+    </div>
+
+    <div class="premium-facility-grid">
+
+        <div class="premium-facility">
+
+            <span class="facility-number">01</span>
+            <div class="facility-symbol">Wi</div>
+
+            <h3>High-Speed Wi-Fi</h3>
+
+            <p>
+                Stay connected for work,
+                study and entertainment.
+            </p>
+
+        </div>
+
+        <div class="premium-facility">
+
+            <span class="facility-number">02</span>
+            <div class="facility-symbol">SC</div>
+
+            <h3>Safety &amp; Security</h3>
+
+            <p>
+                A secure and peaceful
+                living environment.
+            </p>
+
+        </div>
+
+        <div class="premium-facility">
+
+            <span class="facility-number">03</span>
+            <div class="facility-symbol">CL</div>
+
+            <h3>Clean Spaces</h3>
+
+            <p>
+                Well-maintained rooms
+                and common areas.
+            </p>
+
+        </div>
+
+        <div class="premium-facility">
+
+            <span class="facility-number">04</span>
+            <div class="facility-symbol">PK</div>
+
+            <h3>Parking</h3>
+
+            <p>
+                Convenient parking
+                for residents.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ROOMS
+===================================================== -->
+
+<section class="premium-rooms" id="rooms">
+
+    <div class="section-header-centered">
+
+        <span class="section-mini-title">
+            ROOMS &amp; PRICING
+        </span>
+
+        <h2>
+            Find your
+            <em>perfect space.</em>
+        </h2>
+
+        <p>
+            Choose the sharing option that
+            suits your lifestyle and budget.
+        </p>
+
+    </div>
+
+    <div class="premium-room-grid">
+
+        {% if pg %}
+
+            {% for room in pg.rooms.all %}
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        {% if room.image %}
+
+                            <img
+                                src="{{ room.image.url }}"
+                                alt="{{ room.room_type }} sharing PG room at Sudarshan PG"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                        {% else %}
+
+                            <div class="room-image-default">
+                                {{ room.room_type }}
+                            </div>
+
+                        {% endif %}
+
+                        <span class="room-label">
+                            {{ room.room_type }}
+                        </span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>
+                            {{ room.room_type }} Sharing
+                        </h3>
+
+                        <p>
+                            Comfortable accommodation
+                            designed for everyday living.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+
+                                <small>Starting from</small>
+
+                                <strong>
+                                    ₹{{ room.rent }}
+                                </strong>
+
+                                <small>/ month</small>
+
+                            </div>
+
+                            <a href="#contact">
+                                Enquire →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <!-- SINGLE SHARING -->
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        <div class="room-image-default">
+                            SINGLE
+                        </div>
+
+                        <span class="room-label">SINGLE</span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>Single Sharing</h3>
+
+                        <p>
+                            Private and comfortable
+                            space for one resident.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+                                <small>Monthly rent</small>
+                                <strong>₹7,000</strong>
+                            </div>
+
+                            <a href="#contact">Enquire →</a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TRIPLE SHARING -->
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        <div class="room-image-default">
+                            TRIPLE
+                        </div>
+
+                        <span class="room-label">TRIPLE</span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>Triple Sharing</h3>
+
+                        <p>
+                            Spacious shared room
+                            for three residents.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+                                <small>Monthly rent</small>
+                                <strong>₹5,800</strong>
+                            </div>
+
+                            <a href="#contact">Enquire →</a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOUR SHARING -->
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        <div class="room-image-default">
+                            FOUR
+                        </div>
+
+                        <span class="room-label">FOUR</span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>Four Sharing</h3>
+
+                        <p>
+                            Comfortable shared
+                            accommodation for four.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+                                <small>Monthly rent</small>
+                                <strong>₹5,500</strong>
+                            </div>
+
+                            <a href="#contact">Enquire →</a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        {% else %}
+
+            <!-- DEFAULT SINGLE SHARING -->
+
+            <article class="premium-room-card">
+
+                <div class="premium-room-image">
+                    <div class="room-image-default">SINGLE</div>
+                    <span class="room-label">SINGLE</span>
+                </div>
+
+                <div class="premium-room-content">
+
+                    <h3>Single Sharing</h3>
+
+                    <p>
+                        Private and comfortable
+                        space for one resident.
+                    </p>
+
+                    <div class="premium-room-bottom">
+
+                        <div>
+                            <small>Monthly rent</small>
+                            <strong>₹7,000</strong>
+                        </div>
+
+                        <a href="#contact">Enquire →</a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- DEFAULT TRIPLE SHARING -->
+
+            <article class="premium-room-card">
+
+                <div class="premium-room-image">
+                    <div class="room-image-default">TRIPLE</div>
+                    <span class="room-label">TRIPLE</span>
+                </div>
+
+                <div class="premium-room-content">
+
+                    <h3>Triple Sharing</h3>
+
+                    <p>
+                        Spacious shared room
+                        for three residents.
+                    </p>
+
+                    <div class="premium-room-bottom">
+
+                        <div>
+                            <small>Monthly rent</small>
+                            <strong>₹5,800</strong>
+                        </div>
+
+                        <a href="#contact">Enquire →</a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- DEFAULT FOUR SHARING -->
+
+            <article class="premium-room-card">
+
+                <div class="premium-room-image">
+                    <div class="room-image-default">FOUR</div>
+                    <span class="room-label">FOUR</span>
+                </div>
+
+                <div class="premium-room-content">
+
+                    <h3>Four Sharing</h3>
+
+                    <p>
+                        Comfortable shared
+                        accommodation for four.
+                    </p>
+
+                    <div class="premium-room-bottom">
+
+                        <div>
+                            <small>Monthly rent</small>
+                            <strong>₹5,500</strong>
+                        </div>
+
+                        <a href="#contact">Enquire →</a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="premium-about" id="about">
+
+    <div class="about-visual">
+
+        {% if pg and pg.main_image %}
+
+            <img
+                src="{{ pg.main_image.url }}"
+                alt="{{ pg.name }} PG accommodation"
+                loading="lazy"
+                decoding="async"
+            >
+
+        {% else %}
+
+            <div class="about-default">
+                SUDARSHAN
+                <br>
+                PG
+            </div>
+
+        {% endif %}
+
+        <div class="about-badge">
+
+            <strong>100%</strong>
+
+            <span>
+                Comfortable
+                <br>
+                Living
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="premium-about-content">
+
+        <span class="section-mini-title">
+            ABOUT OUR PG
+        </span>
+
+        <h2>
+            More than a room.
+            <em>It's home.</em>
+        </h2>
+
+        <p>
+
+            {% if pg and pg.description %}
+
+                {{ pg.description }}
+
+            {% else %}
+
+                Sudarshan PG is designed for people
+                looking for a comfortable, safe and
+                convenient place to stay.
+
+                We focus on creating a peaceful
+                environment where residents can
+                comfortably study, work and relax.
+
+            {% endif %}
+
+        </p>
+
+        <div class="about-checks">
+
+            <div>
+                <span>✓</span>
+                Comfortable accommodation
+            </div>
+
+            <div>
+                <span>✓</span>
+                Safe and peaceful environment
+            </div>
+
+            <div>
+                <span>✓</span>
+                Essential modern facilities
+            </div>
+
+            <div>
+                <span>✓</span>
+                Convenient location
+            </div>
+
+        </div>
+
+        <a href="{% url 'about' %}" class="premium-text-link">
+            Discover Sudarshan PG
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOD & DINING
+===================================================== -->
+
+<section class="premium-food" id="food">
+
+    <div class="food-container">
+
+        <div class="food-intro">
+
+            <span class="section-mini-title">
+                EVERYDAY DINING
+            </span>
+
+            <h2>
+                Good food.
+                <em>Comfortable living.</em>
+            </h2>
+
+            <p>
+                Enjoy the convenience of food included in your
+                monthly rent. Contact our PG management to learn
+                more about the available meals and menu.
+            </p>
+
+            <div class="food-included">
+
+                <span class="food-check">✓</span>
+
+                <div>
+
+                    <strong>Food Included in Rent</strong>
+
+                    <p>
+                        Food is included in the monthly rent.
+                        Ask us for the meal details.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="food-details">
+
+            <!-- DAILY MEALS -->
+
+            <article class="food-card">
+
+                <button
+                    type="button"
+                    class="food-card-toggle"
+                    aria-expanded="false"
+                    aria-controls="daily-meals-details"
+                >
+
+                    <span class="food-number">01</span>
+
+                    <div class="food-icon">☀</div>
+
+                    <h3>Daily Meals</h3>
+
+                    <p>
+                        Discover the meal options available
+                        as part of your PG stay.
+                    </p>
+
+                    <span class="food-expand-icon"
+                          aria-hidden="true">+</span>
+
+                </button>
+
+            </article>
+
+
+            <!-- FOOD QUALITY -->
+
+            <article class="food-card">
+
+                <span class="food-number">02</span>
+
+                <div class="food-icon">✦</div>
+
+                <h3>Food Quality</h3>
+
+                <p>
+                    Enjoy the comfort of everyday dining
+                    with attention to food preparation,
+                    ingredients and freshness.
+                </p>
+
+            </article>
+
+
+            <!-- SERVING TIMINGS -->
+
+            <article class="food-card">
+
+                <span class="food-number">03</span>
+
+                <div class="food-icon">◷</div>
+
+                <h3>Serving Timings</h3>
+
+                <p>
+                    Plan your day with convenient meal
+                    arrangements during your stay.
+                </p>
+
+            </article>
+
+        </div>
+
+
+        <!-- FULL-WIDTH DAILY MEALS DETAILS -->
+
+        <div
+            class="food-card-panel"
+            id="daily-meals-details"
+            hidden
+        >
+
+            <h4>Daily Meal Information</h4>
+
+            <div class="meal-info-grid">
+
+                <div>
+
+                    <strong>Breakfast</strong>
+
+                    <p>
+                        Start your day with a refreshing breakfast
+                        and enjoy a comfortable morning at
+                        Sudarshan PG.
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <strong>Lunch</strong>
+
+                    <p>
+                        Enjoy a convenient lunchtime meal
+                        as part of your everyday stay.
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <strong>Dinner</strong>
+
+                    <p>
+                        Wind down your day with a satisfying dinner
+                        in a comfortable living environment.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p class="food-note">
+                Good food and everyday comfort are part
+                of your stay at Sudarshan PG.
+            </p>
+
+        </div>
+
+
+        <div class="food-action">
+
+            <a href="{% url 'enquiry' %}" class="premium-text-link">
+                Ask About Food &amp; Stay
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="premium-gallery" id="gallery">
+
+    <div class="section-header-row">
+
+        <div>
+
+            <span class="section-mini-title">
+                OUR SPACE
+            </span>
+
+            <h2>
+                See it.
+                <em>Feel it.</em>
+            </h2>
+
+        </div>
+
+        <p>
+            A glimpse of the environment
+            waiting for you.
+        </p>
+
+    </div>
+
+    <div class="premium-gallery-grid">
+
+        {% if pg %}
+
+            {% for image in pg.gallery.all %}
+
+                <div class="gallery-photo">
+
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ image.caption|default:'Sudarshan PG accommodation in BTM Layout, Bengaluru' }}"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                </div>
+
+            {% empty %}
+
+                <div class="gallery-empty">
+
+                    <span>PG</span>
+
+                    <p>
+                        Your PG gallery will appear here.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="gallery-empty">
+
+                <span>PG</span>
+
+                <p>
+                    Your PG gallery will appear here.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FREQUENTLY ASKED QUESTIONS
+===================================================== -->
+
+<section class="premium-faq" id="faq">
+
+    <div class="faq-container">
+
+        <div class="faq-heading">
+
+            <span class="section-mini-title">
+                GOT QUESTIONS?
+            </span>
+
+            <h2>
+                Frequently Asked
+                <em>Questions.</em>
+            </h2>
+
+            <p>
+                Find answers to common questions about
+                Sudarshan PG accommodation.
+            </p>
+
+        </div>
+
+        <div class="faq-list">
+
+            <details class="faq-item">
+
+                <summary>
+                    Where is Sudarshan PG located?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </summary>
+
+                <p>
+                    Sudarshan PG is located in BTM Layout,
+                    Bengaluru. Contact us for further location
+                    details and directions.
+                </p>
+
+            </details>
+
+
+            <details class="faq-item">
+
+                <summary>
+                    What room-sharing options are available?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </summary>
+
+                <p>
+                    Room options may include single, triple
+                    and four-sharing accommodation. Contact
+                    us to confirm the currently available rooms.
+                </p>
+
+            </details>
+
+
+            <details class="faq-item">
+
+                <summary>
+                    Is food included in the monthly rent?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </summary>
+
+                <p>
+                    Yes. Food is included in the monthly rent
+                    at Sudarshan PG. Contact us for further
+                    details about daily meal arrangements.
+                </p>
+
+            </details>
+
+
+            <details class="faq-item">
+
+                <summary>
+                    What facilities are available?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </summary>
+
+                <p>
+                    Facilities highlighted at Sudarshan PG
+                    include Wi-Fi, safety and security,
+                    clean spaces and parking.
+                </p>
+
+            </details>
+
+
+            <details class="faq-item">
+
+                <summary>
+                    How can I enquire about accommodation?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </summary>
+
+                <p>
+                    You can submit an enquiry through our
+                    website or visit the Contact Us page
+                    to get in touch with Sudarshan PG.
+                </p>
+
+            </details>
+
+        </div>
+
+        <div class="faq-bottom">
+
+            <p>Still have questions?</p>
+
+            <a href="{% url 'enquiry' %}" class="premium-text-link">
+                Send Your Enquiry
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT CTA
+===================================================== -->
+
+<section class="premium-contact" id="contact">
+
+    <div class="contact-inner">
+
+        <div>
+
+            <span class="section-mini-title">
+                READY TO MOVE IN?
+            </span>
+
+            <h2>
+                Your new space
+                <em>is waiting.</em>
+            </h2>
+
+            <p>
+                Get in touch with us for room
+                availability, pricing and enquiries.
+            </p>
+
+        </div>
+
+        <div class="contact-actions">
+
+            <a href="{% url 'contact' %}"
+               class="premium-btn premium-btn-gold">
+                Contact Us
+                <span>→</span>
+            </a>
+
+            <a href="{% url 'enquiry' %}"
+               class="premium-btn premium-btn-outline">
+                Enquire Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DAILY MEALS EXPAND / COLLAPSE
+===================================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const button = document.querySelector(".food-card-toggle");
+    const panel = document.getElementById("daily-meals-details");
+
+    if (!button || !panel) {
+        return;
+    }
+
+    button.addEventListener("click", function () {
+
+        const isExpanded =
+            button.getAttribute("aria-expanded") === "true";
+
+        button.setAttribute(
+            "aria-expanded",
+            String(!isExpanded)
+        );
+
+        panel.hidden = isExpanded;
+
+        const icon = button.querySelector(".food-expand-icon");
+
+        if (icon) {
+            icon.textContent = isExpanded ? "+" : "−";
+        }
+
+    });
+
+});
+</script>
+
+
+<!-- =====================================================
+     FAQ ACCORDION
+     ONLY ONE QUESTION OPEN AT A TIME
+===================================================== -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(function (item) {
+
+        item.addEventListener("toggle", function () {
+
+            if (item.open) {
+
+                faqItems.forEach(function (otherItem) {
+
+                    if (otherItem !== item) {
+                        otherItem.open = false;
+                    }
+
+                });
+
+            }
+
+        });
+
+    });
+
+});
+</script>
+
+{% endblock %}

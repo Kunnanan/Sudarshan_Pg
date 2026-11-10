@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Sudarshan PG</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f9;
+            color: #17232c;
+        }
+
+        .navbar {
+            background: #17232c;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #d4af37;
+            padding: 9px 18px;
+            border-radius: 4px;
+        }
+
+        .logout:hover {
+            background: #d4af37;
+            color: #17232c;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .title {
+            color: #17232c;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .profile-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .value {
+            color: #555;
+        }
+
+        .home-btn {
+            display: inline-block;
+            margin-top: 30px;
+            background: #d4af37;
+            color: #17232c;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            SUDARSHAN PG
+        </div>
+
+        <a href="{% url 'accounts:logout' %}" class="logout">
+            Logout
+        </a>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1 class="title">
+                Welcome, {{ user.username }}
+            </h1>
+
+            <p class="subtitle">
+                Welcome to your Sudarshan PG account.
+            </p>
+
+            <div class="profile-row">
+                <span class="label">Username</span>
+                <span class="value">{{ user.username }}</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Email</span>
+                <span class="value">{{ user.email|default:"Not provided" }}</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Account Type</span>
+
+                <span class="value">
+                    {% if user.is_staff %}
+                        Admin
+                    {% else %}
+                        User
+                    {% endif %}
+                </span>
+            </div>
+
+            <a href="{% url 'home' %}" class="home-btn">
+                Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

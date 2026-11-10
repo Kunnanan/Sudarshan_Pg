@@ -1,0 +1,123 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    Enquiry Submitted | Sudarshan PG
+{% endblock %}
+
+{% block content %}
+
+<div class="enquiry-success-page">
+
+    <!-- =====================================================
+         SUCCESS HERO
+    ====================================================== -->
+
+    <section class="enquiry-success-hero">
+
+        <div class="enquiry-success-container">
+
+            <div class="enquiry-success-icon">
+                ✓
+            </div>
+
+            <span class="enquiry-success-label">
+                ENQUIRY RECEIVED
+            </span>
+
+            <h1>
+                Thank you for
+                <em>reaching out.</em>
+            </h1>
+
+            <p>
+                Your enquiry has been submitted successfully.
+                We have received your requirements and will
+                get back to you regarding room availability
+                and other details.
+            </p>
+
+            <div class="enquiry-success-actions">
+
+                <!-- BACK TO HOME -->
+
+                <a
+                    href="{% url 'home' %}"
+                    class="enquiry-success-primary"
+                >
+                    Back to Home
+                    <span>→</span>
+                </a>
+
+                <!-- CONTACT US -->
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="enquiry-success-secondary"
+                >
+                    Contact Us
+                </a>
+
+            </div>
+
+            <!-- =================================================
+                 WHATSAPP INTEGRATION
+            ================================================== -->
+
+            {% if whatsapp_url %}
+
+                <div class="success-whatsapp-section">
+
+                    <p>
+                        Want to share your enquiry directly
+                        with our PG management?
+                    </p>
+
+                    <a
+                        href="{{ whatsapp_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="success-whatsapp-button"
+                    >
+                        <span>Send Enquiry on WhatsApp</span>
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NEXT STEP
+    ====================================================== -->
+
+    <section class="enquiry-success-next">
+
+        <div class="enquiry-success-container">
+
+            <span>
+                WHAT HAPPENS NEXT?
+            </span>
+
+            <h2>
+                We'll take it from here.
+            </h2>
+
+            <p>
+                Our PG management can review your enquiry
+                and contact you using the phone number
+                provided in the form.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

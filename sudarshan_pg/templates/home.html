@@ -1,0 +1,897 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sudarshan PG | Premium Living
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="premium-hero">
+
+    <div class="hero-bg">
+        {% if pg and pg.main_image %}
+            <img src="{{ pg.main_image.url }}" alt="{{ pg.name }}">
+        {% endif %}
+    </div>
+
+    <div class="hero-dark"></div>
+
+    <div class="hero-inner">
+
+        <div class="hero-text">
+
+            <div class="hero-eyebrow">
+                PREMIUM PG LIVING
+            </div>
+
+            <h1>
+                {% if pg %}
+                    {{ pg.name }}
+                {% else %}
+                    Sudarshan PG
+                {% endif %}
+            </h1>
+
+            <h2>
+                Your Comfort.
+                <span>Your Space.</span>
+            </h2>
+
+            <p>
+                {% if pg and pg.tagline %}
+                    {{ pg.tagline }}
+                {% else %}
+                    A comfortable, safe and modern place
+                    to call home.
+                {% endif %}
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#rooms" class="premium-btn premium-btn-gold">
+                    Explore Rooms
+                    <span>→</span>
+                </a>
+
+                <a href="{% url 'enquiry' %}"
+                   class="premium-btn premium-btn-outline">
+                    Enquire Now
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-side-card">
+
+            <div class="hero-card-top">
+                <span>LIVE COMFORTABLY</span>
+                <span>01</span>
+            </div>
+
+            <div class="hero-card-line"></div>
+
+            <p>
+                Comfortable rooms,
+                essential facilities
+                and a peaceful living
+                environment.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="hero-features">
+
+        <div>
+            <strong>01</strong>
+            <span>Comfortable Rooms</span>
+        </div>
+
+        <div>
+            <strong>02</strong>
+            <span>Safe Environment</span>
+        </div>
+
+        <div>
+            <strong>03</strong>
+            <span>Essential Facilities</span>
+        </div>
+
+        <div>
+            <strong>04</strong>
+            <span>Convenient Location</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro-section">
+
+    <div class="section-mini-title">
+        WELCOME TO SUDARSHAN
+    </div>
+
+    <h2>
+        A better place to live,
+        <em>every day.</em>
+    </h2>
+
+    <p>
+        We create a comfortable and welcoming environment
+        where students and working professionals can feel
+        at home.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     FACILITIES
+===================================================== -->
+
+<section class="premium-facilities">
+
+    <div class="section-header-row">
+
+        <div>
+
+            <span class="section-mini-title">
+                EVERYTHING YOU NEED
+            </span>
+
+            <h2>
+                Designed around
+                <em>your comfort.</em>
+            </h2>
+
+        </div>
+
+        <p>
+            Essential facilities that make
+            everyday living easier.
+        </p>
+
+    </div>
+
+    <div class="premium-facility-grid">
+
+        <div class="premium-facility">
+
+            <span class="facility-number">01</span>
+            <div class="facility-symbol">Wi</div>
+
+            <h3>High-Speed Wi-Fi</h3>
+
+            <p>
+                Stay connected for work,
+                study and entertainment.
+            </p>
+
+        </div>
+
+        <div class="premium-facility">
+
+            <span class="facility-number">02</span>
+            <div class="facility-symbol">SC</div>
+
+            <h3>Safety &amp; Security</h3>
+
+            <p>
+                A secure and peaceful
+                living environment.
+            </p>
+
+        </div>
+
+        <div class="premium-facility">
+
+            <span class="facility-number">03</span>
+            <div class="facility-symbol">CL</div>
+
+            <h3>Clean Spaces</h3>
+
+            <p>
+                Well-maintained rooms
+                and common areas.
+            </p>
+
+        </div>
+
+        <div class="premium-facility">
+
+            <span class="facility-number">04</span>
+            <div class="facility-symbol">PK</div>
+
+            <h3>Parking</h3>
+
+            <p>
+                Convenient parking
+                for residents.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ROOMS
+===================================================== -->
+
+<section class="premium-rooms" id="rooms">
+
+    <div class="section-header-centered">
+
+        <span class="section-mini-title">
+            ROOMS &amp; PRICING
+        </span>
+
+        <h2>
+            Find your
+            <em>perfect space.</em>
+        </h2>
+
+        <p>
+            Choose the sharing option that
+            suits your lifestyle and budget.
+        </p>
+
+    </div>
+
+    <div class="premium-room-grid">
+
+        {% if pg %}
+
+            {% for room in pg.rooms.all %}
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        {% if room.image %}
+
+                            <img
+                                src="{{ room.image.url }}"
+                                alt="{{ room.room_type }}"
+                            >
+
+                        {% else %}
+
+                            <div class="room-image-default">
+                                {{ room.room_type }}
+                            </div>
+
+                        {% endif %}
+
+                        <span class="room-label">
+                            {{ room.room_type }}
+                        </span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>
+                            {{ room.room_type }} Sharing
+                        </h3>
+
+                        <p>
+                            Comfortable accommodation
+                            designed for everyday living.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+
+                                <small>Starting from</small>
+
+                                <strong>
+                                    ₹{{ room.rent }}
+                                </strong>
+
+                                <small>/ month</small>
+
+                            </div>
+
+                            <a href="#contact">
+                                Enquire →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <!-- SINGLE SHARING -->
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        <div class="room-image-default">
+                            SINGLE
+                        </div>
+
+                        <span class="room-label">
+                            SINGLE
+                        </span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>Single Sharing</h3>
+
+                        <p>
+                            Private and comfortable
+                            space for one resident.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+                                <small>Monthly rent</small>
+                                <strong>₹7,000</strong>
+                            </div>
+
+                            <a href="#contact">
+                                Enquire →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TRIPLE SHARING -->
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        <div class="room-image-default">
+                            TRIPLE
+                        </div>
+
+                        <span class="room-label">
+                            TRIPLE
+                        </span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>Triple Sharing</h3>
+
+                        <p>
+                            Spacious shared room
+                            for three residents.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+                                <small>Monthly rent</small>
+                                <strong>₹5,800</strong>
+                            </div>
+
+                            <a href="#contact">
+                                Enquire →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOUR SHARING -->
+
+                <article class="premium-room-card">
+
+                    <div class="premium-room-image">
+
+                        <div class="room-image-default">
+                            FOUR
+                        </div>
+
+                        <span class="room-label">
+                            FOUR
+                        </span>
+
+                    </div>
+
+                    <div class="premium-room-content">
+
+                        <h3>Four Sharing</h3>
+
+                        <p>
+                            Comfortable shared
+                            accommodation for four.
+                        </p>
+
+                        <div class="premium-room-bottom">
+
+                            <div>
+                                <small>Monthly rent</small>
+                                <strong>₹5,500</strong>
+                            </div>
+
+                            <a href="#contact">
+                                Enquire →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        {% else %}
+
+            <!-- DEFAULT SINGLE SHARING -->
+
+            <article class="premium-room-card">
+
+                <div class="premium-room-image">
+                    <div class="room-image-default">SINGLE</div>
+                    <span class="room-label">SINGLE</span>
+                </div>
+
+                <div class="premium-room-content">
+
+                    <h3>Single Sharing</h3>
+
+                    <p>
+                        Private and comfortable
+                        space for one resident.
+                    </p>
+
+                    <div class="premium-room-bottom">
+                        <div>
+                            <small>Monthly rent</small>
+                            <strong>₹7,000</strong>
+                        </div>
+
+                        <a href="#contact">Enquire →</a>
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- DEFAULT TRIPLE SHARING -->
+
+            <article class="premium-room-card">
+
+                <div class="premium-room-image">
+                    <div class="room-image-default">TRIPLE</div>
+                    <span class="room-label">TRIPLE</span>
+                </div>
+
+                <div class="premium-room-content">
+
+                    <h3>Triple Sharing</h3>
+
+                    <p>
+                        Spacious shared room
+                        for three residents.
+                    </p>
+
+                    <div class="premium-room-bottom">
+                        <div>
+                            <small>Monthly rent</small>
+                            <strong>₹5,800</strong>
+                        </div>
+
+                        <a href="#contact">Enquire →</a>
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- DEFAULT FOUR SHARING -->
+
+            <article class="premium-room-card">
+
+                <div class="premium-room-image">
+                    <div class="room-image-default">FOUR</div>
+                    <span class="room-label">FOUR</span>
+                </div>
+
+                <div class="premium-room-content">
+
+                    <h3>Four Sharing</h3>
+
+                    <p>
+                        Comfortable shared
+                        accommodation for four.
+                    </p>
+
+                    <div class="premium-room-bottom">
+                        <div>
+                            <small>Monthly rent</small>
+                            <strong>₹5,500</strong>
+                        </div>
+
+                        <a href="#contact">Enquire →</a>
+                    </div>
+
+                </div>
+
+            </article>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="premium-about" id="about">
+
+    <div class="about-visual">
+
+        {% if pg and pg.main_image %}
+
+            <img
+                src="{{ pg.main_image.url }}"
+                alt="{{ pg.name }}"
+            >
+
+        {% else %}
+
+            <div class="about-default">
+                SUDARSHAN
+                <br>
+                PG
+            </div>
+
+        {% endif %}
+
+        <div class="about-badge">
+
+            <strong>100%</strong>
+
+            <span>
+                Comfortable
+                <br>
+                Living
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="premium-about-content">
+
+        <span class="section-mini-title">
+            ABOUT OUR PG
+        </span>
+
+        <h2>
+            More than a room.
+            <em>It's home.</em>
+        </h2>
+
+        <p>
+
+            {% if pg and pg.description %}
+
+                {{ pg.description }}
+
+            {% else %}
+
+                Sudarshan PG is designed for people
+                looking for a comfortable, safe and
+                convenient place to stay.
+
+                We focus on creating a peaceful
+                environment where residents can
+                comfortably study, work and relax.
+
+            {% endif %}
+
+        </p>
+
+        <div class="about-checks">
+
+            <div>
+                <span>✓</span>
+                Comfortable accommodation
+            </div>
+
+            <div>
+                <span>✓</span>
+                Safe and peaceful environment
+            </div>
+
+            <div>
+                <span>✓</span>
+                Essential modern facilities
+            </div>
+
+            <div>
+                <span>✓</span>
+                Convenient location
+            </div>
+
+        </div>
+
+        <a href="{% url 'about' %}" class="premium-text-link">
+            Discover Sudarshan PG
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOD & DINING
+===================================================== -->
+
+<section class="premium-food" id="food">
+
+    <div class="food-container">
+
+        <div class="food-intro">
+
+            <span class="section-mini-title">
+                EVERYDAY DINING
+            </span>
+
+            <h2>
+                Good food.
+                <em>Comfortable living.</em>
+            </h2>
+
+            <p>
+                Enjoy the convenience of food included in your
+                monthly rent. Contact our PG management to learn
+                more about the available meals and menu.
+            </p>
+
+            <div class="food-included">
+
+                <span class="food-check">✓</span>
+
+                <div>
+
+                    <strong>Food Included in Rent</strong>
+
+                    <p>
+                        Food is included in the monthly rent.
+                        Ask us for the meal details.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="food-details">
+
+            <!-- CARD 1: DAILY MEALS -->
+
+            <article class="food-card">
+
+                <span class="food-number">01</span>
+
+                <div class="food-icon">☀</div>
+
+                <h3>Daily Meals</h3>
+
+                <p>
+                    Get information about the meals available
+                    as part of your PG stay.
+                </p>
+
+            </article>
+
+
+            <!-- CARD 2: FOOD QUALITY -->
+
+            <article class="food-card">
+
+                <span class="food-number">02</span>
+
+                <div class="food-icon">✦</div>
+
+                <h3>Food Quality</h3>
+
+                <p>
+                    Food quality is an important part of
+                    everyday living. Contact our PG management
+                    to learn about food preparation,
+                    ingredients and the daily menu.
+                </p>
+
+            </article>
+
+
+            <!-- CARD 3: SERVING TIMINGS -->
+
+            <article class="food-card">
+
+                <span class="food-number">03</span>
+
+                <div class="food-icon">◷</div>
+
+                <h3>Serving Timings</h3>
+
+                <p>
+                    Check the available meal timings
+                    directly with PG management.
+                </p>
+
+            </article>
+
+        </div>
+
+        <div class="food-action">
+
+            <a href="{% url 'enquiry' %}" class="premium-text-link">
+                Ask About Food &amp; Stay
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="premium-gallery" id="gallery">
+
+    <div class="section-header-row">
+
+        <div>
+
+            <span class="section-mini-title">
+                OUR SPACE
+            </span>
+
+            <h2>
+                See it.
+                <em>Feel it.</em>
+            </h2>
+
+        </div>
+
+        <p>
+            A glimpse of the environment
+            waiting for you.
+        </p>
+
+    </div>
+
+    <div class="premium-gallery-grid">
+
+        {% if pg %}
+
+            {% for image in pg.gallery.all %}
+
+                <div class="gallery-photo">
+
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ image.caption|default:'Sudarshan PG' }}"
+                    >
+
+                </div>
+
+            {% empty %}
+
+                <div class="gallery-empty">
+
+                    <span>PG</span>
+
+                    <p>
+                        Your PG gallery will appear here.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="gallery-empty">
+
+                <span>PG</span>
+
+                <p>
+                    Your PG gallery will appear here.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT CTA
+===================================================== -->
+
+<section class="premium-contact" id="contact">
+
+    <div class="contact-inner">
+
+        <div>
+
+            <span class="section-mini-title">
+                READY TO MOVE IN?
+            </span>
+
+            <h2>
+                Your new space
+                <em>is waiting.</em>
+            </h2>
+
+            <p>
+                Get in touch with us for room
+                availability, pricing and enquiries.
+            </p>
+
+        </div>
+
+        <div class="contact-actions">
+
+            <a href="{% url 'contact' %}"
+               class="premium-btn premium-btn-gold">
+                Contact Us
+                <span>→</span>
+            </a>
+
+            <a href="{% url 'enquiry' %}"
+               class="premium-btn premium-btn-outline">
+                Enquire Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

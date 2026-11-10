@@ -1,0 +1,686 @@
+
+{% extends "base.html" %}
+
+<!-- =====================================================
+     SEO META INFORMATION
+     ===================================================== -->
+
+{% block title %}
+PG Rooms in BTM Layout, Bengaluru | Sudarshan PG
+{% endblock %}
+
+{% block meta_description %}
+Explore room options at Sudarshan PG in BTM Layout, Bengaluru. Compare single, triple and four-sharing PG rooms, monthly rent and current bed availability. Find comfortable accommodation for students and working professionals.
+{% endblock %}
+
+{% block meta_keywords %}
+Sudarshan PG rooms, PG rooms in BTM Layout, PG accommodation Bengaluru, single sharing PG room, triple sharing PG room, four sharing PG room, sharing rooms Bengaluru, student PG rooms, working professionals PG, monthly PG rent BTM Layout
+{% endblock %}
+
+{% block og_title %}
+PG Rooms in BTM Layout, Bengaluru | Sudarshan PG
+{% endblock %}
+
+{% block og_description %}
+Explore single, triple and four-sharing room options, monthly rent and availability at Sudarshan PG in BTM Layout, Bengaluru.
+{% endblock %}
+
+{% block twitter_title %}
+PG Rooms in BTM Layout | Sudarshan PG
+{% endblock %}
+
+{% block twitter_description %}
+Find comfortable PG rooms in BTM Layout, Bengaluru. Compare sharing options and enquire about current availability.
+{% endblock %}
+
+
+{% block extra_head %}
+
+<!-- =====================================================
+     STRUCTURED DATA FOR ROOMS PAGE
+     ===================================================== -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "PG Rooms in BTM Layout, Bengaluru | Sudarshan PG",
+    "description": "Explore single, triple and four-sharing PG room options, monthly rent and bed availability at Sudarshan PG in BTM Layout, Bengaluru.",
+    "url": "{{ request.build_absolute_uri|escapejs }}",
+    "inLanguage": "en",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "Sudarshan PG",
+        "url": "{{ request.scheme }}://{{ request.get_host }}/"
+    },
+    "about": {
+        "@type": "LodgingBusiness",
+        "name": "Sudarshan PG",
+        "description": "PG accommodation for students and working professionals in BTM Layout, Bengaluru.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+        }
+    }
+}
+</script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="rooms-page">
+
+    <!-- =====================================================
+         ROOMS HEADER
+         ===================================================== -->
+
+    <section class="rooms-header">
+
+        <div class="rooms-container">
+
+            <div class="rooms-header-top">
+
+                <span class="rooms-eyebrow">
+                    SUDARSHAN PG
+                </span>
+
+                <span class="rooms-header-line"></span>
+
+                <span class="rooms-eyebrow">
+                    ACCOMMODATION
+                </span>
+
+            </div>
+
+
+            <div class="rooms-header-content">
+
+                <div>
+
+                    <h1>
+                        Choose your
+                        <span>room.</span>
+                    </h1>
+
+                </div>
+
+
+                <div class="rooms-header-description">
+
+                    <p>
+                        Explore our available PG room options in
+                        BTM Layout, Bengaluru, and find a comfortable
+                        space that suits your lifestyle and budget.
+                    </p>
+
+                    <a
+                        href="{% url 'enquiry' %}"
+                        class="rooms-header-link"
+                        aria-label="Enquire about PG rooms at Sudarshan PG"
+                    >
+                        ENQUIRE NOW
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ROOM CATALOGUE
+         ===================================================== -->
+
+    <section class="room-catalogue">
+
+        <div class="rooms-container">
+
+            <div class="catalogue-top">
+
+                <div>
+
+                    <span class="catalogue-label">
+                        ROOM CATALOGUE
+                    </span>
+
+                    <h2>
+                        Find the right
+                        <span>fit.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="catalogue-count">
+
+                    {% if rooms %}
+
+                        {{ rooms|length }}
+                        ROOM{{ rooms|length|pluralize }}
+
+                    {% else %}
+
+                        NO ROOMS
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ROOMS AVAILABLE
+                 ================================================= -->
+
+            {% if rooms %}
+
+            <div class="room-catalogue-list">
+
+                {% for room in rooms %}
+
+                <article
+                    class="catalogue-room"
+                    itemscope
+                    itemtype="https://schema.org/Accommodation"
+                >
+
+                    <!-- =========================================
+                         ROOM IMAGE
+                         ========================================= -->
+
+                    <div class="catalogue-room-image">
+
+                        {% if room.image %}
+
+                        <img
+                            src="{{ room.image.url }}"
+                            alt="{{ room.room_type }} sharing PG room at Sudarshan PG in BTM Layout, Bengaluru"
+                            loading="lazy"
+                            decoding="async"
+                            itemprop="image"
+                        >
+
+                        {% else %}
+
+                        <div class="catalogue-placeholder">
+
+                            <span>
+                                SUDARSHAN PG
+                            </span>
+
+                            <strong>
+                                {{ room.room_type }}
+                            </strong>
+
+                            <small>
+                                SHARING ROOM
+                            </small>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <!-- =====================================
+                             ROOM AVAILABILITY STATUS
+                             ===================================== -->
+
+                        {% if room.total_beds is not None %}
+
+                            {% if room.available_beds is not None %}
+
+                                {% if room.available_beds > 0 %}
+
+                                    <div class="catalogue-status available">
+                                        AVAILABLE
+                                    </div>
+
+                                {% else %}
+
+                                    <div class="catalogue-status full">
+                                        FULL
+                                    </div>
+
+                                {% endif %}
+
+                            {% else %}
+
+                                <div class="catalogue-status">
+                                    AVAILABILITY ON REQUEST
+                                </div>
+
+                            {% endif %}
+
+                        {% else %}
+
+                            <div class="catalogue-status">
+                                AVAILABILITY ON REQUEST
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- =========================================
+                         ROOM INFORMATION
+                         ========================================= -->
+
+                    <div class="catalogue-room-info">
+
+
+                        <!-- ROOM NUMBER -->
+
+                        <div class="catalogue-room-number">
+
+                            {{ forloop.counter|stringformat:"02d" }}
+
+                        </div>
+
+
+                        <!-- MAIN ROOM CONTENT -->
+
+                        <div class="catalogue-room-main">
+
+                            <span class="catalogue-room-type">
+
+                                {{ room.room_type|upper }}
+                                SHARING
+
+                            </span>
+
+
+                            <h3 itemprop="name">
+
+                                {{ room.room_type }}
+                                Sharing Room
+
+                            </h3>
+
+
+                            <!-- ROOM DESCRIPTION -->
+
+                            {% if room.description %}
+
+                            <p
+                                class="catalogue-description"
+                                itemprop="description"
+                            >
+
+                                {{ room.description }}
+
+                            </p>
+
+                            {% else %}
+
+                            <p
+                                class="catalogue-description"
+                                itemprop="description"
+                            >
+
+                                A comfortable and practical
+                                {{ room.room_type|lower }} sharing
+                                PG room designed for peaceful
+                                everyday living at Sudarshan PG.
+
+                            </p>
+
+                            {% endif %}
+
+
+                            <!-- =================================
+                                 ROOM DETAILS
+                                 ================================= -->
+
+                            <div class="catalogue-details">
+
+
+                                <!-- SHARING -->
+
+                                <div class="catalogue-detail">
+
+                                    <span>
+                                        SHARING
+                                    </span>
+
+                                    <strong>
+                                        {{ room.room_type }}
+                                    </strong>
+
+                                </div>
+
+
+                                <!-- TOTAL BEDS -->
+
+                                <div class="catalogue-detail">
+
+                                    <span>
+                                        TOTAL BEDS
+                                    </span>
+
+                                    {% if room.total_beds is not None %}
+
+                                    <strong>
+                                        {{ room.total_beds }}
+                                    </strong>
+
+                                    {% else %}
+
+                                    <strong>
+                                        —
+                                    </strong>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <!-- AVAILABLE BEDS -->
+
+                                <div class="catalogue-detail">
+
+                                    <span>
+                                        AVAILABLE
+                                    </span>
+
+                                    {% if room.available_beds is not None %}
+
+                                    <strong>
+                                        {{ room.available_beds }}
+                                    </strong>
+
+                                    {% else %}
+
+                                    <strong>
+                                        —
+                                    </strong>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================
+                                 AVAILABILITY MESSAGE
+                                 ================================= -->
+
+                            {% if room.total_beds is None %}
+
+                            <div class="catalogue-availability-note">
+
+                                <span>
+                                    AVAILABILITY
+                                </span>
+
+                                <p>
+                                    Contact us for current room
+                                    availability.
+                                </p>
+
+                            </div>
+
+                            {% elif room.available_beds is None %}
+
+                            <div class="catalogue-availability-note">
+
+                                <span>
+                                    AVAILABILITY
+                                </span>
+
+                                <p>
+                                    Contact us for current room
+                                    availability.
+                                </p>
+
+                            </div>
+
+                            {% elif room.available_beds == 0 %}
+
+                            <div class="catalogue-availability-note">
+
+                                <span>
+                                    CURRENT STATUS
+                                </span>
+
+                                <p>
+                                    This room is currently full.
+                                </p>
+
+                            </div>
+
+                            {% else %}
+
+                            <div class="catalogue-availability-note">
+
+                                <span>
+                                    CURRENT STATUS
+                                </span>
+
+                                <p>
+                                    {{ room.available_beds }}
+                                    bed{{ room.available_beds|pluralize }}
+                                    currently available.
+                                </p>
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- =========================================
+                             PRICE + CTA
+                             ========================================= -->
+
+                        <div class="catalogue-room-side">
+
+
+                            <!-- RENT -->
+
+                            {% if room.rent %}
+
+                            <div class="catalogue-price-label">
+                                MONTHLY RENT
+                            </div>
+
+                            <div
+                                class="catalogue-price"
+                                itemprop="offers"
+                                itemscope
+                                itemtype="https://schema.org/Offer"
+                            >
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                {{ room.rent|floatformat:0 }}
+
+                                <meta
+                                    itemprop="price"
+                                    content="{{ room.rent }}"
+                                >
+
+                                <meta
+                                    itemprop="priceCurrency"
+                                    content="INR"
+                                >
+
+                                {% if room.available_beds is not None %}
+
+                                    {% if room.available_beds > 0 %}
+
+                                    <link
+                                        itemprop="availability"
+                                        href="https://schema.org/InStock"
+                                    >
+
+                                    {% else %}
+
+                                    <link
+                                        itemprop="availability"
+                                        href="https://schema.org/SoldOut"
+                                    >
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            </div>
+
+                            <div class="catalogue-price-period">
+                                per month
+                            </div>
+
+                            {% else %}
+
+                            <div class="catalogue-price-label">
+                                RENT
+                            </div>
+
+                            <div class="catalogue-price">
+                                —
+                            </div>
+
+                            <div class="catalogue-price-period">
+                                Contact us for details
+                            </div>
+
+                            {% endif %}
+
+
+                            <!-- ENQUIRY BUTTON -->
+
+                            <a
+                                href="{% url 'enquiry' %}"
+                                class="catalogue-enquire"
+                                aria-label="Enquire about {{ room.room_type }} sharing room"
+                            >
+                                ENQUIRE
+                                <span aria-hidden="true">→</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- =================================================
+                 NO ROOMS
+                 ================================================= -->
+
+            {% else %}
+
+            <div class="rooms-no-data">
+
+                <div class="rooms-no-data-number">
+                    —
+                </div>
+
+                <h3>
+                    Room information is being updated.
+                </h3>
+
+                <p>
+                    Please contact us for current availability
+                    and pricing.
+                </p>
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="rooms-contact-link"
+                >
+                    CONTACT US
+                    <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ROOM NOTE / ENQUIRY CTA
+         ===================================================== -->
+
+    <section class="rooms-note">
+
+        <div class="rooms-container">
+
+            <div class="rooms-note-inner">
+
+
+                <!-- MARK -->
+
+                <div class="rooms-note-mark">
+                    ✦
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div>
+
+                    <span class="rooms-note-label">
+                        NEED HELP CHOOSING?
+                    </span>
+
+                    <h2>
+
+                        Not sure which room
+                        <span>is right for you?</span>
+
+                    </h2>
+
+                    <p>
+
+                        Tell us what you are looking for and
+                        we can help you choose the most suitable
+                        room option.
+
+                    </p>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <a
+                    href="{% url 'enquiry' %}"
+                    class="rooms-note-button"
+                >
+                    SEND ENQUIRY
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

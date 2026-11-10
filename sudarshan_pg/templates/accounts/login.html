@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Sudarshan PG</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: #17232c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .logo {
+            text-align: center;
+            color: #d4af37;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        h1 {
+            color: #17232c;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #17232c;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 5px;
+            background: #d4af37;
+            color: #17232c;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c19b2e;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #9a7a13;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #777;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .admin-note {
+            margin-top: 25px;
+            padding: 12px;
+            background: #f5f5f5;
+            border-left: 3px solid #d4af37;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        SUDARSHAN PG
+    </div>
+
+    <div class="card">
+
+        <h1>Welcome Back</h1>
+
+        <p class="subtitle">
+            Login to your account
+        </p>
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+
+            <label for="password">Password</label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <div class="register-link">
+            Don't have an account?
+            <a href="{% url 'accounts:register' %}">
+                Create Account
+            </a>
+        </div>
+
+        <a href="{% url 'home' %}" class="home-link">
+            ← Back to Home
+        </a>
+
+        <div class="admin-note">
+            <strong>Admin?</strong><br>
+            Admin users can access the Django Jazzmin dashboard through the Admin Login.
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

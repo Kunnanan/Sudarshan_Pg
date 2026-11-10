@@ -1,0 +1,528 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==================================================
+         SEO TITLE
+    =================================================== -->
+
+    <title>
+        {% block title %}
+            Sudarshan PG | Premium PG Accommodation in BTM Layout, Bengaluru
+        {% endblock %}
+    </title>
+
+
+    <!-- ==================================================
+         SEO META DESCRIPTION
+    =================================================== -->
+
+    <meta
+        name="description"
+        content="{% block meta_description %}Discover Sudarshan PG in BTM Layout, Bengaluru. Explore comfortable rooms, food, facilities and accommodation for students and working professionals. Enquire today!{% endblock %}"
+    >
+
+
+    <!-- ==================================================
+         SEO KEYWORDS
+    =================================================== -->
+
+    <meta
+        name="keywords"
+        content="{% block meta_keywords %}Sudarshan PG, PG in BTM Layout, PG in Bengaluru, paying guest accommodation, student accommodation, working professionals PG{% endblock %}"
+    >
+
+
+    <!-- ==================================================
+         AUTHOR
+    =================================================== -->
+
+    <meta name="author" content="Sudarshan PG">
+
+
+    <!-- ==================================================
+         SEARCH ENGINE INDEXING
+    =================================================== -->
+
+    <meta
+        name="robots"
+        content="{% block robots_content %}index, follow, max-image-preview:large{% endblock %}"
+    >
+
+    <meta
+        name="googlebot"
+        content="{% block googlebot_content %}index, follow, max-image-preview:large{% endblock %}"
+    >
+
+
+    <!-- ==================================================
+         CANONICAL URL
+         Excludes query parameters
+    =================================================== -->
+
+    <link
+        rel="canonical"
+        href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"
+    >
+
+
+    <!-- ==================================================
+         OPEN GRAPH META TAGS
+    =================================================== -->
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:site_name" content="Sudarshan PG">
+
+    <meta property="og:locale" content="en_IN">
+
+    <meta
+        property="og:title"
+        content="{% block og_title %}Sudarshan PG | Premium PG Accommodation{% endblock %}"
+    >
+
+    <meta
+        property="og:description"
+        content="{% block og_description %}Comfortable PG accommodation for students and working professionals in BTM Layout, Bengaluru.{% endblock %}"
+    >
+
+    <meta
+        property="og:url"
+        content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"
+    >
+
+
+    <!-- ==================================================
+         TWITTER / X META TAGS
+    =================================================== -->
+
+    <meta name="twitter:card" content="summary">
+
+    <meta
+        name="twitter:title"
+        content="{% block twitter_title %}Sudarshan PG | Premium PG Accommodation{% endblock %}"
+    >
+
+    <meta
+        name="twitter:description"
+        content="{% block twitter_description %}Comfortable PG accommodation in BTM Layout, Bengaluru.{% endblock %}"
+    >
+
+
+    <!-- ==================================================
+         WEBSITE THEME COLOR
+    =================================================== -->
+
+    <meta name="theme-color" content="#11191d">
+
+
+    <!-- ==================================================
+         WEBSITE CSS
+    =================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+
+    <!-- ==================================================
+         PAGE-SPECIFIC SEO / STRUCTURED DATA
+    =================================================== -->
+
+    {% block extra_head %}{% endblock %}
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     HEADER
+=================================================== -->
+
+<header class="site-header">
+
+    <nav class="navbar">
+
+        <div class="navbar-container">
+
+
+            <!-- LOGO -->
+
+            <a href="{% url 'home' %}" class="logo">
+
+                <span class="logo-icon">PG</span>
+
+                <span>Sudarshan PG</span>
+
+            </a>
+
+
+            <!-- ==================================================
+                 DESKTOP NAVIGATION
+            =================================================== -->
+
+            <div class="nav-links">
+
+                <a href="{% url 'home' %}" class="nav-link">
+                    Home
+                </a>
+
+                <a href="{% url 'about' %}" class="nav-link">
+                    About
+                </a>
+
+                <a href="{% url 'rooms' %}" class="nav-link">
+                    Rooms
+                </a>
+
+                <a href="{% url 'facilities' %}" class="nav-link">
+                    Facilities
+                </a>
+
+                <a href="{% url 'gallery' %}" class="nav-link">
+                    Gallery
+                </a>
+
+
+                <!-- RULES ONLY ON HOME PAGE -->
+
+                {% if request.path == "/" %}
+
+                    <a href="{% url 'rules' %}" class="nav-link">
+                        Rules
+                    </a>
+
+                {% endif %}
+
+
+                <a href="{% url 'contact' %}" class="nav-link">
+                    Contact
+                </a>
+
+
+                <a href="{% url 'enquiry' %}" class="nav-button">
+                    Enquire Now
+                </a>
+
+            </div>
+
+
+            <!-- ==================================================
+                 MOBILE MENU BUTTON
+            =================================================== -->
+
+            <button
+                type="button"
+                class="menu-toggle"
+                onclick="toggleMobileMenu()"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="mobileNav"
+            >
+                ☰
+            </button>
+
+
+        </div>
+
+
+        <!-- ==================================================
+             MOBILE NAVIGATION
+        =================================================== -->
+
+        <div class="mobile-nav" id="mobileNav">
+
+            <a
+                href="{% url 'home' %}"
+                onclick="closeMobileMenu()"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{% url 'about' %}"
+                onclick="closeMobileMenu()"
+            >
+                About
+            </a>
+
+
+            <a
+                href="{% url 'rooms' %}"
+                onclick="closeMobileMenu()"
+            >
+                Rooms
+            </a>
+
+
+            <a
+                href="{% url 'facilities' %}"
+                onclick="closeMobileMenu()"
+            >
+                Facilities
+            </a>
+
+
+            <a
+                href="{% url 'gallery' %}"
+                onclick="closeMobileMenu()"
+            >
+                Gallery
+            </a>
+
+
+            <!-- RULES ONLY ON HOME PAGE -->
+
+            {% if request.path == "/" %}
+
+                <a
+                    href="{% url 'rules' %}"
+                    onclick="closeMobileMenu()"
+                >
+                    Rules
+                </a>
+
+            {% endif %}
+
+
+            <a
+                href="{% url 'contact' %}"
+                onclick="closeMobileMenu()"
+            >
+                Contact
+            </a>
+
+
+            <a
+                href="{% url 'enquiry' %}"
+                onclick="closeMobileMenu()"
+            >
+                Enquire Now
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==================================================
+     DJANGO MESSAGES
+=================================================== -->
+
+{% if messages %}
+
+    <div class="messages-container">
+
+        {% for message in messages %}
+
+            <div class="message {{ message.tags }}">
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+
+
+<!-- ==================================================
+     MAIN CONTENT
+=================================================== -->
+
+<main>
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+=================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+
+        <!-- FOOTER ABOUT -->
+
+        <div class="footer-column">
+
+            <a href="{% url 'home' %}" class="footer-logo">
+                Sudarshan PG
+            </a>
+
+            <p>
+                Comfortable, safe and convenient accommodation
+                for students and working professionals.
+            </p>
+
+        </div>
+
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h3>Quick Links</h3>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'rooms' %}">
+                Rooms
+            </a>
+
+            <a href="{% url 'facilities' %}">
+                Facilities
+            </a>
+
+            <a href="{% url 'gallery' %}">
+                Gallery
+            </a>
+
+
+            {% if request.path == "/" %}
+
+                <a href="{% url 'rules' %}">
+                    Rules
+                </a>
+
+            {% endif %}
+
+
+            <a href="{% url 'contact' %}">
+                Contact
+            </a>
+
+            <a href="{% url 'enquiry' %}">
+                Enquire Now
+            </a>
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-column">
+
+            <h3>Contact</h3>
+
+            <p>
+                Contact us for room availability,
+                pricing and enquiries.
+            </p>
+
+            <a href="{% url 'contact' %}">
+                Contact Us
+            </a>
+
+            <a href="{% url 'enquiry' %}">
+                Send Enquiry
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Sudarshan PG. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ==================================================
+     MOBILE MENU JAVASCRIPT
+=================================================== -->
+
+<script>
+
+function toggleMobileMenu() {
+
+    const mobileNav = document.getElementById("mobileNav");
+
+    const menuButton = document.querySelector(".menu-toggle");
+
+    mobileNav.classList.toggle("active");
+
+    const isExpanded = mobileNav.classList.contains("active");
+
+    menuButton.setAttribute("aria-expanded", isExpanded);
+
+    menuButton.setAttribute(
+        "aria-label",
+        isExpanded ? "Close menu" : "Open menu"
+    );
+
+}
+
+
+function closeMobileMenu() {
+
+    const mobileNav = document.getElementById("mobileNav");
+
+    const menuButton = document.querySelector(".menu-toggle");
+
+    mobileNav.classList.remove("active");
+
+    menuButton.setAttribute("aria-expanded", "false");
+
+    menuButton.setAttribute("aria-label", "Open menu");
+
+}
+
+</script>
+
+
+
+<!-- ==================================================
+     PAGE-SPECIFIC JAVASCRIPT
+=================================================== -->
+
+{% block extra_js %}{% endblock %}
+
+
+</body>
+
+</html>

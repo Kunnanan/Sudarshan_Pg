@@ -1,0 +1,1270 @@
+
+{% extends "base.html" %}
+
+{% block title %}Contact Sudarshan PG | Location, Phone & Enquiry in BTM Layout, Bengaluru{% endblock %}
+
+{% block meta_description %}Contact Sudarshan PG in BTM Layout, Bengaluru for room availability, accommodation details, pricing and enquiries. Find our location, call us or connect through WhatsApp.{% endblock %}
+
+{% block meta_keywords %}Contact Sudarshan PG, Sudarshan PG contact number, PG in BTM Layout contact, PG accommodation Bengaluru, PG location BTM Layout, Sudarshan PG address, enquire about PG rooms Bengaluru{% endblock %}
+
+{% block og_title %}Contact Sudarshan PG | Location & Enquiries{% endblock %}
+
+{% block og_description %}Get in touch with Sudarshan PG in BTM Layout, Bengaluru. Contact us for room availability, location details and accommodation enquiries.{% endblock %}
+
+{% block twitter_title %}Contact Sudarshan PG | BTM Layout Bengaluru{% endblock %}
+
+{% block twitter_description %}Find Sudarshan PG's location and contact details. Reach us for room availability and enquiries.{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   CONTACT PAGE
+   ========================================================= */
+
+.contact-page {
+    background: #f5f3ee;
+    color: #17232c;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.contact-hero {
+    background: #17232c;
+    color: #ffffff;
+    padding: 120px 7% 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-hero::before {
+    content: "";
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border: 1px solid rgba(201,164,92,0.18);
+    border-radius: 50%;
+    right: -180px;
+    top: -220px;
+}
+
+.contact-hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(201,164,92,0.12);
+    border-radius: 50%;
+    left: -160px;
+    bottom: -180px;
+}
+
+.contact-hero-content {
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-eyebrow {
+    display: block;
+    color: #c9a45c;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin-bottom: 55px;
+}
+
+.contact-hero h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(65px, 8vw, 120px);
+    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: -4px;
+}
+
+.contact-hero h1 em {
+    color: #c9a45c;
+    font-style: italic;
+}
+
+.contact-hero p {
+    max-width: 600px;
+    margin-top: 45px;
+    color: #d5dbe0;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CONTACT INFORMATION
+   ========================================================= */
+
+.contact-info-section {
+    padding: 110px 7% 120px;
+    background: #f5f3ee;
+}
+
+.contact-info-header {
+    max-width: 1200px;
+    margin: 0 auto 65px;
+}
+
+.contact-section-label {
+    color: #a27d3d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.contact-info-header h2 {
+    margin: 18px 0 15px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 5vw, 72px);
+    line-height: 1;
+    font-weight: 400;
+}
+
+.contact-info-header p {
+    max-width: 700px;
+    color: #69757c;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CONTACT CARDS
+   ========================================================= */
+
+.contact-info-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #d6d1c7;
+    border-bottom: 1px solid #d6d1c7;
+}
+
+.contact-card {
+    position: relative;
+    min-height: 390px;
+    padding: 42px 30px;
+    background: #ffffff;
+    border-right: 1px solid #d6d1c7;
+    box-sizing: border-box;
+}
+
+.contact-card:last-child {
+    border-right: none;
+}
+
+.contact-card-number {
+    color: #c9a45c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 40px;
+    line-height: 1;
+    margin-bottom: 30px;
+}
+
+.contact-card-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c9a45c;
+    border-radius: 50%;
+    color: #a27d3d;
+    font-size: 21px;
+    margin-bottom: 25px;
+}
+
+.contact-card h3 {
+    margin: 0 0 15px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 29px;
+    font-weight: 400;
+}
+
+.contact-card p {
+    max-width: 250px;
+    margin: 0;
+    color: #6c777e;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   PHONE LINK
+   ========================================================= */
+
+.contact-phone-link {
+    color: #17232c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+.contact-phone-link:hover {
+    color: #a27d3d;
+}
+
+
+/* =========================================================
+   CONTACT CARD BUTTONS
+   ========================================================= */
+
+.contact-call-button,
+.contact-whatsapp-button,
+.contact-enquiry-link,
+.contact-email-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    margin-top: 20px;
+    padding: 13px 17px;
+    color: #17232c;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    border: 1px solid #c9a45c;
+    transition: all 0.3s ease;
+}
+
+.contact-call-button span,
+.contact-whatsapp-button span,
+.contact-enquiry-link span,
+.contact-email-button span {
+    color: #a27d3d;
+    font-size: 17px;
+}
+
+.contact-call-button:hover,
+.contact-whatsapp-button:hover,
+.contact-enquiry-link:hover,
+.contact-email-button:hover {
+    background: #c9a45c;
+    color: #17232c;
+}
+
+.contact-call-button:hover span,
+.contact-whatsapp-button:hover span,
+.contact-enquiry-link:hover span,
+.contact-email-button:hover span {
+    color: #17232c;
+}
+
+
+/* =========================================================
+   WHATSAPP BUTTON
+   ========================================================= */
+
+.contact-whatsapp-button {
+    margin-top: 12px;
+    background: #17232c;
+    color: #ffffff;
+    border-color: #17232c;
+}
+
+.contact-whatsapp-button span {
+    color: #c9a45c;
+}
+
+.contact-whatsapp-button:hover {
+    background: #c9a45c;
+    color: #17232c;
+    border-color: #c9a45c;
+}
+
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
+.contact-email-address {
+    word-break: break-word;
+}
+
+.contact-email-address a {
+    color: #17232c;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-email-address a:hover {
+    color: #a27d3d;
+}
+
+
+/* =========================================================
+   VISITING HOURS
+   ========================================================= */
+
+.contact-hours-box {
+    margin-top: 22px;
+    padding: 18px;
+    background: #f5f3ee;
+    border-left: 3px solid #c9a45c;
+}
+
+.contact-hours-box strong {
+    display: block;
+    color: #a27d3d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+.contact-hours-box span {
+    color: #59666e;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   LOCATION SECTION
+   ========================================================= */
+
+.contact-location-section {
+    background: #ffffff;
+    padding: 120px 7%;
+}
+
+.contact-location-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.contact-location-content h2 {
+    margin: 18px 0 20px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(50px, 5vw, 75px);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.contact-location-content > p {
+    max-width: 600px;
+    color: #69757c;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ADDRESS BOX
+   ========================================================= */
+
+.contact-address-box {
+    margin-top: 35px;
+    padding: 25px 30px;
+    background: #f5f3ee;
+    border-left: 3px solid #c9a45c;
+}
+
+.contact-address-box span {
+    color: #a27d3d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.contact-address-box p {
+    margin: 12px 0 0;
+    color: #4f5c64;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   GOOGLE MAP
+   ========================================================= */
+
+.contact-map-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.contact-map-container iframe {
+    display: block;
+    width: 100%;
+    height: 450px;
+    border: 0;
+    background: #eae7df;
+    box-shadow: 0 15px 40px rgba(23,35,44,0.10);
+}
+
+
+/* =========================================================
+   GOOGLE MAP BUTTON
+   ========================================================= */
+
+.contact-map-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 15px;
+    padding: 17px 24px;
+    background: #17232c;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.contact-map-button span {
+    color: #c9a45c;
+    font-size: 19px;
+}
+
+.contact-map-button:hover {
+    background: #c9a45c;
+    color: #17232c;
+}
+
+.contact-map-button:hover span {
+    color: #17232c;
+}
+
+
+/* =========================================================
+   MAP PLACEHOLDER
+   ========================================================= */
+
+.contact-map-placeholder {
+    margin-top: 30px;
+    padding: 30px;
+    background: #f5f3ee;
+    border: 1px dashed #c9a45c;
+}
+
+.contact-map-placeholder span {
+    color: #a27d3d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.contact-map-placeholder p {
+    margin: 12px 0 0;
+    color: #707b82;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   LOCATION VISUAL
+   ========================================================= */
+
+.contact-location-visual {
+    min-height: 500px;
+    background: #17232c;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.contact-location-visual::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border: 1px solid rgba(201,164,92,0.2);
+    border-radius: 50%;
+}
+
+.contact-location-visual::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(201,164,92,0.18);
+    border-radius: 50%;
+}
+
+.contact-location-circle {
+    width: 170px;
+    height: 170px;
+    border: 1px solid #c9a45c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-location-circle span {
+    color: #c9a45c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 50px;
+}
+
+.contact-location-caption {
+    position: absolute;
+    bottom: 35px;
+    left: 35px;
+    z-index: 3;
+}
+
+.contact-location-caption span {
+    color: #c9a45c;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.contact-location-caption p {
+    margin: 8px 0 0;
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.contact-cta {
+    background: #c9a45c;
+    padding: 110px 7%;
+}
+
+.contact-cta-inner {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.contact-cta .contact-section-label {
+    color: #17232c;
+}
+
+.contact-cta h2 {
+    margin: 20px 0 25px;
+    color: #17232c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(50px, 6vw, 85px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -3px;
+}
+
+.contact-cta h2 em {
+    font-style: italic;
+}
+
+.contact-cta p {
+    max-width: 650px;
+    margin: auto;
+    color: #34414a;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CTA BUTTON
+   ========================================================= */
+
+.contact-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 45px;
+    margin-top: 35px;
+    min-width: 210px;
+    padding: 22px 28px;
+    background: #17232c;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.contact-cta-button span {
+    color: #c9a45c;
+    font-size: 21px;
+}
+
+.contact-cta-button:hover {
+    background: #ffffff;
+    color: #17232c;
+}
+
+.contact-cta-button:hover span {
+    color: #a27d3d;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-card:nth-child(2) {
+        border-right: none;
+    }
+
+    .contact-card:nth-child(1),
+    .contact-card:nth-child(2) {
+        border-bottom: 1px solid #d6d1c7;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .contact-hero {
+        padding: 90px 6% 80px;
+    }
+
+    .contact-hero h1 {
+        font-size: clamp(60px, 12vw, 95px);
+    }
+
+    .contact-info-section {
+        padding: 80px 6%;
+    }
+
+    .contact-location-section {
+        padding: 80px 6%;
+    }
+
+    .contact-location-inner {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .contact-location-visual {
+        min-height: 420px;
+    }
+
+    .contact-cta {
+        padding: 85px 6%;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .contact-hero {
+        padding: 70px 6% 65px;
+    }
+
+    .contact-eyebrow {
+        font-size: 10px;
+        letter-spacing: 4px;
+        margin-bottom: 40px;
+    }
+
+    .contact-hero h1 {
+        font-size: 58px;
+        letter-spacing: -2px;
+    }
+
+    .contact-hero p {
+        margin-top: 35px;
+        font-size: 15px;
+    }
+
+    .contact-info-section {
+        padding: 65px 6% 75px;
+    }
+
+    .contact-info-header {
+        margin-bottom: 45px;
+    }
+
+    .contact-info-header h2 {
+        font-size: 48px;
+    }
+
+    .contact-info-header p {
+        font-size: 15px;
+    }
+
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        min-height: auto;
+        padding: 35px 28px;
+        border-right: none !important;
+        border-bottom: 1px solid #d6d1c7;
+    }
+
+    .contact-card:last-child {
+        border-bottom: none;
+    }
+
+    .contact-card-number {
+        font-size: 35px;
+        margin-bottom: 25px;
+    }
+
+    .contact-card h3 {
+        font-size: 29px;
+    }
+
+    .contact-location-section {
+        padding: 70px 6%;
+    }
+
+    .contact-location-content h2 {
+        font-size: 50px;
+    }
+
+    .contact-location-content > p {
+        font-size: 15px;
+    }
+
+    .contact-address-box {
+        padding: 22px;
+    }
+
+    /* MOBILE MAP */
+
+    .contact-map-container iframe {
+        height: 350px;
+    }
+
+    .contact-map-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contact-location-visual {
+        min-height: 350px;
+    }
+
+    .contact-location-visual::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .contact-location-visual::after {
+        width: 210px;
+        height: 210px;
+    }
+
+    .contact-location-circle {
+        width: 130px;
+        height: 130px;
+    }
+
+    .contact-location-circle span {
+        font-size: 40px;
+    }
+
+    .contact-cta {
+        padding: 70px 6%;
+    }
+
+    .contact-cta h2 {
+        font-size: 52px;
+        letter-spacing: -2px;
+    }
+
+    .contact-cta p {
+        font-size: 15px;
+    }
+
+    .contact-cta-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}
+
+</style>
+
+
+<div class="contact-page">
+
+    <!-- =====================================================
+         CONTACT HERO
+    ====================================================== -->
+
+    <section class="contact-hero">
+
+        <div class="contact-hero-content">
+
+            <span class="contact-eyebrow">
+                SUDARSHAN PG
+            </span>
+
+            <h1>
+                Find us.<br>
+                <em>Feel at home.</em>
+            </h1>
+
+            <p>
+                Have questions about rooms, availability or
+                staying at Sudarshan PG? Get in touch with us
+                or visit our location.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT INFORMATION
+    ====================================================== -->
+
+    <section class="contact-info-section">
+
+        <div class="contact-info-header">
+
+            <span class="contact-section-label">
+                GET IN TOUCH
+            </span>
+
+            <h2>
+                We're here to help.
+            </h2>
+
+            <p>
+                Contact us for room availability, pricing,
+                directions and general enquiries.
+            </p>
+
+        </div>
+
+
+        <div class="contact-info-grid">
+
+            <!-- LOCATION -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-number">
+                    01
+                </div>
+
+                <div class="contact-card-icon">
+                    ⌖
+                </div>
+
+                <h3>
+                    Location
+                </h3>
+
+                {% if pg and pg.address %}
+
+                    <p>
+                        {{ pg.address }}
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        PG address will be updated here.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PHONE + WHATSAPP -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-number">
+                    02
+                </div>
+
+                <div class="contact-card-icon">
+                    ☎
+                </div>
+
+                <h3>
+                    Phone
+                </h3>
+
+                {% if pg and pg.phone %}
+
+                    <p>
+                        <a
+                            href="tel:{{ pg.phone }}"
+                            class="contact-phone-link"
+                            aria-label="Call {{ pg.name }}"
+                        >
+                            {{ pg.phone }}
+                        </a>
+                    </p>
+
+                    <a
+                        href="tel:{{ pg.phone }}"
+                        class="contact-call-button"
+                    >
+                        Call Now
+                        <span>↗</span>
+                    </a>
+
+                {% else %}
+
+                    <p>
+                        Phone number will be updated here.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- WHATSAPP -->
+
+                <a
+                    href="https://wa.me/919538901339"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-whatsapp-button"
+                >
+                    Chat on WhatsApp
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+
+            <!-- ENQUIRY + EMAIL -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-number">
+                    03
+                </div>
+
+                <div class="contact-card-icon">
+                    ?
+                </div>
+
+                <h3>
+                    Enquiry
+                </h3>
+
+                <p>
+                    Have questions about rooms,
+                    availability or your stay?
+                </p>
+
+                <a
+                    href="{% url 'enquiry' %}"
+                    class="contact-enquiry-link"
+                >
+                    Send an Enquiry
+                    <span>→</span>
+                </a>
+
+
+                <!-- EMAIL -->
+
+                {% if pg and pg.email %}
+
+                    <div class="contact-email-address">
+
+                        <p>
+                            <a href="mailto:{{ pg.email }}">
+                                {{ pg.email }}
+                            </a>
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="mailto:{{ pg.email }}"
+                        class="contact-email-button"
+                    >
+                        Email Us
+                        <span>↗</span>
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- VISITING HOURS -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-number">
+                    04
+                </div>
+
+                <div class="contact-card-icon">
+                    ◷
+                </div>
+
+                <h3>
+                    Visiting Hours
+                </h3>
+
+                <p>
+                    Planning to visit the PG?
+                    Please contact us before visiting.
+                </p>
+
+                <div class="contact-hours-box">
+
+                    <strong>
+                        VISIT US
+                    </strong>
+
+                    <span>
+                        Please contact us before
+                        visiting to confirm availability.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LOCATION SECTION
+    ====================================================== -->
+
+    <section class="contact-location-section">
+
+        <div class="contact-location-inner">
+
+            <!-- LEFT CONTENT -->
+
+            <div class="contact-location-content">
+
+                <span class="contact-section-label">
+                    OUR LOCATION
+                </span>
+
+                <h2>
+                    Visit the PG
+                </h2>
+
+                <p>
+                    Planning to visit before making your
+                    decision? Use the location details below
+                    to find the PG easily.
+                </p>
+
+
+                <!-- ADDRESS -->
+
+                {% if pg and pg.address %}
+
+                    <div class="contact-address-box">
+
+                        <span>
+                            ADDRESS
+                        </span>
+
+                        <p>
+                            {{ pg.address }}
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- GOOGLE MAP -->
+
+                <div class="contact-map-container">
+
+                    {% if pg and pg.address %}
+
+                        <iframe
+                            src="https://www.google.com/maps?q={{ pg.address|urlencode }}&output=embed"
+                            width="100%"
+                            height="450"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Sudarshan PG Location"
+                        ></iframe>
+
+
+                        <!-- OPEN GOOGLE MAPS -->
+
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query={{ pg.address|urlencode }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-map-button"
+                        >
+                            Open in Google Maps
+                            <span>↗</span>
+                        </a>
+
+                    {% else %}
+
+                        <div class="contact-map-placeholder">
+
+                            <span>
+                                LOCATION MAP
+                            </span>
+
+                            <p>
+                                PG address will be added here.
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT VISUAL -->
+
+            <div class="contact-location-visual">
+
+                <div class="contact-location-circle">
+
+                    <span>
+                        PG
+                    </span>
+
+                </div>
+
+
+                <div class="contact-location-caption">
+
+                    <span>
+
+                        {% if pg %}
+
+                            {{ pg.name|upper }}
+
+                        {% else %}
+
+                            SUDARSHAN PG
+
+                        {% endif %}
+
+                    </span>
+
+                    <p>
+                        Your stay starts here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL CTA
+    ====================================================== -->
+
+    <section class="contact-cta">
+
+        <div class="contact-cta-inner">
+
+            <span class="contact-section-label">
+                HAVE A QUESTION?
+            </span>
+
+            <h2>
+                Let's talk about<br>
+                <em>your stay.</em>
+            </h2>
+
+            <p>
+                Send us your requirements and we will get
+                back to you regarding room availability
+                and other details.
+            </p>
+
+            <a
+                href="{% url 'enquiry' %}"
+                class="contact-cta-button"
+            >
+                Send an Enquiry
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     CONTACT PAGE STRUCTURED DATA
+====================================================== -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Sudarshan PG",
+    "description": "Sudarshan PG provides accommodation for students and working professionals in BTM Layout, Bengaluru.",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+    },
+    "telephone": "{{ pg.phone|default:''|escapejs }}",
+    "email": "{{ pg.email|default:''|escapejs }}"
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,1092 @@
+
+{% extends "base.html" %}
+
+{% block title %}Enquiry for Sudarshan PG | Room Availability in BTM Layout, Bengaluru{% endblock %}
+
+{% block meta_description %}Submit an enquiry to Sudarshan PG in BTM Layout, Bengaluru. Ask about room availability, sharing options, pricing and your expected move-in date. Contact us by phone or WhatsApp.{% endblock %}
+
+{% block meta_keywords %}Sudarshan PG enquiry, PG room enquiry Bengaluru, PG accommodation BTM Layout, enquire about PG rooms, room availability Bengaluru, single sharing PG, triple sharing PG, four sharing PG{% endblock %}
+
+{% block og_title %}Enquire About Rooms at Sudarshan PG | Bengaluru{% endblock %}
+
+{% block og_description %}Looking for PG accommodation in BTM Layout, Bengaluru? Send your requirements to Sudarshan PG and enquire about room availability and your preferred move-in date.{% endblock %}
+
+{% block twitter_title %}Sudarshan PG Enquiry | BTM Layout Bengaluru{% endblock %}
+
+{% block twitter_description %}Submit your room requirements and enquire about accommodation at Sudarshan PG, Bengaluru.{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* =========================================================
+   ENQUIRY PAGE
+   ========================================================= */
+
+.enquiry-page {
+    background: #f5f3ee;
+    color: #17232c;
+}
+
+
+/* COMMON CONTAINER */
+
+.enquiry-container {
+    width: min(1200px, 86%);
+    margin: 0 auto;
+}
+
+
+/* HERO */
+
+.enquiry-hero {
+    position: relative;
+    overflow: hidden;
+    background: #17232c;
+    color: #ffffff;
+    padding: 115px 0 105px;
+}
+
+.enquiry-hero::before {
+    content: "";
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    border: 1px solid rgba(201,164,92,0.18);
+    border-radius: 50%;
+    right: -160px;
+    top: -190px;
+}
+
+.enquiry-hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(201,164,92,0.13);
+    border-radius: 50%;
+    right: 80px;
+    bottom: -220px;
+}
+
+.enquiry-hero .enquiry-container {
+    position: relative;
+    z-index: 2;
+}
+
+.enquiry-eyebrow {
+    display: block;
+    margin-bottom: 45px;
+    color: #c9a45c;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 6px;
+}
+
+.enquiry-hero h1 {
+    max-width: 1000px;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(65px, 8vw, 115px);
+    line-height: 0.94;
+    font-weight: 400;
+    letter-spacing: -4px;
+}
+
+.enquiry-hero h1 em {
+    color: #c9a45c;
+    font-style: italic;
+}
+
+.enquiry-hero p {
+    max-width: 760px;
+    margin-top: 42px;
+    color: #d6dce0;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+/* MAIN ENQUIRY SECTION */
+
+.enquiry-section {
+    padding: 110px 0 120px;
+    background: #f5f3ee;
+}
+
+.enquiry-layout {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 75px;
+    align-items: start;
+}
+
+
+/* LEFT INFORMATION */
+
+.enquiry-info {
+    padding-top: 10px;
+}
+
+.enquiry-section-label {
+    color: #a27d3d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.enquiry-info h2 {
+    margin: 20px 0 25px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(48px, 5vw, 72px);
+    line-height: 0.98;
+    font-weight: 400;
+    letter-spacing: -2px;
+}
+
+.enquiry-info h2 em {
+    color: #a27d3d;
+    font-style: italic;
+}
+
+.enquiry-info > p {
+    max-width: 520px;
+    color: #68757d;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+
+/* CONTACT ITEMS */
+
+.enquiry-contact-item {
+    margin-top: 42px;
+    padding-top: 25px;
+    border-top: 1px solid #d7d1c6;
+}
+
+.enquiry-contact-item span {
+    display: block;
+    margin-bottom: 12px;
+    color: #a27d3d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.enquiry-contact-item a {
+    color: #17232c;
+    text-decoration: none;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    transition: color 0.25s ease;
+}
+
+.enquiry-contact-item a:hover {
+    color: #a27d3d;
+}
+
+.enquiry-contact-item p {
+    max-width: 480px;
+    margin: 0;
+    color: #5f6d75;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+/* WHATSAPP LINK */
+
+.enquiry-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: #17232c;
+    color: #ffffff !important;
+    font-family: inherit !important;
+    font-size: 11px !important;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    border: 1px solid #17232c;
+    transition: all 0.3s ease;
+}
+
+.enquiry-whatsapp span {
+    margin: 0;
+    color: #c9a45c;
+    font-size: 17px;
+}
+
+.enquiry-whatsapp:hover {
+    background: #c9a45c;
+    color: #17232c !important;
+    border-color: #c9a45c;
+}
+
+.enquiry-whatsapp:hover span {
+    color: #17232c;
+}
+
+
+/* FORM WRAPPER */
+
+.enquiry-form-wrapper {
+    background: #ffffff;
+    padding: 48px;
+    border: 1px solid #ddd7cd;
+    box-shadow: 0 20px 55px rgba(23,35,44,0.06);
+}
+
+.enquiry-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 28px;
+}
+
+
+/* FORM FIELD */
+
+.enquiry-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.enquiry-field-full {
+    grid-column: 1 / -1;
+}
+
+.enquiry-field label {
+    margin-bottom: 10px;
+    color: #17232c;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.enquiry-field label span {
+    color: #a27d3d;
+}
+
+.enquiry-field label small {
+    margin-left: 8px;
+    color: #9a9a9a;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+/* INPUTS */
+
+.enquiry-field input,
+.enquiry-field select,
+.enquiry-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 17px 18px;
+    background: #faf9f6;
+    color: #17232c;
+    border: 1px solid #d8d3ca;
+    border-radius: 0;
+    outline: none;
+    font-family: inherit;
+    font-size: 15px;
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.enquiry-field input,
+.enquiry-field select {
+    height: 56px;
+}
+
+.enquiry-field textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.enquiry-field input::placeholder,
+.enquiry-field textarea::placeholder {
+    color: #aab1b5;
+}
+
+.enquiry-field input:focus,
+.enquiry-field select:focus,
+.enquiry-field textarea:focus {
+    background: #ffffff;
+    border-color: #c9a45c;
+    box-shadow: 0 0 0 3px rgba(201,164,92,0.10);
+}
+
+
+/* DATE INPUT */
+
+.enquiry-field input[type="date"] {
+    color: #17232c;
+}
+
+
+/* SELECT */
+
+.enquiry-field select {
+    cursor: pointer;
+}
+
+
+/* SUBMIT AREA */
+
+.enquiry-submit {
+    grid-column: 1 / -1;
+    padding-top: 8px;
+}
+
+.enquiry-submit-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 20px 25px;
+    background: #17232c;
+    color: #ffffff;
+    border: 1px solid #17232c;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.enquiry-submit-button span {
+    color: #c9a45c;
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+.enquiry-submit-button:hover {
+    background: #c9a45c;
+    color: #17232c;
+    border-color: #c9a45c;
+}
+
+.enquiry-submit-button:hover span {
+    color: #17232c;
+    transform: translateX(5px);
+}
+
+.enquiry-submit p {
+    margin: 15px 0 0;
+    color: #8a9297;
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+
+/* WHAT HAPPENS NEXT */
+
+.enquiry-next-section {
+    padding: 100px 0 115px;
+    background: #17232c;
+    color: #ffffff;
+}
+
+.enquiry-next-header {
+    max-width: 700px;
+    margin-bottom: 55px;
+}
+
+.enquiry-next-header .enquiry-section-label {
+    color: #c9a45c;
+}
+
+.enquiry-next-header h2 {
+    margin: 18px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 5vw, 68px);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.enquiry-next-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.14);
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+
+.enquiry-next-card {
+    min-height: 220px;
+    padding: 35px 30px;
+    border-right: 1px solid rgba(255,255,255,0.14);
+}
+
+.enquiry-next-card:last-child {
+    border-right: none;
+}
+
+.enquiry-next-number {
+    display: block;
+    margin-bottom: 35px;
+    color: #c9a45c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+}
+
+.enquiry-next-card h3 {
+    margin: 0 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.enquiry-next-card p {
+    max-width: 270px;
+    margin: 0;
+    color: #aeb7bc;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* FINAL CTA */
+
+.enquiry-final {
+    padding: 95px 0;
+    background: #c9a45c;
+    text-align: center;
+}
+
+.enquiry-final h2 {
+    margin: 15px 0 20px;
+    color: #17232c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 6vw, 75px);
+    line-height: 0.95;
+    font-weight: 400;
+}
+
+.enquiry-final h2 em {
+    font-style: italic;
+}
+
+.enquiry-final p {
+    max-width: 650px;
+    margin: auto;
+    color: #35414a;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.enquiry-final-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 30px;
+    padding: 18px 25px;
+    background: #17232c;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.enquiry-final-button span {
+    color: #c9a45c;
+    font-size: 18px;
+}
+
+.enquiry-final-button:hover {
+    background: #ffffff;
+    color: #17232c;
+}
+
+.enquiry-final-button:hover span {
+    color: #a27d3d;
+}
+
+
+/* TABLET */
+
+@media (max-width: 950px) {
+
+    .enquiry-container {
+        width: 88%;
+    }
+
+    .enquiry-layout {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .enquiry-info {
+        max-width: 750px;
+    }
+
+    .enquiry-next-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .enquiry-next-card {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .enquiry-next-card:last-child {
+        border-bottom: none;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .enquiry-container {
+        width: 88%;
+    }
+
+    .enquiry-hero {
+        padding: 75px 0 70px;
+    }
+
+    .enquiry-eyebrow {
+        font-size: 10px;
+        letter-spacing: 4px;
+        margin-bottom: 35px;
+    }
+
+    .enquiry-hero h1 {
+        font-size: 57px;
+        letter-spacing: -2px;
+    }
+
+    .enquiry-hero p {
+        margin-top: 32px;
+        font-size: 15px;
+    }
+
+    .enquiry-section {
+        padding: 70px 0 80px;
+    }
+
+    .enquiry-info h2 {
+        font-size: 50px;
+    }
+
+    .enquiry-info > p {
+        font-size: 15px;
+    }
+
+    .enquiry-form-wrapper {
+        padding: 28px 22px;
+    }
+
+    .enquiry-form {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+    }
+
+    .enquiry-field-full,
+    .enquiry-submit {
+        grid-column: auto;
+    }
+
+    .enquiry-field input,
+    .enquiry-field select {
+        height: 53px;
+    }
+
+    .enquiry-next-section {
+        padding: 70px 0 80px;
+    }
+
+    .enquiry-next-header h2 {
+        font-size: 48px;
+    }
+
+    .enquiry-next-card {
+        padding: 30px 22px;
+    }
+
+    .enquiry-final {
+        padding: 70px 0;
+    }
+
+    .enquiry-final h2 {
+        font-size: 52px;
+    }
+
+    .enquiry-final p {
+        font-size: 15px;
+    }
+
+    .enquiry-final-button {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: space-between;
+    }
+
+}
+
+</style>
+
+
+<div class="enquiry-page">
+
+
+    <!-- ENQUIRY HERO -->
+
+    <section class="enquiry-hero">
+
+        <div class="enquiry-container">
+
+            <span class="enquiry-eyebrow">
+                SUDARSHAN PG
+            </span>
+
+            <h1>
+                Tell us about
+                <em>your stay.</em>
+            </h1>
+
+            <p>
+                Share your requirements with us and
+                enquire about room availability,
+                pricing and your preferred move-in date.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ENQUIRY FORM SECTION -->
+
+    <section class="enquiry-section">
+
+        <div class="enquiry-container">
+
+            <div class="enquiry-layout">
+
+
+                <!-- LEFT INFORMATION -->
+
+                <div class="enquiry-info">
+
+                    <span class="enquiry-section-label">
+                        MAKE AN ENQUIRY
+                    </span>
+
+                    <h2>
+                        Let's find the
+                        <em>right stay.</em>
+                    </h2>
+
+                    <p>
+                        Fill in your details and tell us what
+                        you are looking for. Our PG management
+                        can review your enquiry and contact you
+                        regarding availability.
+                    </p>
+
+
+                    <!-- PHONE -->
+
+                    {% if pg and pg.phone %}
+
+                        <div class="enquiry-contact-item">
+
+                            <span>
+                                PHONE
+                            </span>
+
+                            <a href="tel:{{ pg.phone }}">
+                                {{ pg.phone }}
+                            </a>
+
+                            <br>
+
+                            <a
+                                href="https://wa.me/919538901339"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="enquiry-whatsapp"
+                            >
+                                Chat on WhatsApp
+                                <span>↗</span>
+                            </a>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- LOCATION -->
+
+                    {% if pg and pg.address %}
+
+                        <div class="enquiry-contact-item">
+
+                            <span>
+                                LOCATION
+                            </span>
+
+                            <p>
+                                {{ pg.address }}
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- ENQUIRY FORM -->
+
+                <div class="enquiry-form-wrapper">
+
+                    <form
+                        method="POST"
+                        class="enquiry-form"
+                    >
+
+                        {% csrf_token %}
+
+
+                        <!-- NAME -->
+
+                        <div class="enquiry-field">
+
+                            <label for="name">
+                                Your Name
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your name"
+                                maxlength="100"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="enquiry-field">
+
+                            <label for="phone">
+                                Phone Number
+                                <span>*</span>
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                maxlength="15"
+                                autocomplete="tel"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="enquiry-field">
+
+                            <label for="email">
+                                Email
+                                <small>
+                                    Optional
+                                </small>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                maxlength="254"
+                                autocomplete="email"
+                            >
+
+                        </div>
+
+
+                        <!-- ROOM TYPE -->
+
+                        <div class="enquiry-field">
+
+                            <label for="room_type">
+                                Preferred Room
+                            </label>
+
+                            <select
+                                id="room_type"
+                                name="room_type"
+                            >
+
+                                <option value="">
+                                    Select room type
+                                </option>
+
+                                <option value="Single">
+                                    Single Sharing
+                                </option>
+
+                                <option value="Triple">
+                                    Triple Sharing
+                                </option>
+
+                                <option value="Four">
+                                    Four Sharing
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- MOVE-IN DATE -->
+
+                        <div class="enquiry-field">
+
+                            <label for="move_in_date">
+                                Expected Move-in Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="move_in_date"
+                                name="move_in_date"
+                            >
+
+                        </div>
+
+
+                        <!-- MESSAGE -->
+
+                        <div class="enquiry-field enquiry-field-full">
+
+                            <label for="message">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                placeholder="Tell us anything you would like us to know..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- SUBMIT -->
+
+                        <div class="enquiry-submit">
+
+                            <button
+                                type="submit"
+                                class="enquiry-submit-button"
+                            >
+                                Send Enquiry
+
+                                <span>
+                                    →
+                                </span>
+
+                            </button>
+
+                            <p>
+                                By submitting this enquiry,
+                                you are requesting information
+                                about staying at Sudarshan PG.
+                            </p>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHAT HAPPENS NEXT -->
+
+    <section class="enquiry-next-section">
+
+        <div class="enquiry-container">
+
+            <div class="enquiry-next-header">
+
+                <span class="enquiry-section-label">
+                    WHAT HAPPENS NEXT?
+                </span>
+
+                <h2>
+                    Simple steps.
+                    <br>
+                    Clear communication.
+                </h2>
+
+            </div>
+
+
+            <div class="enquiry-next-grid">
+
+
+                <!-- STEP 01 -->
+
+                <div class="enquiry-next-card">
+
+                    <span class="enquiry-next-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Send your enquiry
+                    </h3>
+
+                    <p>
+                        Tell us your name, contact details,
+                        preferred room and expected move-in date.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 02 -->
+
+                <div class="enquiry-next-card">
+
+                    <span class="enquiry-next-number">
+                        02
+                    </span>
+
+                    <h3>
+                        We review it
+                    </h3>
+
+                    <p>
+                        Our PG management reviews your
+                        requirements and checks availability.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 03 -->
+
+                <div class="enquiry-next-card">
+
+                    <span class="enquiry-next-number">
+                        03
+                    </span>
+
+                    <h3>
+                        We contact you
+                    </h3>
+
+                    <p>
+                        We contact you using the phone number
+                        you provided to discuss the next steps.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+
+    <section class="enquiry-final">
+
+        <div class="enquiry-container">
+
+            <span class="enquiry-section-label">
+                NEED HELP?
+            </span>
+
+            <h2>
+                Prefer to talk
+                <em>directly?</em>
+            </h2>
+
+            <p>
+                You can call us or contact us on WhatsApp
+                if you would like to discuss room availability
+                before submitting an enquiry.
+            </p>
+
+            {% if pg and pg.phone %}
+
+                <a
+                    href="tel:{{ pg.phone }}"
+                    class="enquiry-final-button"
+                >
+                    Call {{ pg.phone }}
+                    <span>↗</span>
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- =====================================================
+     ENQUIRY PAGE STRUCTURED DATA
+====================================================== -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Enquiry for Sudarshan PG",
+    "description": "Submit an enquiry to Sudarshan PG in BTM Layout, Bengaluru about room availability and accommodation.",
+    "about": {
+        "@type": "LodgingBusiness",
+        "name": "Sudarshan PG",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+        }
+    }
+}
+</script>
+
+{% endblock %}

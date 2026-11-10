@@ -1,0 +1,1217 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Sudarshan PG Gallery | PG Photos in BTM Layout, Bengaluru
+{% endblock %}
+
+{% block meta_description %}
+Explore the Sudarshan PG photo gallery in BTM Layout, Bengaluru. View real photos of our building, accommodation and living spaces for students and working professionals.
+{% endblock %}
+
+{% block meta_keywords %}
+Sudarshan PG gallery, PG photos in BTM Layout, PG in Bengaluru photos, Sudarshan PG rooms, PG accommodation Bengaluru, student PG photos
+{% endblock %}
+
+{% block og_title %}
+Sudarshan PG Gallery | Explore Our Living Spaces
+{% endblock %}
+
+{% block og_description %}
+Explore photos of Sudarshan PG, including the building and living spaces in BTM Layout, Bengaluru.
+{% endblock %}
+
+{% block twitter_title %}
+Sudarshan PG Gallery | BTM Layout Bengaluru
+{% endblock %}
+
+{% block twitter_description %}
+Take a closer look at Sudarshan PG through our gallery of real photos.
+{% endblock %}
+
+{% block content %}
+
+<style>
+/* =========================================================
+   GALLERY PAGE
+========================================================= */
+
+.gallery-page {
+    background: #f5f3ee;
+    color: #17232c;
+}
+
+.gallery-container {
+    width: min(1400px, 90%);
+    margin: 0 auto;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.gallery-hero {
+    background: #17232c;
+    color: #ffffff;
+    padding: 110px 0 70px;
+}
+
+.gallery-hero-label {
+    color: #c9a45c;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin-bottom: 70px;
+}
+
+.gallery-hero-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.gallery-hero h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(60px, 6.5vw, 100px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -4px;
+}
+
+.gallery-hero h1 span {
+    display: block;
+    color: #c9a45c;
+    font-style: italic;
+}
+
+.gallery-hero-content p {
+    max-width: 560px;
+    margin: 0;
+    color: #d6dbe0;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.gallery-hero-bottom {
+    margin-top: 100px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #9da8b0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.gallery-intro {
+    background: #f5f3ee;
+    padding: 110px 0 90px;
+}
+
+.gallery-intro-grid {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    gap: 70px;
+}
+
+.gallery-intro-label {
+    color: #a27d3d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    padding-top: 15px;
+}
+
+.gallery-intro h2 {
+    margin: 0;
+    max-width: 1000px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 5vw, 75px);
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -2px;
+}
+
+.gallery-intro h2 span {
+    color: #a27d3d;
+    font-style: italic;
+}
+
+.gallery-intro p {
+    margin-top: 30px;
+    max-width: 760px;
+    color: #68737b;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   GALLERY SHOWCASE
+========================================================= */
+
+.gallery-showcase {
+    background: #eae7df;
+    padding: 80px 0 120px;
+}
+
+.gallery-showcase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 45px;
+}
+
+.gallery-showcase-header span {
+    color: #a27d3d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.gallery-showcase-count {
+    color: #7d858a !important;
+}
+
+/* =========================================================
+   SINGLE IMAGE
+========================================================= */
+
+.gallery-grid {
+    display: block;
+}
+
+.gallery-item {
+    margin: 0;
+    width: 100%;
+}
+
+.gallery-image-wrapper {
+    position: relative;
+    width: 100%;
+    background: #17232c;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.gallery-image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 750px;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.6s ease;
+}
+
+.gallery-image-wrapper:hover img {
+    transform: scale(1.015);
+}
+
+.gallery-image-wrapper:focus-visible {
+    outline: 3px solid #c9a45c;
+    outline-offset: 4px;
+}
+
+/* IMAGE OVERLAY */
+
+.gallery-image-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(23, 35, 44, 0.12);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.gallery-image-wrapper:hover .gallery-image-overlay {
+    opacity: 1;
+}
+
+.gallery-image-overlay span {
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* CAPTION */
+
+.gallery-item figcaption {
+    padding: 22px 5px 0;
+    color: #52616a;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* =========================================================
+   EMPTY GALLERY
+========================================================= */
+
+.gallery-empty {
+    background: #ffffff;
+    padding: 100px 30px;
+    text-align: center;
+}
+
+.gallery-empty-mark {
+    color: #c9a45c;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.gallery-empty > span {
+    color: #a27d3d;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.gallery-empty h3 {
+    margin: 20px 0 10px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+}
+
+.gallery-empty p {
+    color: #748087;
+    font-size: 17px;
+}
+
+/* =========================================================
+   PHOTO INFORMATION
+========================================================= */
+
+.gallery-info {
+    background: #ffffff;
+    padding: 80px 0;
+}
+
+.gallery-info-grid {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    gap: 70px;
+}
+
+.gallery-info-label {
+    color: #a27d3d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.gallery-info h2 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(40px, 5vw, 65px);
+    line-height: 1.05;
+    font-weight: 400;
+}
+
+.gallery-info h2 em {
+    color: #a27d3d;
+}
+
+.gallery-info p {
+    max-width: 750px;
+    margin-top: 25px;
+    color: #69757c;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   CONTACT STRIP
+========================================================= */
+
+.gallery-note {
+    background: #17232c;
+    color: #ffffff;
+    padding: 75px 0;
+}
+
+.gallery-note-inner {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 40px;
+    align-items: center;
+}
+
+.gallery-note-number {
+    color: #c9a45c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 55px;
+}
+
+.gallery-note-inner > div:nth-child(2) span {
+    color: #c9a45c;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.gallery-note h2 {
+    margin: 12px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(35px, 4vw, 60px);
+    font-weight: 400;
+}
+
+.gallery-note h2 em {
+    color: #c9a45c;
+}
+
+/* CONTACT BUTTON */
+
+.gallery-note-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    min-width: 190px;
+    padding: 23px 28px;
+    background: #c9a45c;
+    color: #17232c;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.gallery-note-button span {
+    font-size: 22px;
+}
+
+.gallery-note-button:hover {
+    background: #ffffff;
+    color: #17232c;
+}
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.gallery-cta {
+    background: #c9a45c;
+    padding: 90px 0;
+}
+
+.gallery-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.gallery-cta-inner > div > span {
+    color: #17232c;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.gallery-cta h2 {
+    margin: 18px 0 0;
+    color: #17232c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(50px, 6vw, 85px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -3px;
+}
+
+.gallery-cta h2 em {
+    font-style: italic;
+}
+
+.gallery-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 45px;
+    min-width: 220px;
+    padding: 25px 30px;
+    background: #17232c;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.gallery-cta-button span {
+    color: #c9a45c;
+    font-size: 22px;
+}
+
+.gallery-cta-button:hover {
+    background: #ffffff;
+    color: #17232c;
+}
+
+/* =========================================================
+   FULL SCREEN LIGHTBOX
+========================================================= */
+
+.gallery-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 12, 18, 0.96);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+    cursor: zoom-out;
+}
+
+.gallery-lightbox.active {
+    display: flex;
+}
+
+.gallery-lightbox-content {
+    position: relative;
+    width: auto;
+    height: auto;
+    max-width: 95vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.gallery-lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+}
+
+/* CLOSE BUTTON */
+
+.gallery-lightbox-close {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255,255,255,0.55);
+    border-radius: 50%;
+    background: rgba(23,35,44,0.8);
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100000;
+    transition: all 0.3s ease;
+}
+
+.gallery-lightbox-close:hover {
+    background: #c9a45c;
+    color: #17232c;
+    border-color: #c9a45c;
+}
+
+/* LIGHTBOX CAPTION */
+
+.gallery-lightbox-caption {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 90%;
+    z-index: 100000;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .gallery-hero {
+        padding: 80px 0 55px;
+    }
+
+    .gallery-hero-label {
+        margin-bottom: 45px;
+    }
+
+    .gallery-hero-content {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .gallery-hero h1 {
+        font-size: clamp(65px, 15vw, 100px);
+    }
+
+    .gallery-hero-content p {
+        font-size: 17px;
+    }
+
+    .gallery-hero-bottom {
+        margin-top: 65px;
+    }
+
+    .gallery-intro-grid,
+    .gallery-info-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .gallery-note-inner {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .gallery-note-number {
+        font-size: 40px;
+    }
+
+    .gallery-cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .gallery-container {
+        width: 88%;
+    }
+
+    .gallery-hero {
+        padding: 65px 0 45px;
+    }
+
+    .gallery-hero h1 {
+        font-size: 65px;
+        letter-spacing: -3px;
+    }
+
+    .gallery-hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .gallery-intro {
+        padding: 70px 0;
+    }
+
+    .gallery-intro h2 {
+        font-size: 45px;
+    }
+
+    .gallery-showcase {
+        padding: 60px 0 80px;
+    }
+
+    .gallery-showcase-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .gallery-image-wrapper img {
+        max-height: none;
+    }
+
+    .gallery-image-overlay span {
+        width: 75px;
+        height: 75px;
+        font-size: 10px;
+    }
+
+    .gallery-info {
+        padding: 65px 0;
+    }
+
+    .gallery-note {
+        padding: 60px 0;
+    }
+
+    .gallery-cta {
+        padding: 70px 0;
+    }
+
+    .gallery-cta h2 {
+        font-size: 50px;
+    }
+
+    .gallery-note-button,
+    .gallery-cta-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .gallery-lightbox {
+        padding: 15px;
+    }
+
+    .gallery-lightbox-image {
+        max-width: 94vw;
+        max-height: 82vh;
+    }
+
+    .gallery-lightbox-close {
+        top: 15px;
+        right: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 27px;
+    }
+
+    .gallery-lightbox-caption {
+        bottom: 15px;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+}
+
+</style>
+
+<!-- =========================================================
+     GALLERY STRUCTURED DATA
+========================================================= -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Sudarshan PG Gallery",
+    "description": "Explore photos of Sudarshan PG in BTM Layout, Bengaluru, including the building and living spaces.",
+    "url": "{{ request.build_absolute_uri }}"
+}
+</script>
+
+<div class="gallery-page">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="gallery-hero">
+
+        <div class="gallery-container">
+
+            <div class="gallery-hero-label">
+                SUDARSHAN PG
+            </div>
+
+            <div class="gallery-hero-content">
+
+                <h1>
+                    A closer look at
+                    <span>your new home.</span>
+                </h1>
+
+                <p>
+                    Explore Sudarshan PG through real photos of
+                    our building, surroundings and everyday
+                    living spaces.
+                </p>
+
+            </div>
+
+            <div class="gallery-hero-bottom">
+                <span>OUR GALLERY</span>
+                <span>REAL SPACES / REAL EXPERIENCE</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+         INTRO
+    ====================================================== -->
+
+    <section class="gallery-intro">
+
+        <div class="gallery-container">
+
+            <div class="gallery-intro-grid">
+
+                <div class="gallery-intro-label">
+                    EXPLORE OUR SPACE
+                </div>
+
+                <div>
+
+                    <h2>
+                        See where
+                        <span>comfortable living begins.</span>
+                    </h2>
+
+                    <p>
+                        Take a look at the surroundings, building
+                        and spaces that make Sudarshan PG a
+                        comfortable place to stay.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+         GALLERY - ONE IMAGE AT A TIME
+    ====================================================== -->
+
+    <section class="gallery-showcase">
+
+        <div class="gallery-container">
+
+            <div class="gallery-showcase-header">
+
+                <span>FROM OUR PG</span>
+
+                <span class="gallery-showcase-count">
+                    01 / FEATURED
+                </span>
+
+            </div>
+
+            {% if gallery %}
+
+                <div class="gallery-grid">
+
+                    {% with item=gallery.0 %}
+
+                        <figure class="gallery-item">
+
+                            <!-- CLICK IMAGE TO OPEN FULL SIZE -->
+
+                            <div
+                                class="gallery-image-wrapper"
+                                data-image="{{ item.image.url }}"
+                                data-caption="{{ item.caption|default:'Sudarshan PG' }}"
+                                role="button"
+                                tabindex="0"
+                                aria-label="View full-size gallery image"
+                            >
+
+                                <img
+                                    src="{{ item.image.url }}"
+                                    alt="{% if item.caption %}{{ item.caption }} - Sudarshan PG in BTM Layout, Bengaluru{% else %}Sudarshan PG building and accommodation in BTM Layout, Bengaluru{% endif %}"
+                                    loading="lazy"
+                                >
+
+                                <div class="gallery-image-overlay">
+                                    <span>VIEW</span>
+                                </div>
+
+                            </div>
+
+                            {% if item.caption %}
+
+                                <figcaption>
+                                    {{ item.caption }}
+                                </figcaption>
+
+                            {% else %}
+
+                                <figcaption>
+                                    Sudarshan PG
+                                </figcaption>
+
+                            {% endif %}
+
+                        </figure>
+
+                    {% endwith %}
+
+                </div>
+
+            {% else %}
+
+                <div class="gallery-empty">
+
+                    <div class="gallery-empty-mark">
+                        ✦
+                    </div>
+
+                    <span>SUDARSHAN PG</span>
+
+                    <h3>
+                        Our gallery is being updated.
+                    </h3>
+
+                    <p>
+                        Photos of the PG will be added here soon.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+         FULL SCREEN IMAGE LIGHTBOX
+    ====================================================== -->
+
+    <div
+        id="galleryLightbox"
+        class="gallery-lightbox"
+        aria-hidden="true"
+    >
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="gallery-lightbox-close"
+            id="galleryLightboxClose"
+            aria-label="Close image"
+        >
+            &times;
+        </button>
+
+        <!-- IMAGE -->
+
+        <div class="gallery-lightbox-content">
+
+            <img
+                id="galleryLightboxImage"
+                class="gallery-lightbox-image"
+                src=""
+                alt="Sudarshan PG"
+            >
+
+        </div>
+
+        <!-- CAPTION -->
+
+        <div
+            id="galleryLightboxCaption"
+            class="gallery-lightbox-caption"
+        ></div>
+
+    </div>
+
+    <!-- =====================================================
+         INFORMATION
+    ====================================================== -->
+
+    <section class="gallery-info">
+
+        <div class="gallery-container">
+
+            <div class="gallery-info-grid">
+
+                <div class="gallery-info-label">
+                    OUR SPACE
+                </div>
+
+                <div>
+
+                    <h2>
+                        A simple place
+                        <em>to feel at home.</em>
+                    </h2>
+
+                    <p>
+                        From the building exterior to the
+                        surrounding environment, get a better
+                        idea of what everyday life at Sudarshan
+                        PG looks like.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section class="gallery-note">
+
+        <div class="gallery-container">
+
+            <div class="gallery-note-inner">
+
+                <div class="gallery-note-number">
+                    01
+                </div>
+
+                <div>
+
+                    <span>VISIT SUDARSHAN PG</span>
+
+                    <h2>
+                        See it.
+                        <em>Experience it.</em>
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{% url 'contact' %}"
+                    class="gallery-note-button"
+                >
+                    CONTACT US
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+         FINAL CTA
+    ====================================================== -->
+
+    <section class="gallery-cta">
+
+        <div class="gallery-container">
+
+            <div class="gallery-cta-inner">
+
+                <div>
+
+                    <span>LOOKING FOR A ROOM?</span>
+
+                    <h2>
+                        Ready to find your
+                        <em>new home?</em>
+                    </h2>
+
+                </div>
+
+                <a
+                    href="{% url 'rooms' %}"
+                    class="gallery-cta-button"
+                >
+                    VIEW ROOMS
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- =========================================================
+     GALLERY LIGHTBOX JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const lightbox = document.getElementById("galleryLightbox");
+
+    const lightboxImage = document.getElementById(
+        "galleryLightboxImage"
+    );
+
+    const lightboxCaption = document.getElementById(
+        "galleryLightboxCaption"
+    );
+
+    const closeButton = document.getElementById(
+        "galleryLightboxClose"
+    );
+
+    const galleryImage = document.querySelector(
+        ".gallery-image-wrapper"
+    );
+
+    if (
+        !lightbox ||
+        !lightboxImage ||
+        !lightboxCaption ||
+        !closeButton
+    ) {
+        return;
+    }
+
+    /* =====================================================
+       OPEN LIGHTBOX
+    ====================================================== */
+
+    function openGalleryLightbox(imageUrl, caption) {
+
+        if (!imageUrl) {
+            return;
+        }
+
+        lightboxImage.src = imageUrl;
+
+        lightboxImage.alt = caption || "Sudarshan PG";
+
+        lightboxCaption.textContent =
+            caption || "Sudarshan PG";
+
+        lightbox.classList.add("active");
+
+        lightbox.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+
+        closeButton.focus();
+
+    }
+
+    /* =====================================================
+       CLOSE LIGHTBOX
+    ====================================================== */
+
+    function closeGalleryLightbox() {
+
+        lightbox.classList.remove("active");
+
+        lightbox.setAttribute("aria-hidden", "true");
+
+        lightboxImage.src = "";
+
+        lightboxCaption.textContent = "";
+
+        document.body.style.overflow = "";
+
+        if (galleryImage) {
+            galleryImage.focus();
+        }
+
+    }
+
+    /* =====================================================
+       IMAGE CLICK
+    ====================================================== */
+
+    if (galleryImage) {
+
+        galleryImage.addEventListener("click", function () {
+
+            const imageUrl = this.dataset.image;
+
+            const caption = this.dataset.caption;
+
+            openGalleryLightbox(imageUrl, caption);
+
+        });
+
+        /* KEYBOARD ACCESS */
+
+        galleryImage.addEventListener("keydown", function (event) {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                const imageUrl = this.dataset.image;
+
+                const caption = this.dataset.caption;
+
+                openGalleryLightbox(imageUrl, caption);
+
+            }
+
+        });
+
+    }
+
+    /* =====================================================
+       CLOSE BUTTON
+    ====================================================== */
+
+    closeButton.addEventListener(
+        "click",
+        closeGalleryLightbox
+    );
+
+    /* =====================================================
+       CLICK OUTSIDE IMAGE
+    ====================================================== */
+
+    lightbox.addEventListener("click", function (event) {
+
+        if (event.target === lightbox) {
+
+            closeGalleryLightbox();
+
+        }
+
+    });
+
+    /* =====================================================
+       ESCAPE KEY
+    ====================================================== */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (
+            event.key === "Escape" &&
+            lightbox.classList.contains("active")
+        ) {
+
+            closeGalleryLightbox();
+
+        }
+
+    });
+
+});
+
+</script>
+
+{% endblock %}
